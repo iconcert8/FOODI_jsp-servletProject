@@ -10,7 +10,6 @@ public class FollowVO {
 		super();
 	}
 
-
 	public FollowVO(String reqId, String resId, String followDate) {
 		super();
 		this.reqId = reqId;

@@ -26,10 +26,11 @@ public class UserInfoController extends HttpServlet {
     	String ctxPath = request.getContextPath();
     	String path = uri.substring(ctxPath.length()+1);
     	
+    	
     	Action action = null;
     	ActionForward forward = null;
     	
-    	if(path.equals("userinfo/~")){
+    	if(path.equals("userinfo/join.do")){
     		action = null;
     		try{
     			forward = action.execute(request, response);

@@ -5,12 +5,14 @@
 
 <configuration>
 
+
  	<typeAliases> 
  		<typeAlias type="me.foodi.domain.UserInfoVO" alias="UserInfoVO"/>
  		<typeAlias type="me.foodi.domain.SearchVO" alias="SearchVO"/>
  		<typeAlias type="me.foodi.domain.FeedVO" alias="FeedVO"/>
  		<typeAlias type="me.foodi.domain.SearchFeedVO" alias="SearchFeedVO"/>
  		<typeAlias type="me.foodi.domain.FollowVO" alias="FollowVO"/>
+ 		<typeAlias type="me.foodi.domain.UserInfoVO" alias="UserInfoVO"/>
  	</typeAliases> 
 	
 	<environments default="development">
@@ -29,6 +31,7 @@
  		<mapper resource="me/foodi/persistence/search.xml"/> 
  		<mapper resource="me/foodi/persistence/FollowMapper.xml"/>
  		<mapper resource="me/foodi/persistence/chat.xml"/> 
+ 		<mapper resource="me/foodi/persistence/UserInfoMapper.xml"/> 
 	</mappers>
 	
 </configuration>

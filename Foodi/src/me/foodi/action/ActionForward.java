@@ -9,6 +9,7 @@ public class ActionForward {
 		// TODO Auto-generated constructor stub
 	} 
 
+
 	public ActionForward(boolean isRedirect, String path) {
 		super();
 		this.isRedirect = isRedirect;

@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import me.foodi.domain.Feed;
+import me.foodi.mapper.NewsFeedMapper;
 
 public class NewsFeedDAO {
 	private static NewsFeedDAO dao = new NewsFeedDAO();
@@ -35,7 +36,7 @@ public class NewsFeedDAO {
 		Feed detailFeed = new Feed();
 		
 		try{
-			detailFeed = sqlSession.getMapper(arg0)
-		}
+			detailFeed = sqlSession.getMapper(NewsFeedMapper.class).
+		} 
 	}
 }	

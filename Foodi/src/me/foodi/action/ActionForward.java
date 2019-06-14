@@ -6,7 +6,7 @@ public class ActionForward {
 	private String path;
 
 	public ActionForward() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public ActionForward(boolean isRedirect, String path) {

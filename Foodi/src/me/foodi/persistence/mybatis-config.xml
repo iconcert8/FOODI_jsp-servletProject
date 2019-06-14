@@ -6,8 +6,8 @@
 <configuration>
 
  	<typeAliases> 
- 		<typeAlias type="me.foodi.domain.UserInfo" alias="UserInfo"/>
- 		<typeAlias type="me.foodi.domain.Feed" alias="Feed"/> 
+ 		<typeAlias type="me.foodi.domain.UserInfoVO" alias="UserInfo"/>
+ 		<typeAlias type="me.foodi.domain.FeedVO" alias="Feed"/> 
  	</typeAliases> 
 	
 	<environments default="development">
@@ -18,10 +18,6 @@
 				<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
 				<property name="username" value="foodi"/>
 				<property name="password" value="1234"/>
-<!--			
-				<dataSource type="JNDI">
-				<property name="data_source" value="java:comp/env/jdbc/oracle"/> 
--->
 			</dataSource>
 		</environment>		
 	</environments>
@@ -29,6 +25,7 @@
 	<mappers>
 <!-- 	예시 <mapper resource="me/foodi/persistence/board.xml"/> -->
  		<mapper resource="me/foodi/persistence/search.xml"/> 
+ 		<mapper resource="me/foodi/persistence/chat.xml"/> 
 	</mappers>
 	
 </configuration>

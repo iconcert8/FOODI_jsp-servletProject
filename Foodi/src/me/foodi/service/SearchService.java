@@ -3,8 +3,8 @@ package me.foodi.service;
 import java.util.List;
 
 import me.foodi.DAO.SearchDAO;
-import me.foodi.domain.Feed;
-import me.foodi.domain.UserInfo;
+import me.foodi.domain.FeedVO;
+import me.foodi.domain.UserInfoVO;
 
 public class SearchService {
 	private static SearchService service = new SearchService();
@@ -15,13 +15,13 @@ public class SearchService {
 		return service;
 	}
 	
-	public List<UserInfo> searchUserService(String keyword){
-		List<UserInfo> list = dao.searchUser(keyword);
+	public List<UserInfoVO> searchUserService(String keyword){
+		List<UserInfoVO> list = dao.searchUser(keyword);
 		return list;
 	}
 	
-	public List<Feed> searchFeedService(String keyword){
-		List<Feed> list = dao.searchFeed(keyword);
+	public List<FeedVO> searchFeedService(String keyword){
+		List<FeedVO> list = dao.searchFeed(keyword);
 		return list;
 	}
 }

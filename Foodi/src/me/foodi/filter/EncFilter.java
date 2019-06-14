@@ -1,6 +1,7 @@
 package me.foodi.filter;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -10,7 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
 
-@WebFilter("/ex")
+@WebFilter("*")
 public class EncFilter implements Filter {
 
 

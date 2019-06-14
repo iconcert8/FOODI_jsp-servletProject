@@ -1,22 +1,21 @@
 package me.foodi.domain;
 
-import java.sql.Date;
-
-public class FeedVO {
+public class Feed {
 	private int feedNo;
 	private String userId;
 	private String feedContent;
 	private String feedImg;
 	private String feedImgs;
-	private String feedGoodCnt;
+	private int feedGoodCnt;
 	private String feedLoc;
-	private Date feedDate;
+	private String feedDate;
+	private String feedUpdate;
+	private String feedLock;
 	
-	public FeedVO(){}
-	 
-	
-	public FeedVO(int feedNo, String userId, String feedContent, String feedImg, String feedImgs, String feedGoodCnt,
-			String feedLoc, Date feedDate, Date feedLock) {
+	public Feed(){}
+
+	public Feed(int feedNo, String userId, String feedContent, String feedImg, String feedImgs, int feedGoodCnt,
+			String feedLoc, String feedDate, String feedUpdate, String feedLock) {
 		super();
 		this.feedNo = feedNo;
 		this.userId = userId;
@@ -26,14 +25,8 @@ public class FeedVO {
 		this.feedGoodCnt = feedGoodCnt;
 		this.feedLoc = feedLoc;
 		this.feedDate = feedDate;
+		this.feedUpdate = feedUpdate;
 		this.feedLock = feedLock;
-	}
-
-	@Override
-	public String toString() {
-		return "FeedVO [feedNo=" + feedNo + ", userId=" + userId + ", feedContent=" + feedContent + ", feedImg="
-				+ feedImg + ", feedImgs=" + feedImgs + ", feedGoodCnt=" + feedGoodCnt + ", feedLoc=" + feedLoc
-				+ ", feedDate=" + feedDate + ", feedLock=" + feedLock + "]";
 	}
 
 	public int getFeedNo() {
@@ -76,11 +69,11 @@ public class FeedVO {
 		this.feedImgs = feedImgs;
 	}
 
-	public String getFeedGoodCnt() {
+	public int getFeedGoodCnt() {
 		return feedGoodCnt;
 	}
 
-	public void setFeedGoodCnt(String feedGoodCnt) {
+	public void setFeedGoodCnt(int feedGoodCnt) {
 		this.feedGoodCnt = feedGoodCnt;
 	}
 
@@ -92,22 +85,36 @@ public class FeedVO {
 		this.feedLoc = feedLoc;
 	}
 
-	public Date getFeedDate() {
+	public String getFeedDate() {
 		return feedDate;
 	}
 
-	public void setFeedDate(Date feedDate) {
+	public void setFeedDate(String feedDate) {
 		this.feedDate = feedDate;
 	}
 
-	public Date getFeedLock() {
+	public String getFeedUpdate() {
+		return feedUpdate;
+	}
+
+	public void setFeedUpdate(String feedUpdate) {
+		this.feedUpdate = feedUpdate;
+	}
+
+	public String getFeedLock() {
 		return feedLock;
 	}
 
-	public void setFeedLock(Date feedLock) {
+	public void setFeedLock(String feedLock) {
 		this.feedLock = feedLock;
 	}
 
-	private Date feedLock;
- 
+	@Override
+	public String toString() {
+		return "Feed [feedNo=" + feedNo + ", userId=" + userId + ", feedContent=" + feedContent + ", feedImg=" + feedImg
+				+ ", feedImgs=" + feedImgs + ", feedGoodCnt=" + feedGoodCnt + ", feedLoc=" + feedLoc + ", feedDate="
+				+ feedDate + ", feedUpdate=" + feedUpdate + ", feedLock=" + feedLock + "]";
+	}
+	
+	
 }

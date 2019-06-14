@@ -10,8 +10,16 @@
 <title>messenger</title>
 </head>
 <body>
+	<header>
+	
+	</header>
 	<nav>
-		<c:if test="${id }"></c:if>
+		<c:if test="${member.userImg}">
+			<img alt="profile Img" src="thum/${member.userImg }">
+		</c:if>
+		<span>${member.userId }</span><br>
+		<span>${member.userNick }</span>
+		
 	</nav>
 		<hr>
 	<section>

@@ -18,15 +18,14 @@ public class SearchService {
 		return service;
 	}
 	
-
 	public List<UserInfoVO> searchUserService(HttpServletRequest request) throws Exception{
 		SearchVO search = new SearchVO();
 		search.setSearchKeyword("%"+request.getParameter("searchKeyword")+"%");
 		List<UserInfoVO> list = dao.searchUser(search);
+
 		return list;
 	}
 	
-
 	public List<SearchFeedVO> searchFeedService(HttpServletRequest request)throws Exception{
 		SearchVO search = new SearchVO();
 		search.setSearchKeyword("%"+request.getParameter("searchKeyword")+"%");

@@ -18,7 +18,7 @@ public class SearchAction implements Action {
 		service.insertSearchService(request);
 		List<UserInfoVO> userlist = service.searchUserService(request);
 		List<SearchFeedVO> feedlist = service.searchFeedService(request);
-
+		
 		request.setAttribute("userlist", userlist);
 		request.setAttribute("feedlist", feedlist);
 		ActionForward forward = new ActionForward();

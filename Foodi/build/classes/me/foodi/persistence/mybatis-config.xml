@@ -21,7 +21,6 @@
 				<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
 				<property name="username" value="foodi"/>
 				<property name="password" value="1234"/>
-
 			</dataSource>
 		</environment>		
 	</environments>
@@ -29,6 +28,7 @@
 	<mappers>
  		<mapper resource="me/foodi/persistence/search.xml"/> 
  		<mapper resource="me/foodi/persistence/FollowMapper.xml"/>
+ 		<mapper resource="me/foodi/persistence/chat.xml"/> 
 	</mappers>
 	
 </configuration>

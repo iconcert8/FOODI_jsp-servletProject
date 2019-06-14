@@ -10,16 +10,6 @@
 <body>
 	<h1>검색 결과</h1>
 	<br><br>
-	<h2>사람</h2>
-	<c:forEach var="u" items="${userlist }">
-		<div>아이디:${u.userId }</div>
-		<div>닉네임:${u.userNick }</div>
-	</c:forEach>
-	<h2>피드</h2>
-	<c:forEach var="f" items="${feedlist }">
-		<div>작성자:${f.userId }</div>
-		<div>썸네일:${f.feedImg }</div>
-		<div>피드내용:${f.feedContent }</div>
-	</c:forEach>
+	${keyword }
 </body>
 </html>

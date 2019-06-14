@@ -8,8 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import me.foodi.domain.Feed;
-import me.foodi.domain.UserInfo;
+import me.foodi.domain.FeedVO;
+import me.foodi.domain.SearchVO;
+import me.foodi.domain.UserInfoVO;
 import me.foodi.mapper.SearchMapper;
 
 public class SearchDAO {
@@ -27,9 +28,9 @@ public class SearchDAO {
 		}
 		return new SqlSessionFactoryBuilder().build(in);
 	}
-	public List<UserInfo> searchUser(String keyword){
+	/*public List<UserInfoVO> searchUser(String keyword){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		List<UserInfo> list = null;
+		List<UserInfoVO> list = null;
 		try {
 			list=sqlSession.getMapper(SearchMapper.class).searchUser(keyword);
 		} catch (Exception e) {
@@ -39,9 +40,9 @@ public class SearchDAO {
 		}
 		return list;
 	}
-	public List<Feed> searchFeed(String keyword){
+	public List<FeedVO> searchFeed(String keyword){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		List<Feed> list = null;
+		List<FeedVO> list = null;
 		try {
 			list=sqlSession.getMapper(SearchMapper.class).searchFeed(keyword);
 		} catch (Exception e) {
@@ -50,5 +51,21 @@ public class SearchDAO {
 			sqlSession.close();
 		}
 		return list;
+	}*/
+	public void insertSearch(SearchVO search){
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re= -1;
+		try {
+			re=sqlSession.getMapper(SearchMapper.class).insertSearch(search);
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
 	}
 }

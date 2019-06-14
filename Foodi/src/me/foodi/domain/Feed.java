@@ -1,13 +1,13 @@
 package me.foodi.domain;
 
 public class Feed {
-	private int feedNo;
-	private String userId;
-	private String feedContent;
-	private String feedImg;
-	private String feedImgs;
-	private int feedGoodCnt;
-	private String feedLoc;
+	private int feedNo; //피드번호
+	private String userId; //유저아이디
+	private String feedContent; //피드 내요
+	private String feedImg; //피드 이미지
+	private String feedImgs; //피드 이미지들
+	private int feedGoodCnt; // 
+	private String feedLoc; 
 	private String feedDate;
 	private String feedUpdate;
 	private String feedLock;

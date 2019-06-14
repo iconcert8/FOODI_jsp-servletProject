@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import me.foodi.domain.FeedVO;
-import me.foodi.domain.UserInfo;
+import me.foodi.domain.UserInfoVO;
 import me.foodi.mapper.SearchMapper;
 
 public class SearchDAO {
@@ -27,9 +27,9 @@ public class SearchDAO {
 		}
 		return new SqlSessionFactoryBuilder().build(in);
 	}
-	public List<UserInfo> searchUser(String keyword){
+	public List<UserInfoVO> searchUser(String keyword){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		List<UserInfo> list = null;
+		List<UserInfoVO> list = null;
 		try {
 			list=sqlSession.getMapper(SearchMapper.class).searchUser(keyword);
 		} catch (Exception e) {

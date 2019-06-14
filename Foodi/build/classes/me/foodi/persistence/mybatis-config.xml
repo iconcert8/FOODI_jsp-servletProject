@@ -6,8 +6,9 @@
 <configuration>
 
  	<typeAliases> 
- 		<typeAlias type="me.foodi.domain.UserInfo" alias="UserInfo"/>
- 		<typeAlias type="me.foodi.domain.Feed" alias="Feed"/> 
+ 		<typeAlias type="me.foodi.domain.UserInfoVO" alias="UserInfoVO"/>
+ 		<typeAlias type="me.foodi.domain.FeedVO" alias="FeedVO"/> 
+ 		<typeAlias type="me.foodi.domain.FollowVO" alias="FollowVO"/>
  	</typeAliases> 
 	
 	<environments default="development">
@@ -28,7 +29,7 @@
 	
 	<mappers>
 <!-- 	예시 <mapper resource="me/foodi/persistence/board.xml"/> -->
- 		<mapper resource="me/foodi/persistence/search.xml"/> 
+ 		<mapper resource="me/foodi/persistence/FollowMapper.xml"/>
 	</mappers>
 	
 </configuration>

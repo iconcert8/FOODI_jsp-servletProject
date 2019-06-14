@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import me.foodi.domain.FollowVO;
 import me.foodi.service.FollowService;
 
-public class FollowAction implements Action {
+public class FollowListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

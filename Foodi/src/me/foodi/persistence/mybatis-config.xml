@@ -29,7 +29,6 @@
 	
 	<mappers>
 <!-- 	예시 <mapper resource="me/foodi/persistence/board.xml"/> -->
- 		<mapper resource="me/foodi/persistence/search.xml"/> 
  		<mapper resource="me/foodi/persistence/FollowMapper.xml"/>
 	</mappers>
 	

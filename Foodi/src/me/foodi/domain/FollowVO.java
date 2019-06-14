@@ -2,8 +2,8 @@ package me.foodi.domain;
 
 public class FollowVO {
 
-	private String requestUserId;
-	private String responseUserId;
+	private String reqUserId;
+	private String resUserId;
 	private String followDate;
 	
 	
@@ -11,37 +11,43 @@ public class FollowVO {
 		super();
 	}
 	
-	public FollowVO(String requestUserId, String responseUserId, String followDate) {
+	public FollowVO(String reqUserId, String resUserId, String followDate) {
 		super();
-		this.requestUserId = requestUserId;
-		this.responseUserId = responseUserId;
+		this.reqUserId = reqUserId;
+		this.resUserId = resUserId;
 		this.followDate = followDate;
 	}
-	
-	public String getRequestUserId() {
-		return requestUserId;
+
+	public String getReqUserId() {
+		return reqUserId;
 	}
-	public void setRequestUserId(String requestUserId) {
-		this.requestUserId = requestUserId;
+
+	public void setReqUserId(String reqUserId) {
+		this.reqUserId = reqUserId;
 	}
-	public String getResponseUserId() {
-		return responseUserId;
+
+	public String getResUserId() {
+		return resUserId;
 	}
-	public void setResponseUserId(String responseUserId) {
-		this.responseUserId = responseUserId;
+
+	public void setResUserId(String resUserId) {
+		this.resUserId = resUserId;
 	}
+
 	public String getFollowDate() {
 		return followDate;
 	}
+
 	public void setFollowDate(String followDate) {
 		this.followDate = followDate;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "FollowVO [requestUserId=" + requestUserId + ", responseUserId=" + responseUserId + ", followDate="
-				+ followDate + "]";
+		return "FollowVO [reqUserId=" + reqUserId + ", resUserId=" + resUserId + ", followDate=" + followDate + "]";
 	}
+	
+	
 	
 	
 }

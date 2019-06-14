@@ -7,4 +7,6 @@ import me.foodi.domain.FollowVO;
 public interface FollowMapper {
 	
 	List<FollowVO> followList();
+	
+	
 }

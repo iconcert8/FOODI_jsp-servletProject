@@ -1,11 +1,16 @@
 package me.foodi.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import me.foodi.action.Action;
+import me.foodi.action.ActionForward;
 
 @WebServlet("/chat/*")
 public class ChatController extends HttpServlet {
@@ -14,23 +19,44 @@ public class ChatController extends HttpServlet {
     public ChatController() {
         super();
     }
+    
+    public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	String uri = request.getRequestURI();
+    	String ctxPath = request.getContextPath();
+    	String path = uri.substring(ctxPath.length()+1);
+    	
+    	Action action = null;
+    	ActionForward forward = null;
+    	
+    	if(path.equals("chat/~")){
+    		action = null;
+    		try{
+    			forward = action.execute(request, response);
+    		}catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    	}
+    	
+    	if(forward != null){
+    		if(forward.isRedirect()){
+    			response.sendRedirect(forward.getPath());
+    		}else{
+    			RequestDispatcher rd = request.getRequestDispatcher(forward.getPath());
+    			rd.forward(request, response);
+    		}
+    	}
+    	
+    	
+    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String command = getCommand(request);
-			
-		response.getWriter().append("Served at: ").append(command);
+		doProcess(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		doProcess(request, response);
 	}
 	
-	private String getCommand(HttpServletRequest request) {
-		String contextPath = request.getContextPath();
-		String requestURI = request.getRequestURI();
-		return requestURI.substring(contextPath.length() + 1);
-	}
+
 
 }

@@ -1,6 +1,6 @@
 package me.foodi.domain;
 
-public class MemberVO {
+public class UserInfoVO {
 	
 	private String userId;
 	private String userPass;
@@ -9,11 +9,11 @@ public class MemberVO {
 	private String userImg;
 	private String userLock;
 	
-	public MemberVO() {
+	public UserInfoVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberVO(String userId, String userPass, String userNick, String userEamil, String userImg,
+	public UserInfoVO(String userId, String userPass, String userNick, String userEamil, String userImg,
 			String userLock) {
 		super();
 		this.userId = userId;
@@ -74,7 +74,7 @@ public class MemberVO {
 
 	@Override
 	public String toString() {
-		return "MemberVO [userId=" + userId + ", userPass=" + userPass + ", userNick=" + userNick + ", userEamil="
+		return "UserInfoVO [userId=" + userId + ", userPass=" + userPass + ", userNick=" + userNick + ", userEamil="
 				+ userEamil + ", userImg=" + userImg + ", userLock=" + userLock + "]";
 	}
 
@@ -99,7 +99,7 @@ public class MemberVO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MemberVO other = (MemberVO) obj;
+		UserInfoVO other = (UserInfoVO) obj;
 		if (userEamil == null) {
 			if (other.userEamil != null)
 				return false;

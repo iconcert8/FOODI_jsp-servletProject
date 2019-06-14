@@ -12,12 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
 
-@WebServlet("/follow/*")
-public class FollowController extends HttpServlet {
+
+@WebServlet("/userinfo/*")
+public class UserInfoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public FollowController() {
-        super();
+
+    public UserInfoController() {
     }
     
     public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,7 +29,7 @@ public class FollowController extends HttpServlet {
     	Action action = null;
     	ActionForward forward = null;
     	
-    	if(path.equals("follow/~")){
+    	if(path.equals("userinfo/~")){
     		action = null;
     		try{
     			forward = action.execute(request, response);
@@ -48,11 +49,10 @@ public class FollowController extends HttpServlet {
     	
     	
     }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	doProcess(request, response);
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request, response);
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}

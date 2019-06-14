@@ -1,41 +1,60 @@
 package me.foodi.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class MainController
- */
+import me.foodi.action.Action;
+import me.foodi.action.ActionForward;
+
 @WebServlet("/main/*")
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public MainController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    
+    public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	String uri = request.getRequestURI();
+    	String ctxPath = request.getContextPath();
+    	String path = uri.substring(ctxPath.length()+1);
+    	
+    	Action action = null;
+    	ActionForward forward = null;
+    	
+    	if(path.equals("main/~")){
+    		action = null;
+    		try{
+    			forward = action.execute(request, response);
+    		}catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    	}
+    	
+    	if(forward != null){
+    		if(forward.isRedirect()){
+    			response.sendRedirect(forward.getPath());
+    		}else{
+    			RequestDispatcher rd = request.getRequestDispatcher(forward.getPath());
+    			rd.forward(request, response);
+    		}
+    	}
+    	
+    	
+    }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doProcess(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		doProcess(request, response);
 	}
 
 }

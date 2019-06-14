@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
+import me.foodi.action.FollowAction;
 
 @WebServlet("/follow/*")
 public class FollowController extends HttpServlet {
@@ -22,14 +23,15 @@ public class FollowController extends HttpServlet {
     
     public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String uri = request.getRequestURI();
+    	System.out.println(uri);
     	String ctxPath = request.getContextPath();
     	String path = uri.substring(ctxPath.length()+1);
-    	
+    	System.out.println(path);
     	Action action = null;
     	ActionForward forward = null;
     	
-    	if(path.equals("follow/~")){
-    		action = null;
+    	if(path.equals("follow/list")){
+    		action = new FollowAction();
     		try{
     			forward = action.execute(request, response);
     		}catch (Exception e) {

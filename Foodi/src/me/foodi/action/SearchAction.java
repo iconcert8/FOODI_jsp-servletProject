@@ -5,8 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import me.foodi.domain.Feed;
-import me.foodi.domain.UserInfo;
+import me.foodi.domain.FeedVO;
+import me.foodi.domain.UserInfoVO;
 import me.foodi.service.SearchService;
 
 public class SearchAction implements Action {
@@ -15,8 +15,8 @@ public class SearchAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		SearchService service = SearchService.getInstance();
 		String keyword = "%"+request.getParameter("keyword")+"%";
-		List<UserInfo> userlist = service.searchUserService(keyword);
-		List<Feed> feedlist = service.searchFeedService(keyword);
+		List<UserInfoVO> userlist = service.searchUserService(keyword);
+		List<FeedVO> feedlist = service.searchFeedService(keyword);
 		request.setAttribute("userlist", userlist);
 		request.setAttribute("feedlist", feedlist);
 		

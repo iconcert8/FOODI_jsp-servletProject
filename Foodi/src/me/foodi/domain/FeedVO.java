@@ -1,7 +1,6 @@
 package me.foodi.domain;
 
 public class FeedVO {
-
 	private int feedNo;
 	private String userId;
 	private String feedContent;
@@ -12,9 +11,7 @@ public class FeedVO {
 	private String feedDate;
 	private String feedUpdate;
 	private String feedLock;
-	
-	
-	
+
 	public FeedVO() {
 		super();
 	}
@@ -120,8 +117,5 @@ public class FeedVO {
 				+ feedImg + ", feedImgs=" + feedImgs + ", feedGoodCnt=" + feedGoodCnt + ", feedLoc=" + feedLoc
 				+ ", feedDate=" + feedDate + ", feedUpdate=" + feedUpdate + ", feedLock=" + feedLock + "]";
 	}
-	
-	
-	
-	
+
 }

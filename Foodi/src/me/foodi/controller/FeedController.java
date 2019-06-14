@@ -29,9 +29,11 @@ public class FeedController extends HttpServlet {
     	
     	Action action = null;
     	ActionForward forward = null;
+    	System.out.println(path);
     	
-    	if(path.equals("feed/~")){
-    		action = null;
+    	if(path.equals("feed/feedInsert.do")){
+    		action = new FeedInsertAction();
+    		System.out.println("ok");
     		try{
     			forward = action.execute(request, response);
     		}catch (Exception e) {

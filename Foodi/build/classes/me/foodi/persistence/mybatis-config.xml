@@ -4,11 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-		<typeAliases>
-			<!-- 예시<typeAlias type="kosta.bean.Board" alias="Board"/> -->
-		</typeAliases>
 
-
+ 	<typeAliases> 
+ 		<typeAlias type="me.foodi.domain.UserInfo" alias="UserInfo"/>
+ 		<typeAlias type="me.foodi.domain.Feed" alias="Feed"/> 
+ 	</typeAliases> 
 	
 	<environments default="development">
 		<environment id="development">
@@ -19,7 +19,6 @@
 				<property name="username" value="foodi"/>
 				<property name="password" value="1234"/>
 <!--			
-				jndi설정시
 				<dataSource type="JNDI">
 				<property name="data_source" value="java:comp/env/jdbc/oracle"/> 
 -->
@@ -28,7 +27,8 @@
 	</environments>
 	
 	<mappers>
-<!-- 	예시<mapper resource="me/foodi/persistence/board.xml"/> -->
+<!-- 	예시 <mapper resource="me/foodi/persistence/board.xml"/> -->
+ 		<mapper resource="me/foodi/persistence/search.xml"/> 
 	</mappers>
 	
 </configuration>

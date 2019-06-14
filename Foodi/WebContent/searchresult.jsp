@@ -9,6 +9,7 @@
 </head>
 <body>
 	<h1>검색 결과</h1>
+	<a href="search/search.do"><div>검색 창으로 돌아가기</div></a>
 	<br><br>
 	<h2>사용자</h2><br><br>
 	<c:forEach var="u" items="${userlist }">

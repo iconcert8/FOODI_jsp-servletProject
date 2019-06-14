@@ -1,4 +1,4 @@
-package me.foodi.service;
+package me.foodi.filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;

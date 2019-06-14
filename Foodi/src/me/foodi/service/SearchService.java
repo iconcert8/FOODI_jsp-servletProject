@@ -5,7 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import me.foodi.DAO.SearchDAO;
-import me.foodi.domain.FeedVO;
+import me.foodi.domain.SearchFeedVO;
 import me.foodi.domain.SearchVO;
 import me.foodi.domain.UserInfoVO;
 
@@ -18,16 +18,19 @@ public class SearchService {
 		return service;
 	}
 	
-	/*public List<UserInfoVO> searchUserService(HttpServletRequest request) throws Exception{
-		
-		List<UserInfoVO> list = dao.searchUser();
+	public List<UserInfoVO> searchUserService(HttpServletRequest request) throws Exception{
+		SearchVO search = new SearchVO();
+		search.setSearchKeyword("%"+request.getParameter("searchKeyword")+"%");
+		List<UserInfoVO> list = dao.searchUser(search);
 		return list;
 	}
 	
-	public List<FeedVO> searchFeedService(String keyword){
-		List<FeedVO> list = dao.searchFeed(keyword);
+	public List<SearchFeedVO> searchFeedService(HttpServletRequest request)throws Exception{
+		SearchVO search = new SearchVO();
+		search.setSearchKeyword("%"+request.getParameter("searchKeyword")+"%");
+		List<SearchFeedVO> list = dao.searchFeed(search);
 		return list;
-	}*/
+	}
 	
 	public void insertSearchService(HttpServletRequest request)throws Exception{
 		SearchVO search=new SearchVO();

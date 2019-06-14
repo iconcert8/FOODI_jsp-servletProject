@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.foodi.mapper.SearchMapper">
+
+ 	<select id="searchUser" parameterType="SearchVO" resultType="UserInfoVO">
+		select * from userinfo where userNick LIKE #{searchKeyword}
+	</select>
+	
+	<select id="searchFeed" parameterType="SearchVO" resultType="SearchFeedVO">
+		SELECT f.feedno,f.userid,f.feedcontent,f.feedImg,f.feedgoodcnt,f.feeddate,f.feedlock, t.tagname
+FROM feed f, feedtag t where f.feedno=t.feedno AND (f.feedcontent LIKE #{searchKeyword} OR t.tagname LIKE #{searchKeyword})
+	</select>
+	
+	<insert id="insertSearch" parameterType="SearchVO">
+		INSERT INTO search VALUES(search_seq.nextval,#{searchKeyword},sysdate,'a')
+	</insert>
+</mapper>

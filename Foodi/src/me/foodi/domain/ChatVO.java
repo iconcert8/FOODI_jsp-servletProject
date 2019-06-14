@@ -10,12 +10,15 @@ public class ChatVO {
 	private String reqId;
 	private String resId;
 
+	
+	
 	public ChatVO() {
 		super();
 	}
 
 	public ChatVO(int chatNo, String chatMsg, String chatDate, String chatChk, String chatDel, String chatFile,
 			String reqId, String resId) {
+
 		super();
 		this.chatNo = chatNo;
 		this.chatMsg = chatMsg;
@@ -25,6 +28,7 @@ public class ChatVO {
 		this.chatFile = chatFile;
 		this.reqId = reqId;
 		this.resId = resId;
+
 	}
 
 	public int getChatNo() {
@@ -77,6 +81,7 @@ public class ChatVO {
 
 	public String getReqId() {
 		return reqId;
+
 	}
 
 	public void setReqId(String reqId) {
@@ -95,6 +100,7 @@ public class ChatVO {
 	public String toString() {
 		return "ChatVO [chatNo=" + chatNo + ", chatMsg=" + chatMsg + ", chatDate=" + chatDate + ", chatChk=" + chatChk
 				+ ", chatDel=" + chatDel + ", chatFile=" + chatFile + ", reqId=" + reqId + ", resId=" + resId + "]";
+
 	}
 
 }

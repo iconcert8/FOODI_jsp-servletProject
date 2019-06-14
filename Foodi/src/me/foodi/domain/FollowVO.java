@@ -25,9 +25,11 @@ public class FollowVO {
 		this.reqId = reqId;
 	}
 
+
 	public String getResId() {
 		return resId;
 	}
+
 
 	public void setResId(String resId) {
 		this.resId = resId;
@@ -43,7 +45,7 @@ public class FollowVO {
 
 	@Override
 	public String toString() {
+
 		return "FollowVO [reqId=" + reqId + ", resId=" + resId + ", followDate=" + followDate + "]";
 	}
-
 }

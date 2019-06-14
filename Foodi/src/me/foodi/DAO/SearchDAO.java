@@ -32,11 +32,12 @@ public class SearchDAO {
 	}
 
 	public List<UserInfoVO> searchUser(SearchVO search){
-
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		List<UserInfoVO> list = null;
+
 		try {
 			list=sqlSession.getMapper(SearchMapper.class).searchUser(search);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -46,9 +47,9 @@ public class SearchDAO {
 	}
 
 	public List<SearchFeedVO> searchFeed(SearchVO search){
-
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		List<SearchFeedVO> list = null;
+
 		try {
 			list=sqlSession.getMapper(SearchMapper.class).searchFeed(search);
 		} catch (Exception e) {
@@ -58,6 +59,7 @@ public class SearchDAO {
 		}
 		return list;
 	}
+	
 	public void insertSearch(SearchVO search){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re= -1;

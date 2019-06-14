@@ -19,6 +19,7 @@
 		</c:if>
 		<span>${member.userId }</span><br>
 		<span>${member.userNick }</span>
+		
 	</nav>
 		<hr>
 	<section>

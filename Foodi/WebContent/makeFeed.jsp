@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,7 +14,7 @@ input {
 	-webkit-apperance: none;
 }
 
-/* µå·¡±× µå¶øÀÌ °¡´ÉÇÑ °ø°£ Ç¥½Ã */
+/* ë“œëž˜ê·¸ ë“œëžì´ ê°€ëŠ¥í•œ ê³µê°„ í‘œì‹œ */
 #space {
 	width: 500px;
 	height: 50px;
@@ -26,38 +28,36 @@ li {
 
 </head>
 <body>
-	<form action="feed/feedInsert.do" method="post"
+	<form action="feed/insertFeed.do" method="post"
 		enctype="multipart/form-data">
 		<ul>
-			<li>ÀÛ¼ºÀÚ</li>
-			<li>
-				<%-- ${userId } --%>
-			</li>
+			<li>ìž‘ì„±ìž</li>
+			<li><input type="hidden" name="userId" value="a"></li>
 		</ul>
 		<ul>
-			<li>³»¿ë</li>
+			<li>ë‚´ìš©</li>
 			<li><textarea row="10" cols="50" name="feedContent"></textarea></li>
 		</ul>
 		<ul>
-			<li>ÅÂ±×</li>
+			<li>íƒœê·¸</li>
 			<li><input type="text" name="tag"></li>
 		</ul>
 		<ul>
-			<li>±âº»»çÁø</li>
+			<li>ê¸°ë³¸ì‚¬ì§„</li>
 			<li><input type="file" name="feedImg"></li>
 		</ul>
 		<ul>
-			<li>Ãß°¡»çÁø</li>
+			<li>ì¶”ê°€ì‚¬ì§„</li>
 			<li><input multiple="multiple" id="space" type="file"
-				name="feedImgs[]"></li>
+				name="feedImgs"></li>
 		</ul>
 		<ul>
-			<li>À§Ä¡</li>
-			<li><input type="text" name="feddLoc"></li>
+			<li>ìœ„ì¹˜</li>
+			<li><input type="text" name="feedLoc"></li>
 		</ul>
 		<ul>
-			<li><input type="submit" value="ÀÛ¼ºÇÏ±â"></li>
-			<li><a href="#">µ¹¾Æ°¡±â(ÀÌÀüÆäÀÌÁö·Î)</a></li>
+			<li><input type="submit" value="ìž‘ì„±í•˜ê¸°"></li>
+			<li><a href="#">ëŒì•„ê°€ê¸°(ì´ì „íŽ˜ì´ì§€ë¡œ)</a></li>
 		</ul>
 	</form>
 

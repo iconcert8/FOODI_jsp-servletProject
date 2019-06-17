@@ -30,37 +30,38 @@ public class FeedService {
 				new DefaultFileRenamePolicy());
 
 		FeedVO feedVO = new FeedVO();
-		feedVO.setUserId(multi.getParameter("userId"));
+		feedVO.setUserId((String)request.getAttribute("userId"));
 		feedVO.setFeedContent(multi.getParameter("feedContent"));
-		feedVO.setFeedLoc(multi.getParameter("feedLoc"));
-		feedVO.setFeedLock(multi.getParameter("feedLock"));
-
+/*		feedVO.setFeedLoc(multi.getParameter("feedLoc"));
+		feedVO.setFeedLock(multi.getParameter("feedLock")); */
+		
+		System.out.println(feedVO);
+		
 		if (multi.getFilesystemName("feedImg") != null) {
 			String feedImg = (String) multi.getFilesystemName("feedImg");
 			feedVO.setFeedImg(feedImg);
 
 			String head = feedImg.substring(0, feedImg.indexOf(".")); // 파일 이름
-			String extension = feedImg.substring(feedImg.indexOf(".") + 1); // 파일
-																			// 확장자
-
+			String extension = feedImg.substring(feedImg.indexOf(".") + 1); // 파일 확장자
 			String imgPath = uploadPath + "\\" + feedImg;
 			File src = new File(imgPath);
 
-			String thumbImgPath = uploadPath + "\\" + head + "_thumbImg" + extension;
+			String thumbImgPath = uploadPath + "\\" + head + "_thumbImg." + extension;
 			File dest = new File(thumbImgPath);
 
 			if (extension.equals("gif") || extension.equals("jpg") || extension.equals("bmp")
 					|| extension.equals("jpeg")) {
 				ImageUtil.resize(src, dest, 100, ImageUtil.RATIO);
 			}
+			System.out.println(feedImg);
 		}
-
+/*
 		if (multi.getFilesystemName("feedImgs") != null) {
 			String feedImgs = (String) multi.getFilesystemName("feedImgs");
 			feedVO.setFeedImgs(feedImgs);
 			System.out.println(feedImgs);
 		}
-		
+		*/
 		return dao.insertFeed(feedVO);
 	}
 

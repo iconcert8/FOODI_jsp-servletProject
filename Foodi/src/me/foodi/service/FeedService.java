@@ -23,8 +23,10 @@ public class FeedService {
 
 	public int insertFeed(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		String uploadPath = request.getRealPath("upload");
+		String uploadPath = "C:\\Users\\kosta\\git\\foodi\\Foodi\\WebContent\\upload";
 		int size = 100 * 1024 * 1024; // 100mb 설정
+		
+		System.out.println(uploadPath);
 
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8",
 				new DefaultFileRenamePolicy());
@@ -48,7 +50,7 @@ public class FeedService {
 			String imgPath = uploadPath + "\\" + feedImg;
 			File src = new File(imgPath);
 
-			String thumbImgPath = uploadPath + "\\" + head + "_thumbImg." + extension;
+			String thumbImgPath = uploadPath + "_thumbImg." + "\\" + head + "_thumbImg." + extension;
 			File dest = new File(thumbImgPath);
 
 			if (extension.equals("gif") || extension.equals("jpg") || extension.equals("bmp")

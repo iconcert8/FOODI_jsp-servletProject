@@ -6,5 +6,5 @@
 		INSERT INTO feed VALUES
 		(feed_seq.nextval, #{userId}, #{feedContent}, #{feedImg}, #{feedImgs}, 0, 'feedLoc', sysdate, sysdate, 'feedLock')
 	</insert>
-
+ 
 </mapper>

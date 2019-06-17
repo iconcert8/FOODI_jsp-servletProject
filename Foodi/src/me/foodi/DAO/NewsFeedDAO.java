@@ -1,10 +1,16 @@
 package me.foodi.DAO;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+  
+import me.foodi.domain.FeedVO;
+import me.foodi.mapper.NewsFeedMapper;
+
 
 public class NewsFeedDAO {
 	private static NewsFeedDAO dao = new NewsFeedDAO();
@@ -17,7 +23,7 @@ public class NewsFeedDAO {
 		String config = "me/foodi/persistence/mybatis-config.xml";
 		InputStream in = null;
 
-		try{
+		 try{
 			in = Resources.getResourceAsStream(config);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -25,16 +31,21 @@ public class NewsFeedDAO {
 
 		return new SqlSessionFactoryBuilder().build(in);
 	}
+
+	public List<FeedVO> newsFeedList(){
+		List<FeedVO> list = null;
+		SqlSession session = getSqlSessionFactory().openSession();
 	
-	/*public FeedVO detailNewsFeed(int feedNo){
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		FeedVO detailFeed = new FeedVO();
-		
 		try{
-			detailFeed = sqlSession.getMapper();
-		}catch (Exception e) {
-			// TODO: handle exception
+			list = session.getMapper(NewsFeedMapper.class).newsFeedList();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			session.close();
 		}
 		
-	}*/
-}	
+		return list;
+	
+	}
+}
+

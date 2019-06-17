@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="me.foodi.mapper.NewsFeedMapper">
 	
-	<select id="listNewsFeed" resultType="FeedVO" parameterType="SearchVO"></select>
-	
-	<select id="detailNewsFeed" parameterMap="int" resultType="FeedVO">
-		select * from feed WHERE feedNo=#{feedNo}
-		
-	</select>	
+	<select id="listNewsFeed"  resultType="FeedVO" > 
+		SELECT * FROM feed order by feedno desc		
+	</select>
 		
 </mapper>

@@ -23,8 +23,10 @@ public class FeedService {
 
 	public int insertFeed(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		String uploadPath = request.getRealPath("upload");
+		String uploadPath = "C:\\Intel\\gp"; // request.getRealPath("upload");
 		int size = 100 * 1024 * 1024; // 100mb 설정
+		
+		System.out.println(uploadPath);
 
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8",
 				new DefaultFileRenamePolicy());

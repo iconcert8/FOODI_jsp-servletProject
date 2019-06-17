@@ -3,8 +3,12 @@ package me.foodi.DAO;
 import java.io.InputStream;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import me.foodi.domain.FeedVO;
+import me.foodi.mapper.FeedMapper;
 
 public class FeedDAO {
 	private static FeedDAO dao = new FeedDAO();
@@ -25,6 +29,28 @@ public class FeedDAO {
 		return new SqlSessionFactoryBuilder().build(in);
 	}
 	
+	public int insertFeed(FeedVO feedVO) {
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		int re = -1;
+		
+		try {
+			re = sqlSession.getMapper(FeedMapper.class).insertFeed(feedVO); 
+			
+			if(re >0) {
+				sqlSession.commit();
+			}else {
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(sqlSession != null) {
+				sqlSession.close();
+			}
+		}
+		
+		return re;
+	}
 	
 	
 	

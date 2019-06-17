@@ -41,20 +41,23 @@ public class ChatController extends HttpServlet {
 
 		System.out.println("[!] chat servlet method : get | " + path);
 		if (path.equals("chat/view")) {
+			forward = new ActionForward();
 //			?resId= 없을시
 			if(request.getParameter("resId") == null) {
 				action = new ChatSelectLastMsgAction();
 				try {
 					String resId = action.execute(request, response);
-					request.setAttribute("resId", resId);
+					forward.setRedirect(true);
+					forward.setPath("view?resId=" + resId);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			} else {	
+				forward.setRedirect(false);
+				forward.setPath("/chat.jsp");
 			}
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/chat.jsp");
+			
 		} else if(path.equals("chat/reslist")) {
 			ChatResListAction resListAction = new ChatResListAction();
 		}

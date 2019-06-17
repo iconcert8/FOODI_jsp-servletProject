@@ -40,7 +40,8 @@ public class FeedService {
 			feedVO.setFeedImg(feedImg);
 
 			String head = feedImg.substring(0, feedImg.indexOf(".")); // 파일 이름
-			String extension = feedImg.substring(feedImg.indexOf(".") + 1); // 파일 확장자
+			String extension = feedImg.substring(feedImg.indexOf(".") + 1); // 파일
+																			// 확장자
 
 			String imgPath = uploadPath + "\\" + feedImg;
 			File src = new File(imgPath);
@@ -53,10 +54,11 @@ public class FeedService {
 				ImageUtil.resize(src, dest, 100, ImageUtil.RATIO);
 			}
 		}
-		
-		if(multi.getFilesystemName("feedImgs") != null) {
+
+		if (multi.getFilesystemName("feedImgs") != null) {
 			String feedImgs = (String) multi.getFilesystemName("feedImgs");
 			feedVO.setFeedImgs(feedImgs);
+			System.out.println(feedImgs);
 		}
 		
 		return dao.insertFeed(feedVO);

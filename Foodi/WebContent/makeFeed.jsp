@@ -30,14 +30,16 @@ li {
 		enctype="multipart/form-data">
 		<ul>
 			<li>작성자</li>
-			<li><%-- ${userId } --%></li>
+			<li>
+				<%-- ${userId } --%>
+			</li>
 		</ul>
 		<ul>
 			<li>내용</li>
 			<li><textarea row="10" cols="50" name="feedContent"></textarea></li>
 		</ul>
 		<ul>
-			<li>태그 </li>
+			<li>태그</li>
 			<li><input type="text" name="tag"></li>
 		</ul>
 		<ul>
@@ -46,7 +48,8 @@ li {
 		</ul>
 		<ul>
 			<li>추가사진</li>
-			<li><input multiple="multiple" id="space" type="file" name="feedImgs[]"></li>
+			<li><input multiple="multiple" id="space" type="file"
+				name="feedImgs[]"></li>
 		</ul>
 		<ul>
 			<li>위치</li>

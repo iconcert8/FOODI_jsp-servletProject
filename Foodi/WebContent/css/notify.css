@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+#ntfBox{
+	width: 300px;
+	border: 1px solid; 
+}
+
+#ntfList{
+	list-style: none;
+	padding-left: 0px;
+}

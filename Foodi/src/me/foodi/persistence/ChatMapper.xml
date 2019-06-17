@@ -3,8 +3,34 @@
 <mapper namespace="me.foodi.mapper.ChatMapper">
 
 	<select id="chatList" parameterType="hashmap" resultType="me.foodi.domain.ChatVO">
-		select * from chat
-			where reqId IN (#{reqId}, #{resId}) and resId IN (#{resId}, #{reqId})	 
+		select chatNo, chatMsg, to_char(chatDate, 'yyyy:MM:dd:HH:mm:ss:ff3') as chatDate, chatChk, chatDel, chatFile, reqId, resId
+			from chat
+			where reqId IN (#{reqId}, #{resId}) and resId IN (#{resId}, #{reqId})
+			order by chatDate
 	</select>
+	
+	<select id="chatSelectLastMsg" parameterType="me.foodi.domain.ChatVO" resultType="me.foodi.domain.ChatVO">
+		select * from chat
+			where reqId = #{reqId}
+			AND chatNo = (select max(chatNo)
+							from chat
+							where reqid = #{reqid} and resid = #{resid})
+	</select>
+	
+	<select id="chatResList" resultType="String" parameterType="String">
+		select distinct resId from chat
+			where reqId = #{userId}
+	</select>
+	
+	<insert id="chatSend" parameterType="me.foodi.domain.ChatVO">
+		insert into chat
+			VALUES(chat_seq.nextval, #{chatMsg}, SYSTIMESTAMP, '1', '1', NULL, #{reqId}, #{resId})
+	</insert>
+	
+	<update id="chatUpdateCheck" parameterType="hashmap">
+		update chat
+			set chatChk = '0'
+			where reqid = #{resId} and resid = #{reqId}
+	</update>
 	
 </mapper>

@@ -5,7 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import me.foodi.domain.FollowVO;
+import me.foodi.domain.FollowInfoVO;
 import me.foodi.service.FollowService;
 
 public class FollowListAction implements Action {
@@ -15,10 +15,18 @@ public class FollowListAction implements Action {
 		
 		FollowService service = FollowService.getInstance();
 		ActionForward forward = new ActionForward();
+		String searchKeyword = request.getParameter("flwSearchKey");		
+		if(searchKeyword == null || searchKeyword.equals("")) {
+			searchKeyword = null;
+		}else {
+			searchKeyword = "%"+searchKeyword+"%";
+		}
 		
-		List<FollowVO> list = service.followListService();
+		List<FollowInfoVO> followerList = service.followerListService(request, searchKeyword);
+		List<FollowInfoVO> followingList = service.followingListService(request, searchKeyword);
 		
-		request.setAttribute("userInfos", list);
+		request.setAttribute("followerList", followerList);
+		request.setAttribute("followingList", followingList);
 		
 		forward.setRedirect(false);
 		forward.setPath("/follow.jsp");

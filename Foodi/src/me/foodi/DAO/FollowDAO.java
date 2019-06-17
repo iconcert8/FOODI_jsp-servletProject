@@ -8,7 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import me.foodi.domain.FollowVO;
+import me.foodi.domain.FollowInfoVO;
+import me.foodi.domain.SearchVO;
 import me.foodi.mapper.FollowMapper;
 
 public class FollowDAO {
@@ -29,17 +30,76 @@ public class FollowDAO {
 		return new SqlSessionFactoryBuilder().build(in);
 	}
 	
-	public List<FollowVO> followList(){
-		List<FollowVO> list = null;
+	public List<FollowInfoVO> followerList(SearchVO searchVO){
+		List<FollowInfoVO> list = null;
 		SqlSession session = getSqlSessionFactory().openSession();
 		
 		try{
-			list = session.getMapper(FollowMapper.class).followList();
+			list = session.getMapper(FollowMapper.class).followerList(searchVO);
 		}catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			if(session != null) {
+				session.close();
+			}
 		}
 		
 		return list;
+	}
+	
+	public List<FollowInfoVO> followingList(SearchVO searchVO){
+		List<FollowInfoVO> list = null;
+		SqlSession session = getSqlSessionFactory().openSession();
+		try {
+			list = session.getMapper(FollowMapper.class).followingList(searchVO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session != null) {
+				session.close();
+			}
+		}
+		return list;
+	}
+	
+	public int followInsert(FollowInfoVO followInfoVO) {
+		int re = -1;
+		SqlSession session = getSqlSessionFactory().openSession();
+		try {
+			re = session.getMapper(FollowMapper.class).followInsert(followInfoVO);
+			if(re > 0) {
+				session.commit();
+			}else {
+				session.rollback();
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session != null) {
+				session.close();
+			}
+		}
+		return re;
+	}
+	
+	public int followDelete(FollowInfoVO followInfoVO) {
+		int re = -1;
+		SqlSession session = getSqlSessionFactory().openSession();
+		try {
+			re = session.getMapper(FollowMapper.class).followDelete(followInfoVO);
+			if(re > 0) {
+				session.commit();
+			}else {
+				session.rollback();
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session != null) {
+				session.close();
+			}
+		}
+		return re;
 	}
 	
 }

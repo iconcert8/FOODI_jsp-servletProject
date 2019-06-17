@@ -141,7 +141,7 @@ function notifyInsert(resId){
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 		data: {"resId":resId, "type":"follow"},
 		success: function successHandler(data){
-			alert("팔로우 함");
+			
 		}
 	});
 }

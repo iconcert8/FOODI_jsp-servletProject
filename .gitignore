@@ -69,6 +69,9 @@ local.properties
 # Annotation Processing
 .apt_generated
 
+# ignore all files in the build/ directory
+build/
+
 .sts4-cache/
 
 # End of https://www.gitignore.io/api/eclipse

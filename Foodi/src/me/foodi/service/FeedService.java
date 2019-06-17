@@ -30,19 +30,21 @@ public class FeedService {
 				new DefaultFileRenamePolicy());
 
 		FeedVO feedVO = new FeedVO();
-		feedVO.setUserId((String)request.getAttribute("userId"));
+		feedVO.setUserId(multi.getParameter("userId"));
+		
+		System.out.println(multi.getParameter("userId"));
+		
 		feedVO.setFeedContent(multi.getParameter("feedContent"));
-/*		feedVO.setFeedLoc(multi.getParameter("feedLoc"));
-		feedVO.setFeedLock(multi.getParameter("feedLock")); */
-		
-		System.out.println(feedVO);
-		
+		feedVO.setFeedLoc(multi.getParameter("feedLoc"));
+		// feedVO.setFeedLock(multi.getParameter("feedLock"));
+
 		if (multi.getFilesystemName("feedImg") != null) {
 			String feedImg = (String) multi.getFilesystemName("feedImg");
 			feedVO.setFeedImg(feedImg);
 
 			String head = feedImg.substring(0, feedImg.indexOf(".")); // 파일 이름
-			String extension = feedImg.substring(feedImg.indexOf(".") + 1); // 파일 확장자
+			String extension = feedImg.substring(feedImg.indexOf(".") + 1); // 파일
+																			// 확장자
 			String imgPath = uploadPath + "\\" + feedImg;
 			File src = new File(imgPath);
 
@@ -55,13 +57,14 @@ public class FeedService {
 			}
 			System.out.println(feedImg);
 		}
-/*
-		if (multi.getFilesystemName("feedImgs") != null) {
-			String feedImgs = (String) multi.getFilesystemName("feedImgs");
-			feedVO.setFeedImgs(feedImgs);
-			System.out.println(feedImgs);
-		}
-		*/
+		/*
+		 * if (multi.getFilesystemName("feedImgs") != null) { String feedImgs =
+		 * (String) multi.getFilesystemName("feedImgs");
+		 * feedVO.setFeedImgs(feedImgs); System.out.println(feedImgs); }
+		 */
+
+		System.out.println(feedVO);
+
 		return dao.insertFeed(feedVO);
 	}
 

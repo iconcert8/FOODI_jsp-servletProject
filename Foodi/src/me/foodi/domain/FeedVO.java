@@ -3,36 +3,22 @@ package me.foodi.domain;
 import java.util.List;
 
 public class FeedVO {
-	private List<FeedVO> list;
-	private int feedNo; //ÇÇµå ¹øÈ£
-	private String userId; //ÇÇµå À¯Àú
-	private String feedContent; //ÇÇµå ³»¿ë
-	private String feedImg; //ÇÇµåÀÌ¹ÌÁö
-	private String feedImgs; //ÇÇµå Ãß°¡ ÀÌ¹ÌÁö
-	private int feedGoodCnt; //ÁÁ¾Æ¿ä
-	private String feedLoc; //ÇÇµå À§Ä¡
-	private String feedDate; //ÀÛ¼º ÀÏÀÚ
-	private String feedUpdate; //¼öÁ¤ ³¯Â¥
-	private String feedLock; //°ø°³ ¿©ºÎ
-	public List<FeedVO> getList() {
-		return list;
-	}
-
-
-
-
-	public void setList(List<FeedVO> list) {
-		this.list = list;
-	}
-
+	private int feedNo; //í”¼ë“œ ë²ˆí˜¸
+	private String userId; //í”¼ë“œ ìœ ì €
+	private String feedContent; //í”¼ë“œ ë‚´ìš©
+	private String feedImg; //í”¼ë“œì´ë¯¸ì§€
+	private String feedImgs; //í”¼ë“œ ì¶”ê°€ ì´ë¯¸ì§€
+	private int feedGoodCnt; //ì¢‹ì•„ìš”
+	private String feedLoc; //í”¼ë“œ ìœ„ì¹˜
+	private String feedDate; //ì‘ì„± ì¼ì
+	private String feedUpdate; //ìˆ˜ì • ë‚ ì§œ
+	private String feedLock; //ê³µê°œ ì—¬ë¶€
 
 
 
 	public FeedVO() {
 		super();
 	}
-
-
 
 
 	public int getFeedNo() {
@@ -118,10 +104,9 @@ public class FeedVO {
 
 
 
-	public FeedVO(List<FeedVO> list, int feedNo, String userId, String feedContent, String feedImg, String feedImgs,
+	public FeedVO(int feedNo, String userId, String feedContent, String feedImg, String feedImgs,
 			int feedGoodCnt, String feedLoc, String feedDate, String feedUpdate, String feedLock) {
 		super();
-		this.list = list;
 		this.feedNo = feedNo;
 		this.userId = userId;
 		this.feedContent = feedContent;
@@ -136,7 +121,7 @@ public class FeedVO {
  
 	@Override
 	public String toString() {
-		return "FeedVO [list=" + list + ", feedNo=" + feedNo + ", userId=" + userId + ", feedContent=" + feedContent
+		return "FeedVO [feedNo=" + feedNo + ", userId=" + userId + ", feedContent=" + feedContent
 				+ ", feedImg=" + feedImg + ", feedImgs=" + feedImgs + ", feedGoodCnt=" + feedGoodCnt + ", feedLoc="
 				+ feedLoc + ", feedDate=" + feedDate + ", feedUpdate=" + feedUpdate + ", feedLock=" + feedLock + "]";
 	}

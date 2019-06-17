@@ -34,7 +34,7 @@ li {
 		</ul>
 		<ul>
 			<li>내용</li>
-			<li><textarea row="10" cols="50" name="feedContent"></textarea></li>
+			<li><textarea rows="10" cols="50" name="feedContent"></textarea></li>
 		</ul>
 		<ul>
 			<li>태그 </li>
@@ -54,7 +54,7 @@ li {
 		</ul>
 		<ul>
 			<li><input type="submit" value="작성하기"></li>
-			<li><a href="#">돌아가기(이전페이지로)</a></li>
+			<li><a href="#">돌아가기(이전페이지로)</a></li>  
 		</ul>
 	</form>
 

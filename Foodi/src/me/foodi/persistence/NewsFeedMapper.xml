@@ -4,7 +4,8 @@
 <mapper namespace="me.foodi.mapper.NewsFeedMapper">
 	
 	<select id="listNewsFeed"  resultType="FeedVO" >
-		select * from feed order by sec desc
+		  
+SELECT * FROM feed order by feedno desc
 			
 	</select>
 	

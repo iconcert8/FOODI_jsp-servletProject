@@ -17,18 +17,19 @@
 			<td>피드내용</td>
 			<td>피드이미지</td>
 			<td>피드 추가 이미지</td>
-			<td>태그</td>
 			<td>좋아요</td>
 			<td>피드 위치</td>
 			<td>피드 작성 날짜</td>
-			<td>피드 공개 여부</td>
+			<td>피드 수정 날짜</td>
+			<td>피드 공개 여부</td> 
 		</tr>
 		<c:forEach var="FeedVO" items="${feedlist}">
 			<tr>
 				<td>${FeedVO.feedNo }</td>
 				<td>${FeedVO.userId }</td>
 				<td>${FeedVO.feedContent}</td>
-				<td><c:if test="${FeedVO.feedImg != null}">
+				<td>${FeedVO.feedImg}</td>
+			<%-- 	<td><c:if test="${FeedVO.feedImg != null}">
 						<c:set var="head"
 							value="${fn:substring(FeedVO.userId, 
                                    0, fn:length(FeedVO.feedImg)-4) }"></c:set>
@@ -44,17 +45,24 @@
 							<c:otherwise>
 								<c:out value="NO IMAGE"></c:out>
 							</c:otherwise>
-						</c:choose>
-					</c:if></td>
-					<td><input type="submit" value="상세페이지">상세페이지</td>
+						</c:choose> 
+					</c:if></td> --%>
 					<td>${FeedVO.feedImgs}</td>
-					<td>${FeedVO.feedTag }</td>
+					<td>${FeedVO.feedGoodCnt}</td>
 					<td>${FeedVO.feedLoc }</td>
-					<td>${FeedVO.feddDate }</td>
+					<td>${FeedVO.feedDate }</td>
+					<td>${FeedVO.feedUpdate }</td>
 					<td>${FeedVO.feedLock }</td>
 			</tr> 
 		</c:forEach>
-		
+	
 	</table>
+	
+		
+	<form action="list.do" method="post">
+		<input type="button" name="area" value="good">좋아요 
+		<input type="button" name="area" value="comment">댓글
+		<input type="button" name="area" value="cook">쿡
+	</form>
 </body>
 </html>  	

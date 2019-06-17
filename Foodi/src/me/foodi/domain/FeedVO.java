@@ -1,32 +1,17 @@
 package me.foodi.domain;
 
-import java.util.List;
-
 public class FeedVO {
-	private List<FeedVO> list;
-	private int feedNo; //ÇÇµå ¹øÈ£
-	private String userId; //ÇÇµå À¯Àú
-	private String feedContent; //ÇÇµå ³»¿ë
-	private String feedImg; //ÇÇµåÀÌ¹ÌÁö
-	private String feedImgs; //ÇÇµå Ãß°¡ ÀÌ¹ÌÁö
-	private int feedGoodCnt; //ÁÁ¾Æ¿ä
-	private String feedLoc; //ÇÇµå À§Ä¡
-	private String feedDate; //ÀÛ¼º ÀÏÀÚ
-	private String feedUpdate; //¼öÁ¤ ³¯Â¥
-	private String feedLock; //°ø°³ ¿©ºÎ
-	public List<FeedVO> getList() {
-		return list;
-	}
-
-
-
-
-	public void setList(List<FeedVO> list) {
-		this.list = list;
-	}
-
-
-
+	private int feedNo; //ï¿½Çµï¿½ ï¿½ï¿½È£
+	private String userId; //ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½
+	private String feedContent; //ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½
+	private String feedImg; //ï¿½Çµï¿½ï¿½Ì¹ï¿½ï¿½ï¿½
+	private String feedImgs; //ï¿½Çµï¿½ ï¿½ß°ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½
+	private int feedGoodCnt; //ï¿½ï¿½ï¿½Æ¿ï¿½
+	private String feedLoc; //ï¿½Çµï¿½ ï¿½ï¿½Ä¡
+	private String feedDate; //ï¿½Û¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private String feedUpdate; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥
+	private String feedLock; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	
 
 	public FeedVO() {
 		super();
@@ -118,10 +103,9 @@ public class FeedVO {
 
 
 
-	public FeedVO(List<FeedVO> list, int feedNo, String userId, String feedContent, String feedImg, String feedImgs,
+	public FeedVO(int feedNo, String userId, String feedContent, String feedImg, String feedImgs,
 			int feedGoodCnt, String feedLoc, String feedDate, String feedUpdate, String feedLock) {
 		super();
-		this.list = list;
 		this.feedNo = feedNo;
 		this.userId = userId;
 		this.feedContent = feedContent;
@@ -136,7 +120,7 @@ public class FeedVO {
  
 	@Override
 	public String toString() {
-		return "FeedVO [list=" + list + ", feedNo=" + feedNo + ", userId=" + userId + ", feedContent=" + feedContent
+		return "FeedVO [list=" + ", feedNo=" + feedNo + ", userId=" + userId + ", feedContent=" + feedContent
 				+ ", feedImg=" + feedImg + ", feedImgs=" + feedImgs + ", feedGoodCnt=" + feedGoodCnt + ", feedLoc="
 				+ feedLoc + ", feedDate=" + feedDate + ", feedUpdate=" + feedUpdate + ", feedLock=" + feedLock + "]";
 	}

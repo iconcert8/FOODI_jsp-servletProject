@@ -2,6 +2,7 @@ package me.foodi.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,7 +21,7 @@ import me.foodi.action.ChatResListAction;
 import me.foodi.action.ChatSelectLastMsgAction;
 import me.foodi.action.ChatSendAction;
 
-@WebServlet(urlPatterns = "/chat/view", asyncSupported = true)
+@WebServlet(urlPatterns = "/chat/*", asyncSupported = true)
 public class ChatController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -47,8 +48,10 @@ public class ChatController extends HttpServlet {
 				action = new ChatSelectLastMsgAction();
 				try {
 					String resId = action.execute(request, response);
-					forward.setRedirect(true);
-					forward.setPath("view?resId=" + resId);
+					
+					forward.setRedirect(true);				
+					forward.setPath("view?resId=" + URLEncoder.encode(resId, "UTF-8"));
+
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -82,9 +85,7 @@ public class ChatController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}		
-		} else if(path.equals("chat/view")) {
-			
-		} else if(path.equals("chat/send")){
+		}else if(path.equals("chat/send")){
     		
     		ChatSendAction sendAction = new ChatSendAction();
     		

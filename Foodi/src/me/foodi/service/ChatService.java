@@ -56,10 +56,9 @@ public class ChatService {
 	}
 	
 	public ChatVO chatSelectLastMsgService(HttpServletRequest request) {
-		ChatVO chat = new ChatVO();
-		chat.setChatMsg(request.getParameter("chatMsg"));
-		chat.setReqId((String) request.getSession().getAttribute("userId"));
-		return dao.chatSelectLastMsg(chat);
+
+		String userId = ((String) request.getSession().getAttribute("userId"));
+		return dao.chatSelectLastMsg(userId);
 	}
 
 	public List<String> chatResListService(HttpServletRequest request) {

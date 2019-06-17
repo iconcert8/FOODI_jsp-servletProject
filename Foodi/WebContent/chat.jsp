@@ -66,7 +66,7 @@
 // 						if(i.chatImg != null) {
 // 							div.append('<img src="'+ i.chatImg +'"/>');
 // 						}
-						div.append('<span>' + item + '</span>');
+						div.append('<span>' + item.resId + '</span>');
 						div.appendTo('#resList');
 					})
 				},
@@ -76,25 +76,7 @@
     		});
     	}
     	
-    	var first;
-    	function firstSelect() {
-    		$.ajax({
-    			type : "get",
-    			url : "firstselect",
-    			dataType: "text",
-    			success : function (data) {
-    				console.log('firstSelect success');
-					first = data;
-					console.log(first);
-				},
-				error : function() {
-					console.log('firstSelect fail');
-				}
-				complete : function () {
-					
-				}
-    		});
-    	}
+    	
     	
     	
     	resList();

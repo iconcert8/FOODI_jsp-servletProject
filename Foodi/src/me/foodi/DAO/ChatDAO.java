@@ -55,9 +55,9 @@ public class ChatDAO {
 		return re;
 	}
 	
-	public ChatVO chatSelectLastMsg(ChatVO chat) {
+	public ChatVO chatSelectLastMsg(String userId) {
 		SqlSession sqlSession = getSqlsessionFactory().openSession();
-		ChatVO lastMsg = sqlSession.selectOne("chatSelectLastMsg", chat);
+		ChatVO lastMsg = sqlSession.selectOne("chatSelectLastMsg", userId);
 		commitAndClose(sqlSession);
 		return lastMsg;
 	}

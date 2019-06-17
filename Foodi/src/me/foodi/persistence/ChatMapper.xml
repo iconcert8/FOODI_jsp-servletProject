@@ -9,12 +9,12 @@
 			order by chatDate
 	</select>
 	
-	<select id="chatSelectLastMsg" parameterType="me.foodi.domain.ChatVO" resultType="me.foodi.domain.ChatVO">
+	<select id="chatSelectLastMsg" parameterType="String" resultType="me.foodi.domain.ChatVO">
 		select * from chat
-			where reqId = #{reqId}
+			where reqId = #{userId}
 			AND chatNo = (select max(chatNo)
 							from chat
-							where reqid = #{reqid} and resid = #{resid})
+							where reqid = #{userId} or resid = #{userId})
 	</select>
 	
 	<select id="chatResList" resultType="String" parameterType="String">

@@ -2,10 +2,12 @@ package me.foodi.mapper;
 
 import java.util.List;
 
-import me.foodi.domain.Feed;
-import me.foodi.domain.UserInfo;
+import me.foodi.domain.SearchFeedVO;
+import me.foodi.domain.SearchVO;
+import me.foodi.domain.UserInfoVO;
 
 public interface SearchMapper {
-	List<UserInfo> searchUser(String keyword);
-	List<Feed> searchFeed(String keyword);
+	List<UserInfoVO> searchUser(SearchVO search);
+	List<SearchFeedVO> searchFeed(SearchVO search);
+	int insertSearch(SearchVO search);
 }

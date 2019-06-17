@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="me.foodi.persistence.board">
+
+<mapper namespace="me.foodi.mapper.NewsFeedMapper">
 	
-	<select id="listNewsFeed" resultType="Feed" parameterType="Search">
-		select * from feed
-			<if test="area != null">
+	<select id="listNewsFeed"  resultType="FeedVO" >
+		select * from feed order by sec desc
 			
-			</if>
 	</select>
 	
-	<select id="detailNewsFeed" parameterMap="int" resultType="Feed">
-		select * from feed WHERE feedNo=#{feedNo}
-	</select>	
+
 		
 </mapper>

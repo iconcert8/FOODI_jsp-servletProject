@@ -1,32 +1,29 @@
 package me.foodi.domain;
 
-public class Feed {
-	private int feedNo; //피드번호
-	private String userId; //유저아이디
-	private String feedContent; //피드 내요
-	private String feedImg; //피드 이미지
-	private String feedImgs; //피드 이미지들
-	private int feedGoodCnt; // 
-	private String feedLoc; 
-	private String feedDate;
-	private String feedUpdate;
-	private String feedLock;
-	
-	public Feed(){}
+public class SearchFeedVO {
 
-	public Feed(int feedNo, String userId, String feedContent, String feedImg, String feedImgs, int feedGoodCnt,
-			String feedLoc, String feedDate, String feedUpdate, String feedLock) {
+	private int feedNo;
+	private String userId;
+	private String feedContent;
+	private String feedImg;
+	private int feedGoodCnt;
+	private String feedDate;
+	private String feedLock;
+	private String tagName;
+	
+	public SearchFeedVO(){}
+
+	public SearchFeedVO(int feedNo, String userId, String feedContent, String feedImg, int feedGoodCnt, String feedDate,
+			String feedLock, String tagName) {
 		super();
 		this.feedNo = feedNo;
 		this.userId = userId;
 		this.feedContent = feedContent;
 		this.feedImg = feedImg;
-		this.feedImgs = feedImgs;
 		this.feedGoodCnt = feedGoodCnt;
-		this.feedLoc = feedLoc;
 		this.feedDate = feedDate;
-		this.feedUpdate = feedUpdate;
 		this.feedLock = feedLock;
+		this.tagName = tagName;
 	}
 
 	public int getFeedNo() {
@@ -61,28 +58,12 @@ public class Feed {
 		this.feedImg = feedImg;
 	}
 
-	public String getFeedImgs() {
-		return feedImgs;
-	}
-
-	public void setFeedImgs(String feedImgs) {
-		this.feedImgs = feedImgs;
-	}
-
 	public int getFeedGoodCnt() {
 		return feedGoodCnt;
 	}
 
 	public void setFeedGoodCnt(int feedGoodCnt) {
 		this.feedGoodCnt = feedGoodCnt;
-	}
-
-	public String getFeedLoc() {
-		return feedLoc;
-	}
-
-	public void setFeedLoc(String feedLoc) {
-		this.feedLoc = feedLoc;
 	}
 
 	public String getFeedDate() {
@@ -93,14 +74,6 @@ public class Feed {
 		this.feedDate = feedDate;
 	}
 
-	public String getFeedUpdate() {
-		return feedUpdate;
-	}
-
-	public void setFeedUpdate(String feedUpdate) {
-		this.feedUpdate = feedUpdate;
-	}
-
 	public String getFeedLock() {
 		return feedLock;
 	}
@@ -109,12 +82,21 @@ public class Feed {
 		this.feedLock = feedLock;
 	}
 
+	public String getTagName() {
+		return tagName;
+	}
+
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
+	}
+
 	@Override
 	public String toString() {
-		return "Feed [feedNo=" + feedNo + ", userId=" + userId + ", feedContent=" + feedContent + ", feedImg=" + feedImg
-				+ ", feedImgs=" + feedImgs + ", feedGoodCnt=" + feedGoodCnt + ", feedLoc=" + feedLoc + ", feedDate="
-				+ feedDate + ", feedUpdate=" + feedUpdate + ", feedLock=" + feedLock + "]";
+		return "SearchFeedVO [feedNo=" + feedNo + ", userId=" + userId + ", feedContent=" + feedContent + ", feedImg="
+				+ feedImg + ", feedGoodCnt=" + feedGoodCnt + ", feedDate=" + feedDate + ", feedLock=" + feedLock
+				+ ", tagName=" + tagName + "]";
 	}
+	
 	
 	
 }

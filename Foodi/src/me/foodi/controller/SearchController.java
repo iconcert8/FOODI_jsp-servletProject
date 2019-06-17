@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
+import me.foodi.action.SearchAction;
+import me.foodi.action.SearchFormAction;
 
 @WebServlet("/search/*")
 public class SearchController extends HttpServlet {
@@ -28,13 +30,20 @@ public class SearchController extends HttpServlet {
     	Action action = null;
     	ActionForward forward = null;
     	
-    	if(path.equals("search/~")){
-    		action = null;
+    	if(path.equals("search/searchresult.do")){
+    		action = new SearchAction();
     		try{
     			forward = action.execute(request, response);
     		}catch (Exception e) {
     			e.printStackTrace();
     		}
+    	}else if(path.equals("search/search.do")){
+    		action = new SearchFormAction();
+    		try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
     	}
     	
     	if(forward != null){

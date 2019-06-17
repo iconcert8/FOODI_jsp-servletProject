@@ -6,8 +6,12 @@
 <configuration>
 
  	<typeAliases> 
- 		<typeAlias type="me.foodi.domain.UserInfo" alias="UserInfo"/>
- 		<typeAlias type="me.foodi.domain.Feed" alias="Feed"/> 
+ 		<typeAlias type="me.foodi.domain.UserInfoVO" alias="UserInfoVO"/>
+ 		<typeAlias type="me.foodi.domain.SearchVO" alias="SearchVO"/>
+ 		<typeAlias type="me.foodi.domain.FeedVO" alias="FeedVO"/>
+ 		<typeAlias type="me.foodi.domain.SearchFeedVO" alias="SearchFeedVO"/>
+ 		<typeAlias type="me.foodi.domain.FollowVO" alias="FollowVO"/>
+ 		<typeAlias type="me.foodi.domain.UserInfoVO" alias="UserInfoVO"/>
  	</typeAliases> 
 	
 	<environments default="development">
@@ -18,17 +22,17 @@
 				<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
 				<property name="username" value="foodi"/>
 				<property name="password" value="1234"/>
-<!--			
-				<dataSource type="JNDI">
-				<property name="data_source" value="java:comp/env/jdbc/oracle"/> 
--->
 			</dataSource>
 		</environment>		
 	</environments>
 	
 	<mappers>
-<!-- 	예시 <mapper resource="me/foodi/persistence/board.xml"/> -->
- 		<mapper resource="me/foodi/persistence/search.xml"/> 
+ 		<mapper resource="me/foodi/persistence/SearchMapper.xml"/> 
+ 		<mapper resource="me/foodi/persistence/FollowMapper.xml"/>
+ 		<mapper resource="me/foodi/persistence/ChatMapper.xml"/> 
+ 		<mapper resource="me/foodi/persistence/UserInfoMapper.xml"/> 
+ 		<mapper resource="me/foodi/persistence/NewsFeedMapper.xml"/>
+ 		<mapper resource="me/foodi/persistence/FeedMapper.xml"/>
 	</mappers>
 	
 </configuration>

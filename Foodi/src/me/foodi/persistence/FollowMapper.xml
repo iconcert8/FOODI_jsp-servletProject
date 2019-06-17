@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.foodi.mapper.FollowMapper">
+	<select id="followerList" parameterType="UserInfoVO" resultType="FollowerVO">
+		select *
+		from userinfo us, userinfo uq, follow f
+		where us.userId = f.resUserId and f.reqUserId = uq.userId and us.userId = #{userId}
+	</select>	
+
+	
+</mapper>

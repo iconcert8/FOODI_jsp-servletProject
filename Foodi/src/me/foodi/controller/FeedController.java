@@ -11,51 +11,61 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
+import me.foodi.action.NewsFeedAction;
 
 
 @WebServlet("/feed/*")
 public class FeedController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
-    public FeedController() {
-        super();
-    }
-    
-    public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String uri = request.getRequestURI();
-    	String ctxPath = request.getContextPath();
-    	String path = uri.substring(ctxPath.length()+1);
-    	
-    	Action action = null;
-    	ActionForward forward = null;
-    	
-    	if(path.equals("feed/~")){
-    		action = null;
-    		try{
-    			forward = action.execute(request, response);
-    		}catch (Exception e) {
-    			e.printStackTrace();
-    		}
-    	}
-    	
-    	if(forward != null){
-    		if(forward.isRedirect()){
-    			response.sendRedirect(forward.getPath());
-    		}else{
-    			RequestDispatcher rd = request.getRequestDispatcher(forward.getPath());
-    			rd.forward(request, response);
-    		}
-    	}
-    	
-    	
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doProcess(request, response);
+	public FeedController() {
+		super();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doProcess(request, response);
+	public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String uri = request.getRequestURI();
+		String ctxPath = request.getContextPath();
+		String path = uri.substring(ctxPath.length()+1);
+
+		Action action = null;
+		ActionForward forward = null;
+		System.out.println(path);
+ 
+		if(path.equals("feed/feedInsert.do")){
+			action = new FeedInsertAction();
+			System.out.println("ok");
+			try{
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(path.equals("feed/newsFeed.do")){
+			action = new NewsFeedAction();
+			try{
+				forward = action.execute(request, response);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
+
+	if(forward != null){
+		if(forward.isRedirect()){
+			response.sendRedirect(forward.getPath());
+		}else{
+			RequestDispatcher rd = request.getRequestDispatcher(forward.getPath());
+			rd.forward(request, response);
+		}
+	}
+
+
+}
+
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	doProcess(request, response);
+}
+
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	doProcess(request, response);
+}
 }

@@ -75,6 +75,7 @@ build/
 .sts4-cache/
 
 # ignore all files in the build/ directory
-build/
+/Foodi/build/*
+.class
 
 # End of https://www.gitignore.io/api/eclipse

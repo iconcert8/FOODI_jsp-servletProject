@@ -1,4 +1,4 @@
-﻿
+
 //list follow
 function followList(key, successFunction){
 	$.ajax({

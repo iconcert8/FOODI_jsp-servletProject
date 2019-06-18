@@ -19,11 +19,11 @@
 	<input type="text" name="flwSearch">
 	<button id="flwSearch">검색</button>
 	<ul id="flrList">
-		
+
 	</ul>
 	
 	<hr>
-	
+
 	<b>팔로잉 리스트</b>
 	<ul id="flnList">
 		

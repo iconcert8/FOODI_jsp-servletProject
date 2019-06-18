@@ -35,8 +35,9 @@
 		<mapper resource="me/foodi/persistence/ChatMapper.xml" />
 		<mapper resource="me/foodi/persistence/UserInfoMapper.xml" />
 		<mapper resource="me/foodi/persistence/FeedMapper.xml" />
-		<mapper resource="me/foodi/persistence/NotifyMapper.xml" />
 		<mapper resource="me/foodi/persistence/GoodMapper.xml" />
+		<mapper resource="me/foodi/persistence/NotifyMapper.xml" />
+		<mapper resource="me/foodi/persistence/NewsFeedMapper.xml" />
 	</mappers>
 	
 </configuration>

@@ -38,7 +38,7 @@ public class FollowService {
 		String loginId = (String)request.getSession().getAttribute("loginId");
 		FollowInfoVO followInfoVO = new FollowInfoVO();
 		followInfoVO.setLoginId(loginId);
-		followInfoVO.setUserId(request.getParameter("userId"));
+		followInfoVO.setUserId(request.getParameter("resId"));
 		return dao.followInsert(followInfoVO);
 	}
 	
@@ -46,7 +46,7 @@ public class FollowService {
 		String loginId = (String)request.getSession().getAttribute("loginId");
 		FollowInfoVO followInfoVO = new FollowInfoVO();
 		followInfoVO.setLoginId(loginId);
-		followInfoVO.setUserId(request.getParameter("userId"));
+		followInfoVO.setUserId(request.getParameter("resId"));
 		return dao.followDelete(followInfoVO);
 	}
 }

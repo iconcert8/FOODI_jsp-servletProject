@@ -3,18 +3,21 @@
 <mapper namespace="me.foodi.mapper.ChatMapper">
 
 	<select id="chatList" parameterType="hashmap" resultType="me.foodi.domain.ChatVO">
-		select chatNo, chatMsg, to_char(chatDate, 'yyyy:MM:dd:HH:mm:ss:ff3') as chatDate, chatChk, chatDel, chatFile, reqId, resId
+		select chatNo, chatMsg, to_char(chatDate, 'yyyy:MM:dd:HH24:mi:ss:ff3') as chatDate, chatChk, chatDel, chatFile, reqId, resId
 			from chat
 			where reqId IN (#{reqId}, #{resId}) and resId IN (#{resId}, #{reqId})
+			<if test="lastNo != null">
+				and chatNo > #{lastNo}
+			</if>
 			order by chatDate
 	</select>
 	
 	<select id="chatSelectLastMsg" parameterType="String" resultType="me.foodi.domain.ChatVO">
 		select * from chat
-			where reqId = #{userId}
-			AND chatNo = (select max(chatNo)
+			where chatNo = (select max(chatNo)
 							from chat
 							where reqid = #{userId} or resid = #{userId})
+
 	</select>
 	
 	<select id="chatResList" resultType="String" parameterType="String">

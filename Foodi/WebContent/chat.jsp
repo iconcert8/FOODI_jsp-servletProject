@@ -10,78 +10,6 @@
 <meta charset="UTF-8">
 <title>messenger</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-     <script src="https://npmcdn.com/axios/dist/axios.min.js"></script>
-    <script type="text/javascript">
-    	function reqMsg() {
-    		let chatTest = $('textarea[name="chatMsg"]');
-    		let resId = $('input[name="res"]').val();
-    		let sendMsg = {
-    			"chatMsg" : chatTest.val(),
-    			"res" : resId
-    		}
-    		console.log(sendMsg);
-    		
-    		$.ajax({
-    			type: "post",
-    			url: "send",
-    			data : sendMsg,
-    			dataType: "text",
-    			seccess: function (data) {
-    				console.log('post success');
-				},
-				error: function () {
-					 console.log('post fail');
-				},
-				complete : function () {
-					console.log('post done');
-				}
-    		});	
-    	}
-    	
-    	function resMsg() {
-    		$.ajax({
-    			type: "get",
-                url: "async",
-                success: function (data) {
-					console.log('get success');
-    				resMsg();
-				},
-				error : function (data) {
-					console.log('get fail');
-    				setTimeout(resMsg, 5000);
-				}
-			});	
-    	}
-    	
-    	function resList() {
-    		$.ajax({
-    			type : "post",
-    			url : "reslist",
-    			dataType: "json",
-    			success : function (data) {
-    				console.log('resList success');
-					$.each(data, function(i, item) {
-						console.log('each execute' + item);
-						var div = $('<div></div>');
-// 						if(i.chatImg != null) {
-// 							div.append('<img src="'+ i.chatImg +'"/>');
-// 						}
-						div.append('<span>' + item.resId + '</span>');
-						div.appendTo('#resList');
-					})
-				},
-				error : function() {
-					console.log('resList fail');
-				}
-    		});
-    	}
-    	
-    	
-    	
-    	
-    	resList();
-    
-    </script>
 </head>
 <body>
 	<header>
@@ -95,7 +23,7 @@
 		<span>${member.userNick }</span>
 	</nav>
 		<hr>
-	<section>
+	<section id="chatView">
 <%-- 		<c:forEach var="chat" items="${chatList }"> --%>
 <%-- 			<div>ID : ${chat.reqId } / To : ${chat.resId }<br>${chat.chatDate } &nbsp; ${chat.chatMsg } <br> --%>
 <%-- 			<c:if test="${chat.chatChk >= 1 }">안읽음</c:if> --%>
@@ -104,16 +32,18 @@
 <%-- 		</c:forEach> --%>
 	</section>
 	<aside id="resList">
-	
+		<hr>
+		채팅 목록
 	</aside>
 	
 	<footer>
 		<form action="view" method="post">
 			<textarea rows="3" cols="100" name="chatMsg" autofocus="autofocus"></textarea>
-			<input type="hidden" value="def" name="res">
 			<input type="button" value="send" onclick="reqMsg()">
 <!-- 			<input type="submit" value="send"> -->
 		</form>
 	</footer>
+	
+	<script type="text/javascript" src="/Foodi/js/chat.js" charset="utf-8"></script>
 </body>
 </html>

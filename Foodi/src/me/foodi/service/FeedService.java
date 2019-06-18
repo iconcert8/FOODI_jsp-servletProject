@@ -1,9 +1,14 @@
 package me.foodi.service;
 
+import java.awt.List;
 import java.io.File;
+import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -25,28 +30,22 @@ public class FeedService {
 		request.setCharacterEncoding("utf-8");
 		String uploadPath = "C:\\Users\\kosta\\git\\foodi\\Foodi\\WebContent\\upload";
 		int size = 100 * 1024 * 1024; // 100mb 설정
-		
-		System.out.println(uploadPath);
 
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8",
 				new DefaultFileRenamePolicy());
 
 		FeedVO feedVO = new FeedVO();
 		feedVO.setUserId(multi.getParameter("userId"));
-		
-		System.out.println(multi.getParameter("userId"));
-		
 		feedVO.setFeedContent(multi.getParameter("feedContent"));
 		feedVO.setFeedLoc(multi.getParameter("feedLoc"));
-		// feedVO.setFeedLock(multi.getParameter("feedLock"));
+		feedVO.setFeedLock(multi.getParameter("feedLock"));
 
 		if (multi.getFilesystemName("feedImg") != null) {
 			String feedImg = (String) multi.getFilesystemName("feedImg");
 			feedVO.setFeedImg(feedImg);
 
 			String head = feedImg.substring(0, feedImg.indexOf(".")); // 파일 이름
-			String extension = feedImg.substring(feedImg.indexOf(".") + 1); // 파일
-																			// 확장자
+			String extension = feedImg.substring(feedImg.indexOf(".") + 1); // 파일확장자
 			String imgPath = uploadPath + "\\" + feedImg;
 			File src = new File(imgPath);
 
@@ -57,17 +56,13 @@ public class FeedService {
 					|| extension.equals("jpeg")) {
 				ImageUtil.resize(src, dest, 100, ImageUtil.RATIO);
 			}
-			System.out.println(feedImg);
 		}
-		/*
-		 * if (multi.getFilesystemName("feedImgs") != null) { String feedImgs =
-		 * (String) multi.getFilesystemName("feedImgs");
-		 * feedVO.setFeedImgs(feedImgs); System.out.println(feedImgs); }
-		 */
 
-		System.out.println(feedVO);
+		if (multi.getFilesystemName("feedImgs") != null) {
+			String feedImgs = (String) multi.getFilesystemName("feedImgs");
+			feedVO.setFeedImgs(feedImgs);
+		}
 
 		return dao.insertFeed(feedVO);
 	}
-
 }

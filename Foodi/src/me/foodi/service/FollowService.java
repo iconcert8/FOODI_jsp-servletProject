@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import me.foodi.DAO.FollowDAO;
 import me.foodi.domain.FollowInfoVO;
+import me.foodi.domain.FollowVO;
 import me.foodi.domain.SearchVO;
 
 public class FollowService {
@@ -36,17 +37,17 @@ public class FollowService {
 	
 	public int followInsertService(HttpServletRequest request) {
 		String loginId = (String)request.getSession().getAttribute("loginId");
-		FollowInfoVO followInfoVO = new FollowInfoVO();
-		followInfoVO.setLoginId(loginId);
-		followInfoVO.setUserId(request.getParameter("userId"));
-		return dao.followInsert(followInfoVO);
+		FollowVO followVO = new FollowVO();
+		followVO.setReqId(loginId);
+		followVO.setResId(request.getParameter("resId"));
+		return dao.followInsert(followVO);
 	}
 	
 	public int followDeleteService(HttpServletRequest request) {
 		String loginId = (String)request.getSession().getAttribute("loginId");
-		FollowInfoVO followInfoVO = new FollowInfoVO();
-		followInfoVO.setLoginId(loginId);
-		followInfoVO.setUserId(request.getParameter("userId"));
-		return dao.followDelete(followInfoVO);
+		FollowVO followVO = new FollowVO();
+		followVO.setReqId(loginId);
+		followVO.setResId(request.getParameter("resId"));
+		return dao.followDelete(followVO);
 	}
 }

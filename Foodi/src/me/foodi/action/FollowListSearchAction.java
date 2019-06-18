@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.domain.FollowInfoVO;
-import me.foodi.domain.UserInfoVO;
 import me.foodi.service.FollowService;
 import net.sf.json.JSONArray;
 
@@ -25,7 +24,6 @@ public class FollowListSearchAction implements Action {
 		}else {
 			searchKeyword = "%"+searchKeyword+"%";
 		}
-		System.out.println(searchKeyword);
 		
 		List<FollowInfoVO> followerList = service.followerListService(request, searchKeyword);
 		List<FollowInfoVO> followingList = service.followingListService(request, searchKeyword);

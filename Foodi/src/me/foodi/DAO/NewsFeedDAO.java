@@ -7,7 +7,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-  
+
 import me.foodi.domain.FeedVO;
 import me.foodi.mapper.NewsFeedMapper;
 
@@ -37,7 +37,7 @@ public class NewsFeedDAO {
 		SqlSession session = getSqlSessionFactory().openSession();
 	
 		try{
-			list = session.getMapper(NewsFeedMapper.class).newsFeedList();
+			list = session.getMapper(NewsFeedMapper.class).listNewsFeed();
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally {

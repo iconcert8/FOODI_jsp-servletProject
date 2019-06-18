@@ -33,9 +33,9 @@ public class MapDAO {
 		return new SqlSessionFactoryBuilder().build(in);
 	}
 	
-	public List<FeedVO> listMap(String userId){
+	public String[] listMap(String userId){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		List<FeedVO> list = null;
+		String[] list = null;
 		try {
 			list=sqlSession.getMapper(MapMapper.class).listMap(userId);
 		} catch (Exception e) {

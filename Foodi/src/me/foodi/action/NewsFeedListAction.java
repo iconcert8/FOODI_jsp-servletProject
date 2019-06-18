@@ -6,28 +6,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.domain.FeedVO;
-import me.foodi.service.FeedService;
 import me.foodi.service.NewsFeedService;
 import net.sf.json.JSONArray;
- 
-public class NewsFeedAction implements Action{
+
+public class NewsFeedListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		NewsFeedService service = NewsFeedService.getInstance();
-		ActionForward forward = new ActionForward();
-		 
+		
 		List<FeedVO> list = service.newsFeedListService();
 		
-		request.setAttribute("feedlist", list);
-		
-		forward.setRedirect(false);
-		forward.setPath("newsfeed.jsp");
-	
-		
+		String json = JSONArray.fromObject(list).toString();
+		System.out.println(json);
+		response.getWriter().write(json);
 		 
-		return forward;
-	}
+		
+		return null;
+	}                                    
 
-	
 }

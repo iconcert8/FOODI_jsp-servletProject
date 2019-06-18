@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
+import me.foodi.action.FollowDeleteAction;
+import me.foodi.action.FollowInsertAction;
 import me.foodi.action.FollowListAction;
+import me.foodi.action.FollowListSearchAction;
 
 @WebServlet("/follow/*")
 public class FollowController extends HttpServlet {
@@ -23,10 +26,11 @@ public class FollowController extends HttpServlet {
     
     public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String uri = request.getRequestURI();
-    	System.out.println(uri);
     	String ctxPath = request.getContextPath();
     	String path = uri.substring(ctxPath.length()+1);
-    	System.out.println(path);
+    	
+    	request.getSession().setAttribute("loginId", "iconcert8");
+    	
     	Action action = null;
     	ActionForward forward = null;
     	
@@ -37,6 +41,30 @@ public class FollowController extends HttpServlet {
     		}catch (Exception e) {
     			e.printStackTrace();
     		}
+    	}else if(path.equals("follow/listSearch")){
+    		action = new FollowListSearchAction();
+    		try{
+    			forward = action.execute(request, response);
+    		}catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    		return;
+    	}else if(path.equals("follow/insert")){
+    		action = new FollowInsertAction();
+    		try{
+    			forward = action.execute(request, response);
+    		}catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    		return;
+    	}else if(path.equals("follow/delete")){
+    		action = new FollowDeleteAction();
+    		try{
+    			forward = action.execute(request, response);
+    		}catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    		return;
     	}
     	
     	if(forward != null){

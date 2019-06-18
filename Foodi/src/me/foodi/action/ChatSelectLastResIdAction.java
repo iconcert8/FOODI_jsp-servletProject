@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import me.foodi.domain.ChatVO;
 import me.foodi.service.ChatService;
 
-public class ChatSelectLastMsgAction implements ActionJson {
+public class ChatSelectLastResIdAction implements ActionJson {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

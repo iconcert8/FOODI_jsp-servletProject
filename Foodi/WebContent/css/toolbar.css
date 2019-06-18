@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+
+#menuBar {
+	background-color: gray;
+}
+
+#userMenu li {
+	display: inline;
+}
+
+.hidden {
+	display: none;
+}

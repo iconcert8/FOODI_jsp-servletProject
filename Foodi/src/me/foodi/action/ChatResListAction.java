@@ -17,8 +17,6 @@ public class ChatResListAction implements ActionJson {
 		String resId = (String) request.getParameter("resId");
 		List<String> resList = ChatService.getInstance().chatResListService(request);
 		
-		System.out.println(resList);
-		
 		JSONArray arr = new JSONArray();
 		for(String s : resList) {
 			JSONObject jobj = new JSONObject();
@@ -28,11 +26,8 @@ public class ChatResListAction implements ActionJson {
 			} else {
 				jobj.put("resId", s);
 				arr.add(jobj);
-			}
-			
-			
+			}	
 		}
-		System.out.println(arr);
 		
 		return arr.toString();
 	}

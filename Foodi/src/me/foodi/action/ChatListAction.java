@@ -15,7 +15,6 @@ public class ChatListAction implements ActionJson {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		int re = ChatService.getInstance().chatUpdateCheckService(request);
-		System.out.println("chatUpdate : " + re);
 		List<ChatVO> chatList = ChatService.getInstance().chatListService(request);
 		System.out.println("[!]chatList : " + chatList);
 		String json = JSONArray.fromObject(chatList).toString();

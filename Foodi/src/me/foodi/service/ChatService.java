@@ -33,7 +33,6 @@ public class ChatService {
 		user.put("reqId", req);
 		user.put("resId", res);
 		
-		System.out.println(user);
 		return dao.chatList(user);
 	}
 
@@ -59,14 +58,22 @@ public class ChatService {
 	}
 	
 	public ChatVO chatSelectLastMsgService(HttpServletRequest request) {
-
-		String userId = ((String) request.getSession().getAttribute("userId"));
-		return dao.chatSelectLastMsg(userId);
+		Map<String , String> user = new HashMap<String, String>();
+		String reqId = (String) request.getSession().getAttribute("userId");
+		String resId = (String) request.getParameter("resId");
+		user.put("reqId", reqId);
+		user.put("resId", resId);
+		return dao.chatSelectLastMsg(user);
 	}
 
 	public List<String> chatResListService(HttpServletRequest request) {
 		String userId = (String) request.getSession().getAttribute("userId");
 		return dao.chatResList(userId);
+	}
+
+	public ChatVO ChatSelectLastResIdService(HttpServletRequest request) {
+		String userId = ((String) request.getSession().getAttribute("userId"));
+		return dao.chatSelectLastResId(userId);
 	}
 	
 	

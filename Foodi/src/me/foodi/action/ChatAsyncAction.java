@@ -16,7 +16,7 @@ public class ChatAsyncAction implements ActionJson {
 		
 		int lastNo = Integer.parseInt(request.getParameter("lastNo"));
 		ChatVO lastMsg = ChatService.getInstance().chatSelectLastMsgService(request);
-		
+//		System.out.println("lastNO : " + lastNo + " | lastMsg chatNO" + lastMsg.getChatNo());
 		List<ChatVO> updateList = null;
 		String json = null;
 		if(lastMsg.getChatNo() > lastNo) {

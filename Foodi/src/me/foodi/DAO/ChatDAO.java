@@ -55,9 +55,9 @@ public class ChatDAO {
 		return re;
 	}
 	
-	public ChatVO chatSelectLastMsg(String userId) {
+	public ChatVO chatSelectLastMsg(Map<String, String> user) {
 		SqlSession sqlSession = getSqlsessionFactory().openSession();
-		ChatVO lastMsg = sqlSession.selectOne("chatSelectLastMsg", userId);
+		ChatVO lastMsg = sqlSession.selectOne("chatSelectLastMsg", user);
 		commitAndClose(sqlSession);
 		return lastMsg;
 	}
@@ -75,6 +75,13 @@ public class ChatDAO {
 		
 		commitAndClose(sqlSession);
 		return chatResList;
+	}
+
+	public ChatVO chatSelectLastResId(String userId) {
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		ChatVO lastRes = sqlSession.selectOne("chatSelectLastResId", userId);
+		commitAndClose(sqlSession);
+		return lastRes;
 	}
 	
 }

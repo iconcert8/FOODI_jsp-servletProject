@@ -41,8 +41,9 @@ public class NotifyService {
 			String feed = request.getParameter("feed");
 			System.out.println("feed: "+feed);
 			JSONObject json = (JSONObject)JSONSerializer.toJSON(feed);
-			int feedNo = Integer.parseInt(json.getString("feedNo"));
-			String feedContent = json.getString("feedContent").substring(0, 6)+"..";
+			int feedNo = Integer.parseInt(json.getString("feedNo"));			
+			String feedContent = json.getString("feedContent");
+			if(feedContent.length() > 6){feedContent = feedContent.substring(0, 6)+"..";}
 			String feedImg = json.getString("feedImg");
 			
 			notifyVO.setNotifyMsg(loginId+"님이 "+feedContent+" 게시물을 쿡 하였습니다");

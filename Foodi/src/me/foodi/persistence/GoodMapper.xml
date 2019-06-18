@@ -2,12 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="me.foodi.mapper.FollowMapper">
 	
-	<select id="goodChk"></select>
+	<select id="isGood" parameterType="GoodVO" resultType="int">
+		select count(*) from good
+		where userId = #{userId} and feedNo = #{feedNo}
+	</select>
 	
 	<insert id="goodInsert" parameterType="GoodVO">
 		insert into good
 		values (#{userId}, #{feedNo}, sysdate)
 	</insert>
 
-	
+	<delete id="goodDelete" parameterType="GoodVO">
+		delete from good
+		where userId = #{userId} and feedNo = #{feedNo}
+	</delete>
 </mapper>

@@ -21,4 +21,12 @@ public class GoodService {
 		goodVO.setFeedNo(request.getParameter("feedNo"));
 		return dao.goodInsert(goodVO);
 	}
+	
+	public int goodDeleteService(HttpServletRequest request){
+		String loginId = (String)request.getSession().getAttribute("loginId");
+		GoodVO goodVO = new GoodVO();
+		goodVO.setUserId(loginId);
+		goodVO.setFeedNo(request.getParameter("feedNo"));
+		return dao.goodDelete(goodVO);
+	}
 }

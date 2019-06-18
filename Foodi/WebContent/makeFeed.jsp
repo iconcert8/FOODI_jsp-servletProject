@@ -15,7 +15,7 @@ input {
 }
 
 /* 드래그 드랍이 가능한 공간 표시 */
-#space {
+#imgs {
 	width: 500px;
 	height: 50px;
 	background-color: lightgray;
@@ -32,7 +32,7 @@ li {
 		enctype="multipart/form-data">
 		<ul>
 			<li>작성자</li>
-			<li><input type="hidden" name="userId" value="a"></li>
+			<li>${userId}<input type="hidden" name="userId" value="a"></li>
 		</ul>
 		<ul>
 			<li>내용</li>
@@ -42,18 +42,30 @@ li {
 			<li>태그</li>
 			<li><input type="text" name="tag"></li>
 		</ul>
+		<!-- 
 		<ul>
 			<li>기본사진</li>
-			<li><input type="file" name="feedImg"></li>
+			<li><input type="file" name="feedImg" accept="image/*"></li>
 		</ul>
+		 -->
 		<ul>
 			<li>추가사진</li>
-			<li><input multiple="multiple" id="space" type="file"
-				name="feedImgs"></li>
+			<li><input multiple="multiple" id="imgs" type="file"
+				accept="image/*" name="feedImgs[]"></li>
+		</ul>
+		<ul id="list">
+			<li>파일 목록</li>
 		</ul>
 		<ul>
 			<li>위치</li>
 			<li><input type="text" name="feedLoc"></li>
+		</ul>
+		<ul>
+			<li>
+				<input type="radio" name="feedLock" value="1" checked="checked">전체공개 &nbsp &nbsp
+				<input type="radio" name="feedLock" value="2">팔로우 공개 &nbsp &nbsp
+				<input type="radio" name="feedLock" value="3">비공개
+			</li>
 		</ul>
 		<ul>
 			<li><input type="submit" value="작성하기"></li>

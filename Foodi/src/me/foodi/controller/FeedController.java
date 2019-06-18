@@ -9,11 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
+import com.oreilly.servlet.MultipartFilter;
+import com.oreilly.servlet.MultipartRequest;
+
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
 import me.foodi.action.InsertFeedAction;
 import me.foodi.action.NewsFeedAction;
-
 
 @WebServlet("/feed/*")
 public class FeedController extends HttpServlet {
@@ -23,49 +27,50 @@ public class FeedController extends HttpServlet {
 		super();
 	}
 
-	public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doProcess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String uri = request.getRequestURI();
 		String ctxPath = request.getContextPath();
-		String path = uri.substring(ctxPath.length()+1);
+		String path = uri.substring(ctxPath.length() + 1);
 
 		Action action = null;
 		ActionForward forward = null;
-		System.out.println(path);
- 
-		if(path.equals("feed/feedInsert.do")){
+
+		if (path.equals("feed/insertFeed.do")) {
 			action = new InsertFeedAction();
-			System.out.println("ok");
-			try{
+
+			try {
 				forward = action.execute(request, response);
-			}catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(path.equals("feed/newsFeed.do")){
+
+		} else if (path.equals("feed/newsFeed.do")) {
 			action = new NewsFeedAction();
-			try{
+			try {
 				forward = action.execute(request, response);
-			}catch(Exception e){
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 
-		if(forward != null){
-			if(forward.isRedirect()){
+		if (forward != null) {
+			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
-			}else{
+			} else {
 				RequestDispatcher rd = request.getRequestDispatcher(forward.getPath());
 				rd.forward(request, response);
 			}
 		}
-
-
 	}
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
 }

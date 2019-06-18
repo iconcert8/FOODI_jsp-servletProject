@@ -30,27 +30,15 @@ public class FeedDAO {
 	}
 
 	public int insertFeed(FeedVO feedVO) {
-		
-		System.out.println("dao0");
-		
 		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		
 		int re = -1;
 		
-		System.out.println("dao1");
-		
 		try {
-			
-			System.out.println("dao2");
-			
 			re = sqlSession.getMapper(FeedMapper.class).insertFeed(feedVO);
-			
-			System.out.println("dao3");
-
 			if (re > 0) {
-				System.out.println("commit");
 				sqlSession.commit();
 			} else {
-				System.out.println("rollback");
 				sqlSession.rollback();
 			}
 		} catch (Exception e) {
@@ -62,5 +50,4 @@ public class FeedDAO {
 		}
 		return re;
 	}
-
 }

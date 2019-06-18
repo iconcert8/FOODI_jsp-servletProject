@@ -24,7 +24,7 @@
 								html += 		' value="'+item2.userId+'">팔로잉</button>';
 								html += '</li>';
 							$("#flrList").append(html).trigger("create");
-						}else{
+				 		}else{
 							var html = '<li value='+item2.userId+'>';
 								html += 	'<label>'+item2.userId+'</label> ';
 								html += 	'<button flr="'+item2.userId+'" class="nofln"';

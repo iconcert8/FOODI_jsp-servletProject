@@ -23,7 +23,7 @@
 					<c:when test="${user.isFollow == null}">
 						<li value="${user.userId}"><label>${user.userId}</label>
 							<button flr="${user.userId}" class="nofln" value="${user.userId}">팔로우</button>
-						</li>
+						</li> 
 					</c:when>
 					<c:otherwise>
 						<li value="${user.userId}"><label>${user.userId}</label>
@@ -34,7 +34,7 @@
 			</c:forEach>
 		</c:if>
 	</ul>
-	<hr>
+	<hr>	
 	<b>팔로잉 리스트</b>
 	<ul id="flnList">
 		<c:if test="${followingList != null}">

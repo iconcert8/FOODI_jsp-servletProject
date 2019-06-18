@@ -37,7 +37,7 @@ public class NewsFeedDAO {
 		SqlSession session = getSqlSessionFactory().openSession();
 	
 		try{
-			list = session.getMapper(NewsFeedMapper.class).newsFeedList();
+			list = session.getMapper(NewsFeedMapper.class).listNewsFeed();
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally {

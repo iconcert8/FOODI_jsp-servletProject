@@ -13,6 +13,7 @@ import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
 import me.foodi.action.InsertFeedAction;
 import me.foodi.action.NewsFeedAction;
+import me.foodi.action.NewsFeedListAction;
 
 
 @WebServlet("/feed/*")
@@ -42,12 +43,23 @@ public class FeedController extends HttpServlet {
 			}
 		}else if(path.equals("feed/newsFeed.do")){
 			action = new NewsFeedAction();
+			System.out.println("ok");
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}
+		}else if(path.equals("feed/newsfeedList.do")){
+				action = new NewsFeedListAction();
+				System.out.println("ok");
+				try{
+					forward = action.execute(request, response);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				return ;
+			}
+		
 
 		if(forward != null){
 			if(forward.isRedirect()){

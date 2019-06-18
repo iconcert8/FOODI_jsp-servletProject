@@ -6,5 +6,5 @@ import me.foodi.domain.FeedVO;
  
 public interface NewsFeedMapper {
 	
-	List<FeedVO> newsFeedList();
+	List<FeedVO> listNewsFeed();
 }

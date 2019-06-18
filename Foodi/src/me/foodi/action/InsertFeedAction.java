@@ -12,20 +12,12 @@ public class InsertFeedAction implements Action {
 		FeedService service = FeedService.getInstance();
 		ActionForward forward = new ActionForward();
 		
-		System.out.println("1");
-		
 		service.insertFeed(request, response);
-		
-		System.out.println("2");
 		
 		forward.setRedirect(true);
 		
-		System.out.println("3");
-		
 		forward.setPath("foodi/makeFeed.jsp");
 		
-		System.out.println("4");
-
 		return forward;
 	}
 }

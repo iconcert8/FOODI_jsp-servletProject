@@ -2,6 +2,7 @@ package me.foodi.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,17 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.JsonArray;
-
-import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
 import me.foodi.action.ActionJson;
 import me.foodi.action.ChatListAction;
 import me.foodi.action.ChatResListAction;
-import me.foodi.action.ChatSelectLastMsgAction;
+import me.foodi.action.ChatAsyncAction;
+import me.foodi.action.ChatSelectLastResIdAction;
 import me.foodi.action.ChatSendAction;
 
-@WebServlet(urlPatterns = "/chat/view", asyncSupported = true)
+@WebServlet(urlPatterns = "/chat/*", asyncSupported = true)
 public class ChatController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -44,11 +43,13 @@ public class ChatController extends HttpServlet {
 			forward = new ActionForward();
 //			?resId= 없을시
 			if(request.getParameter("resId") == null) {
-				action = new ChatSelectLastMsgAction();
+				action = new ChatSelectLastResIdAction();
 				try {
 					String resId = action.execute(request, response);
-					forward.setRedirect(true);
-					forward.setPath("view?resId=" + resId);
+					
+					forward.setRedirect(true);				
+					forward.setPath("view?resId=" + URLEncoder.encode(resId, "UTF-8"));
+
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -57,9 +58,24 @@ public class ChatController extends HttpServlet {
 				forward.setRedirect(false);
 				forward.setPath("/chat.jsp");
 			}
+		} else if(path.equals("chat/get")) {
+			action = new ChatListAction();
 			
-		} else if(path.equals("chat/reslist")) {
-			ChatResListAction resListAction = new ChatResListAction();
+			try {
+				String chatList = action.execute(request, response);
+				responseJson(response, chatList);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
+		} else if(path.equals("chat/async")) {
+			action = new ChatAsyncAction();
+			
+			try {
+				String updateList = action.execute(request, response);
+				responseJson(response, updateList);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		sendForward(forward, request, response);
@@ -69,38 +85,38 @@ public class ChatController extends HttpServlet {
 		
 		String path = getPath(request);
 		System.out.println("[!] chat servlet method : post | " + path);
-		Action action = null;
+		ActionJson action = null;
     	ActionForward forward = null;
     	
-    	if(path.equals("chat/reslist")) {
-			ChatResListAction resListAction = new ChatResListAction();
-			try {
-				String arr = resListAction.execute(request, response);
-				PrintWriter out = response.getWriter();
-    			out.println(arr);
-    			out.flush();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}		
-		} else if(path.equals("chat/view")) {
-			
-		} else if(path.equals("chat/send")){
+    	if(path.equals("chat/send")){
     		
-    		ChatSendAction sendAction = new ChatSendAction();
+    		action = new ChatSendAction();
     		
     		try{
-    			String chatList = sendAction.execute(request, response);
-    			System.out.println(chatList);
-    			PrintWriter out = response.getWriter();
-    			out.println(chatList);
-    			out.flush();
-
+    			String chatList = action.execute(request, response);
+    			responseJson(response, chatList);
     		}catch (Exception e) {
     			e.printStackTrace();
     		}
-    	}
+    		
+    	} else if(path.equals("chat/reslist")) {
+    		action = new ChatResListAction();
+			try {
+				String arr = action.execute(request, response);
+				responseJson(response, arr);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}		
+		} 
 		
 		sendForward(forward, request, response);
+	}
+	
+	public void responseJson(HttpServletResponse response, String json) throws IOException {
+		PrintWriter out = response.getWriter();
+		out.println(json);
+		out.flush();
+		out.close();
 	}
 	
 

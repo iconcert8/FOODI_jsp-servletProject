@@ -42,12 +42,10 @@ li {
 			<li>태그</li>
 			<li><input type="text" name="tag"></li>
 		</ul>
-		<!-- 
 		<ul>
 			<li>기본사진</li>
 			<li><input type="file" name="feedImg" accept="image/*"></li>
 		</ul>
-		 -->
 		<ul>
 			<li>추가사진</li>
 			<li><input multiple="multiple" id="imgs" type="file"

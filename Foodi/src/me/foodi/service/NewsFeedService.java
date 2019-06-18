@@ -16,7 +16,7 @@ public class NewsFeedService {
 	public static NewsFeedService getInstance() {
 		dao = NewsFeedDAO.getInstance();
 		return service;
-	}
+	} 
  
 	public List<FeedVO> newsFeedListService() {
 		return dao.newsFeedList();

@@ -13,7 +13,6 @@ public class FeedVO {
 	private String feedLock; //공개 여부
 
 
-
 	public FeedVO() {
 		super();
 	}

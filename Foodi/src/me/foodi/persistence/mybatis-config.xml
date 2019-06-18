@@ -15,6 +15,7 @@
  		<typeAlias type="me.foodi.domain.NotifyVO" alias="NotifyVO" />
  		<typeAlias type="me.foodi.domain.FollowVO" alias="FollowVO"/>
  		<typeAlias type="me.foodi.domain.GoodVO" alias="GoodVO"/>
+ 		<typeAlias type="me.foodi.domain.MapVO" alias="MapVO" />
  	</typeAliases> 
 	
 	<environments default="development">
@@ -38,6 +39,7 @@
 		<mapper resource="me/foodi/persistence/GoodMapper.xml" />
 		<mapper resource="me/foodi/persistence/NotifyMapper.xml" />
 		<mapper resource="me/foodi/persistence/NewsFeedMapper.xml" />
+		<mapper resource="me/foodi/persistence/MapMapper.xml"/>
 	</mappers>
 	
 </configuration>

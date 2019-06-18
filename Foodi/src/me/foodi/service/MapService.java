@@ -1,12 +1,12 @@
 package me.foodi.service;
 
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import me.foodi.DAO.MapDAO;
-import me.foodi.domain.FeedVO;
-import me.foodi.domain.UserInfoVO;
+import me.foodi.domain.MapVO;
 
 public class MapService {
 	private static MapService service = new MapService();
@@ -17,9 +17,9 @@ public class MapService {
 		return service;
 	}
 	
-	public List<FeedVO> listMapService(HttpServletRequest request)throws Exception{
-		List<FeedVO> list = dao.listMap(request.getParameter("userId"));
-		return list;
+	public String[] listMapService(HttpServletRequest request)throws Exception{
+		String[] locs = dao.listMap(request.getParameter("userId"));
+		return locs;
 	}
 
 	

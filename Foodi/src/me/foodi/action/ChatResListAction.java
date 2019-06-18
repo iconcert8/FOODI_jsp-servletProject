@@ -5,10 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import me.foodi.service.ChatService;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 public class ChatResListAction implements ActionJson {
 	
@@ -35,8 +34,7 @@ public class ChatResListAction implements ActionJson {
 		}
 		System.out.println(arr);
 		
-		
-		return arr.toJSONString();
+		return arr.toString();
 	}
 
 }

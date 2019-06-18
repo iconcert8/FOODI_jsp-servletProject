@@ -35,7 +35,6 @@ function notifyList(startRow){
 		data: {"startRow": startRow},
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 		success: function successHandler(data){
-			console.log(data);
 			var ntfChk = 0;
 			$.each(data, function(index, item){
 				ntfSum++;

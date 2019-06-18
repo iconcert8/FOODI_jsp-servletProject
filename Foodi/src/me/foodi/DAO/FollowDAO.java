@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import me.foodi.domain.FollowInfoVO;
+import me.foodi.domain.FollowVO;
 import me.foodi.domain.SearchVO;
 import me.foodi.mapper.FollowMapper;
 
@@ -62,11 +63,11 @@ public class FollowDAO {
 		return list;
 	}
 	
-	public int followInsert(FollowInfoVO followInfoVO) {
+	public int followInsert(FollowVO followVO) {
 		int re = -1;
 		SqlSession session = getSqlSessionFactory().openSession();
 		try {
-			re = session.getMapper(FollowMapper.class).followInsert(followInfoVO);
+			re = session.getMapper(FollowMapper.class).followInsert(followVO);
 			if(re > 0) {
 				session.commit();
 			}else {
@@ -82,11 +83,11 @@ public class FollowDAO {
 		return re;
 	}
 	
-	public int followDelete(FollowInfoVO followInfoVO) {
+	public int followDelete(FollowVO followVO) {
 		int re = -1;
 		SqlSession session = getSqlSessionFactory().openSession();
 		try {
-			re = session.getMapper(FollowMapper.class).followDelete(followInfoVO);
+			re = session.getMapper(FollowMapper.class).followDelete(followVO);
 			if(re > 0) {
 				session.commit();
 			}else {

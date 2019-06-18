@@ -2,7 +2,7 @@
 
 $(document).ready(function(){
 	
-	followList(null, listView);
+	followList(null, listView);	
 	
 	//follow search
 	$(document).on("click", "#flwSearch", function(){

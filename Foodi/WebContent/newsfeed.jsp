@@ -59,10 +59,10 @@
 	</table>
 	
 		
-	<form action="list.do" method="post">
-		<input type="button" name="area" value="good">좋아요 
-		<input type="button" name="area" value="comment">댓글
-		<input type="button" name="area" value="cook">쿡
-	</form>
+
+	<input type="button" name="good" value="good">좋아요 
+	<input type="button" name="reply" value="comment">댓글
+	<input type="button" name="qook" value="qook">쿡
+
 </body>
 </html>  	

@@ -27,14 +27,14 @@
 		</if>
 	</select>
 
-	<insert id="followInsert" parameterType="FollowInfoVO">
+	<insert id="followInsert" parameterType="FollowVO">
 		insert into follow
-		values (#{loginId}, #{userId}, sysdate)
+		values (#{reqId}, #{resId}, sysdate)
 	</insert>
 
-	<delete id="followDelete" parameterType="FollowInfoVO">
+	<delete id="followDelete" parameterType="FollowVO">
 		delete from follow
-		where reqId= #{loginId} and resId= #{userId}
+		where reqId= #{reqId} and resId= #{resId}
 	</delete>
 
 	

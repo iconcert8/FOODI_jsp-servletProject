@@ -1,7 +1,5 @@
 package me.foodi.domain;
 
-import java.util.List;
-
 public class FeedVO {
 	private int feedNo; //피드 번호
 	private String userId; //피드 유저
@@ -13,7 +11,6 @@ public class FeedVO {
 	private String feedDate; //작성 일자
 	private String feedUpdate; //수정 날짜
 	private String feedLock; //공개 여부
-
 
 
 	public FeedVO() {

@@ -16,7 +16,7 @@ $(document).ready(function(){
 		//add following
 		var resId = $(this).val();
 		followInsert(resId, $(this), flrFollow);
-		notificationInsertFollow(resId, null);
+		notificationInsertFollow(resId, function(){});
 	});
 	
 	//followerList follow cancel
@@ -35,7 +35,7 @@ $(document).ready(function(){
 	$(document).on("click","#flnList .nofln", function(){
 		var resId = $(this).val();
 		followInsert(resId, $(this), flnFollow);
-		notificationInsertFollow(resId, null);
+		notificationInsertFollow(resId, function(){});
 	});
 	
 });

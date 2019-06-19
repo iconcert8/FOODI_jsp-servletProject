@@ -30,7 +30,7 @@ function qookDelete(feedNo, $this, successFunction){
 
 
 //'feed' should be like this
-//var feed = '{"feedNO":feedNO, "feedContent": feedContent, "feedImg":feedImg}';
+//var feed = '{"feedNo":feedNo, "feedContent": feedContent}';
 //insert notification
 function notificationInsertQook(resId, feed, successFunction){
 	$.ajax({

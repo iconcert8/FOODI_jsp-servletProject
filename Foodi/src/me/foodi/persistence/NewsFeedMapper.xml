@@ -6,5 +6,5 @@
 	<select id="listNewsFeed"  resultType="FeedVO" > 
 		SELECT * FROM feed order by feedno desc		
 	</select>
-		
+	
 </mapper>

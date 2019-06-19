@@ -11,20 +11,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="notify.jsp"></jsp:include>
-	<br>
-	<b>팔로워 리스트</b>
-	<input type="text" name="flwSearch">
-	<button id="flwSearch">검색</button>
-	<ul id="flrList">
-
-	</ul>
-	
-	<hr>
-
-	<b>팔로잉 리스트</b>
-	<ul id="flnList">
-		
-	</ul>
+	<%-- <jsp:include page="notify.jsp"></jsp:include> --%>
+	<nav>
+		메뉴바
+	</nav>
+	<header>
+		<h2>Follow</h2>
+		<div>ㅡ</div> <div id="searchBox"><input type="text" name="flwSearch"><button id="flwSearch">검색</button></div>
+	</header>
+	<section>
+		<article>
+			<h3>Follower</h3>
+			<ul id="flrList">
+			</ul>
+		</article>
+		<div id="line"></div>
+		<article>
+			<h3>Following</h3>
+			<ul id="flnList">
+			</ul>
+		</article>
+	</section>
 </body>
 </html>

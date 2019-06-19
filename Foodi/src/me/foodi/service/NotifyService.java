@@ -32,26 +32,40 @@ public class NotifyService {
 		
 		String type = request.getParameter("type");
 		if(type.equals("follow")){
+			notifyVO.setNotifyType("follow");
 			notifyVO.setNotifyMsg(getUser(request).getUserId()+"님이 팔로우 하였습니다");			
 		}else if(type.equals("good")){
 			String feed = request.getParameter("feed");
-			System.out.println("feed: "+feed);
 			JSONObject json = (JSONObject)JSONSerializer.toJSON(feed);
+			
 			int feedNo = Integer.parseInt(json.getString("feedNo"));
 			String feedContent = json.getString("feedContent").substring(0, 6)+"..";
-			String feedImg = json.getString("feedImg");
 			
+			notifyVO.setNotifyType("good");
+			notifyVO.setFeedNo(feedNo);
 			notifyVO.setNotifyMsg(getUser(request).getUserId()+"님이 "+feedContent+" 게시물에 좋아요를 눌렀습니다");
 		}else if(type.equals("qook")){
 			String feed = request.getParameter("feed");
-			System.out.println("feed: "+feed);
 			JSONObject json = (JSONObject)JSONSerializer.toJSON(feed);
+			
 			int feedNo = Integer.parseInt(json.getString("feedNo"));			
 			String feedContent = json.getString("feedContent");
 			if(feedContent.length() > 6){feedContent = feedContent.substring(0, 6)+"..";}
-			String feedImg = json.getString("feedImg");
 			
+			notifyVO.setNotifyType("qook");
+			notifyVO.setFeedNo(feedNo);
 			notifyVO.setNotifyMsg(getUser(request).getUserId()+"님이 "+feedContent+" 게시물을 쿡 하였습니다");
+		}else if(type.equals("reply")){
+			String reply = request.getParameter("reply");
+			JSONObject json = (JSONObject)JSONSerializer.toJSON(reply);
+			
+			int feedNo = Integer.parseInt(json.getString("feedNo"));
+			String replyContent = json.getString("replyContent");
+			if(replyContent.length() > 6){replyContent = replyContent.substring(0, 6)+"..";}
+			
+			notifyVO.setNotifyType("reply");
+			notifyVO.setFeedNo(feedNo);
+			notifyVO.setNotifyMsg(getUser(request).getUserId()+"님이 \""+replyContent+"\" 댓글을 달았습니다");
 		}else{
 			notifyVO.setNotifyMsg("기타 알림");
 		}

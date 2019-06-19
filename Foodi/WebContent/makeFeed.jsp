@@ -26,7 +26,7 @@ li {
 }
 </style>
 
-</head>
+</head> 
 <body>
 	<form action="feed/insertFeed.do" method="post"
 		enctype="multipart/form-data">

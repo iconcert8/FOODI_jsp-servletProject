@@ -16,6 +16,7 @@
  		<typeAlias type="me.foodi.domain.FollowVO" alias="FollowVO"/>
  		<typeAlias type="me.foodi.domain.GoodVO" alias="GoodVO"/>
  		<typeAlias type="me.foodi.domain.MapVO" alias="MapVO" />
+ 		<typeAlias type="me.foodi.domain.ReplyVO" alias="ReplyVO" />
  	</typeAliases> 
 	
 	<environments default="development">

@@ -32,7 +32,7 @@ function reqMsg() {
 	var sendMsg = {
 		"chatMsg" : chatTest.val(),
 		"resId" : resId
-	}
+	} 
 	console.log(sendMsg);
 	
 	chatTest.val('');
@@ -172,7 +172,7 @@ function async() {
 				async();
 			}, 5000);
 		}
-	});
+	}); 
 }
 
 resList();

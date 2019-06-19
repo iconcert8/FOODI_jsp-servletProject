@@ -1,7 +1,7 @@
 package me.foodi.domain;
 
 public class FollowInfoVO {
-	
+	 
 	private String loginId;
 	private String userId;
 	private String userNick;

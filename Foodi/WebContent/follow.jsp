@@ -20,7 +20,7 @@
 	<button id="flwSearch">검색</button>
 	<ul id="flrList">
 
-	</ul>
+	</ul> 
 	
 	<hr>
 

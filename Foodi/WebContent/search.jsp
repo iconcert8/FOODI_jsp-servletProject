@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="search/searchresult.do" method="post">
+	<form action="search/searchresult" method="post">
 	검색어: <input type="text" name="searchKeyword"/><input type="submit" value="검색"/>
 	</form> 
 </body>

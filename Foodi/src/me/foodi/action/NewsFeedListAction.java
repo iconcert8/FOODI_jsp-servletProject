@@ -15,7 +15,8 @@ public class NewsFeedListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		NewsFeedService service = NewsFeedService.getInstance();
 		
-		List<FeedVO> list = service.newsFeedListService();
+		
+		List<FeedVO> list = service.newsFeedListService(request);
 		
 		String json = JSONArray.fromObject(list).toString();
 		System.out.println(json);

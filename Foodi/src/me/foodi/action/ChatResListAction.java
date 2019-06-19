@@ -23,7 +23,7 @@ public class ChatResListAction implements ActionJson {
 		JSONArray arr = new JSONArray();
 		for(String s : resList) {
 			JSONObject jobj = new JSONObject();
-			if(s.equals(resId)) {
+			if(s.equals(resId)) { 
 				jobj.put("selected", s);
 				arr.add(jobj);
 			} else {

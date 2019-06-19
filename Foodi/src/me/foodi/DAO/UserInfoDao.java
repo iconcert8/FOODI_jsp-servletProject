@@ -19,7 +19,7 @@ public class UserInfoDao {
 	}
 	
 	public SqlSessionFactory getSqlSessionFactory() {
-		String resource = "mybatis-config.xml";
+		String resource = "me/foodi/persistence/mybatis-config.xml";
 		InputStream in = null;
 		
 		try {
@@ -51,7 +51,21 @@ public class UserInfoDao {
 		return re;
 	}
 
-	
+	public UserInfoVO testGet(String userId){
+		UserInfoVO userInfoVO = null;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			userInfoVO = sqlSession.getMapper(UserInfoMapper.class).testGet(userId);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(sqlSession != null) {
+				sqlSession.close();
+			}
+		}
+		return userInfoVO;
+	}
 	
 
 }

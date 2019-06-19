@@ -11,9 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
+import me.foodi.action.TestGetAction;
 
 
-@WebServlet("/userinfo/*")
+@WebServlet("/userInfo/*")
 public class UserInfoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,8 +31,15 @@ public class UserInfoController extends HttpServlet {
     	Action action = null;
     	ActionForward forward = null;
     	
-    	if(path.equals("userinfo/join.do")){
+    	if(path.equals("userInfo/join.do")){
     		action = null;
+    		try{
+    			forward = action.execute(request, response);
+    		}catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    	}else if(path.equals("userInfo/testGet")){
+    		action = new TestGetAction();
     		try{
     			forward = action.execute(request, response);
     		}catch (Exception e) {

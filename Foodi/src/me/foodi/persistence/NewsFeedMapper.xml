@@ -3,8 +3,26 @@
 
 <mapper namespace="me.foodi.mapper.NewsFeedMapper">
 	
-	<select id="listNewsFeed"  resultType="FeedVO" > 
-		SELECT * FROM feed order by feedno desc		
+	<select id="listNewsFeed" parameterType="FeedVO" resultType="FeedVO" > 
+	
+
+		select fd.feedNo, fd.userId, fd.feedContent, fd.feedImg, fd.feedImgs, fd.feedGoodCnt,
+       		   fd.feedDate, fd.feedUpdate, fd.feedLock, g.userId as isGood, q.userId as isQook
+		from feed fd, good g, qook q
+		where fd.feedNo = g.feedNo(+) and fd.feedNo = q.feedNo(+) and
+      		  fd.userId in(select us.userId
+                  		   from userInfo uq, userInfo us, follow f
+                  		    where uq.userId = f.reqId and f.resId = us.userId and uq.userId = #{userId}) and
+        	  g.userId(+) = #{userId} and q.userId(+) = #{userId}  ORDER BY fd.feedDate DESC 
 	</select>
-		
-</mapper>
+	
+	<select id="newsfeedReply" parameterType="int" resultType="ReplyVO">
+		select * from reply where replyNo=#{replyNo}
+	</select>
+	
+	<insert id="insertNewsfeedReply" parameterType="ReplyVO">
+		insert into reply
+		values (reply_seq.nextval. #{feedno), #{replyContent}, sysdate, #{userid})
+	</insert>  
+	
+</mapper>     

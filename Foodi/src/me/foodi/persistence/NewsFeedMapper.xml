@@ -22,7 +22,7 @@
 	
 	<insert id="insertNewsfeedReply" parameterType="ReplyVO">
 		insert into reply
-		values (reply_seq.nextval. #{feedno), #{replyContent}, sysdate, #{userid})
+		values (reply_seq.nextval. #{feedno}, #{replyContent}, sysdate, #{userid})
 	</insert>  
 	
 </mapper>     

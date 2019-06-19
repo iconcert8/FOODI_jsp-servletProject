@@ -62,24 +62,6 @@ public class ChatController extends HttpServlet {
 					forward.setRedirect(false);
 					forward.setPath("/chat.jsp");
 				}
-			} else if (path.equals("chat/get")) {
-				action = new ChatListAction();
-
-				try {
-					String chatList = action.execute(request, response);
-					responseJson(response, chatList);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} else if (path.equals("chat/async")) {
-				action = new ChatAsyncAction();
-
-				try {
-					String updateList = action.execute(request, response);
-					responseJson(response, updateList);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 			}
 		} else {
 			forward = new ActionForward();
@@ -120,6 +102,24 @@ public class ChatController extends HttpServlet {
 				try {
 					String arr = action.execute(request, response);
 					responseJson(response, arr);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if (path.equals("chat/get")) {
+				action = new ChatListAction();
+
+				try {
+					String chatList = action.execute(request, response);
+					responseJson(response, chatList);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if (path.equals("chat/async")) {
+				action = new ChatAsyncAction();
+
+				try {
+					String updateList = action.execute(request, response);
+					responseJson(response, updateList);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

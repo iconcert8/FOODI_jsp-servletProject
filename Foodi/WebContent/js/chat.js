@@ -27,6 +27,7 @@ function Request() {
 	}
 }
 
+//send Msg
 function reqMsg() {
 	let chatTest = $('textarea[name="chatMsg"]');
 	
@@ -57,6 +58,7 @@ function reqMsg() {
 	});
 }
 
+//person list
 function resList() {
 	$.ajax({
 		type : "post",
@@ -86,9 +88,10 @@ function resList() {
 	});
 }
 
+//select
 function chatView() {
 	$.ajax({
-		type: "get",
+		type: "post",
         url: "get",
         data: {"resId" : resId},
         dataType : "json",
@@ -110,14 +113,7 @@ function chatView() {
 	});	
 }
 
-function updateView(data) {
-	$.each(data, function(i, item) {
-		if(item.chatNo > lastNo) {
-			drawMsg(i, item, data);
-		}
-	});
-}
-
+//check read update
 function updateCheckRead(data) {
 	$.each(data, function(i, item) {
 		if($('.user > .read').last().css('display') != 'none') {
@@ -131,6 +127,16 @@ function updateCheckRead(data) {
 				$('.user > .read').text('0');
 				$('.user > .read').hide();
 			}
+		}
+	});
+}
+
+
+//draw check
+function updateView(data) {
+	$.each(data, function(i, item) {
+		if(item.chatNo > lastNo) {
+			drawMsg(i, item, data);
 		}
 	});
 }
@@ -161,9 +167,10 @@ function drawMsg(i, item, data) {
 	}
 }
 
+// 지속적 요청
 function async() {
 	$.ajax({
-		type : "get",
+		type : "post",
 		url : "async",
 		data : {
 			"lastNo" : lastNo,
@@ -188,17 +195,21 @@ function async() {
 	});
 }
 
+function search() {
+	
+}
+
 
 $(function() {
 	//클릭 이벤트
 	$(document).on('click', '#resList > div', function() {
-		let res = $(this).text();
+		var res = $(this).text();
 		console.log(res);
 		location.href = 'view?resId='+res;
 	});
 	
 //	enter키
-	$('textarea[name="chatMsg"]').keydown(function(event) {
+	$('textarea[name="chatMsg"]').keyup(function(event) {
 		if (event.keyCode == 13) {
 			event.preventDefault();
             reqMsg();

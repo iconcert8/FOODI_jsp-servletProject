@@ -32,7 +32,7 @@ public class ChatAsyncAction implements ActionJson {
 //			상대방 메세지 읽음 업데이트
 			ChatService.getInstance().chatUpdateCheckService(request);
 			updateList = ChatService.getInstance().chatListService(request);
-			ChatService.getInstance().chatCookieService(request, response, updateList, "add");
+//			ChatService.getInstance().chatCookieService(request, response, updateList, "add");
 			System.out.println("[!]updateList : " + updateList);
 			json = JSONArray.fromObject(updateList).toString();
 		} else {

@@ -17,7 +17,7 @@ public class ChatSendAction implements ActionJson {
 		int re = ChatService.getInstance().chatSendService(request);
 		if(re > 0) {
 			List<ChatVO> chatList = ChatService.getInstance().chatListService(request);
-			ChatService.getInstance().chatCookieService(request, response, chatList, "add");
+//			ChatService.getInstance().chatCookieService(request, response, chatList, "add");
 			
 //			String json = new Gson().toJson(chatList);
 			String json = JSONArray.fromObject(chatList).toString();

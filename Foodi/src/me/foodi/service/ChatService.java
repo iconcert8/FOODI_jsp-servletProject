@@ -85,25 +85,35 @@ public class ChatService {
 		return dao.chatSelectLastResId(userId);
 	}
 
-	public void chatCookieService(HttpServletRequest request, HttpServletResponse response, List<ChatVO> chatList,
+	public String chatCookieService(HttpServletRequest request, HttpServletResponse response, List<ChatVO> chatList,
 			String command) throws UnsupportedEncodingException {
 
 		JSONArray cookieArr = new JSONArray();
 		int lastNo = 0;
 
+//		for (Cookie c : request.getCookies()) {
+//			if (c.getName().equals(request.getAttribute("userId") + "|" + request.getParameter("resId"))) {
+//				String old = URLDecoder.decode(c.getValue(), "UTF-8");
+//				cookieArr = (JSONArray) JSONSerializer.toJSON(old);
+//			}
+//		}
+		
 		for (Cookie c : request.getCookies()) {
-			if (c.getName().equals(request.getAttribute("userId") + "|" + request.getParameter("resId"))) {
+			if(c.getName().indexOf(request.getAttribute("userId") + "|" + request.getParameter("resId")) != -1) {
 				String old = URLDecoder.decode(c.getValue(), "UTF-8");
-				cookieArr = (JSONArray) JSONSerializer.toJSON(old);
+				JSONObject jobj = (JSONObject) JSONSerializer.toJSON(old);
+				lastNo = jobj.getInt("chatNo") > lastNo ? jobj.getInt("chatNo") : lastNo;
+				cookieArr.add(jobj);
 			}
 		}
-
-		if (cookieArr.size() != 0) {
-			JSONObject last = (JSONObject) cookieArr.get(cookieArr.size() - 1);
-			lastNo = last.getInt("chatNo");
-			System.out.println("lastNo : " + lastNo);
-		}
-
+		System.out.println("lastNo : " + lastNo);
+		
+//		if (cookieArr.size() != 0) {
+//			JSONObject last = (JSONObject) cookieArr.get(cookieArr.size() - 1);
+//			lastNo = last.getInt("chatNo");
+//			System.out.println("lastNo : " + lastNo);
+//		}
+		
 //		new msg add
 		if (command.equals("add")) {
 			for (ChatVO chat : chatList) {
@@ -120,13 +130,26 @@ public class ChatService {
 				}
 			}
 		}
-
-		String cookieEnc = URLEncoder.encode(cookieArr.toString(), "UTF-8");
-		Cookie cookie = new Cookie(request.getAttribute("userId") + "|" + request.getParameter("resId"), cookieEnc);
-		cookie.setMaxAge(60 * 60 * 24 * 365);
-		cookie.setPath("Foodi/chat/");
-
-		response.addCookie(cookie);
+		
+//		cookieArr.sort(new Comparator<JSONObject>() {
+//
+//			@Override
+//			public int compare(JSONObject o1, JSONObject o2) {
+//				return o1.getInt("chatChk") - o2.getInt("chatChk");
+//			}
+//		});
+		
+		cookieArr.sort((o1, o2) -> ((JSONObject)o1).getInt("chatChk") - ((JSONObject)o2).getInt("chatChk"));
+		System.out.println(cookieArr);
+		for(int i=0; i < cookieArr.size(); i++) {
+			JSONObject jobj = (JSONObject) cookieArr.get(i);
+			Cookie cookie = new Cookie(request.getAttribute("userId") + "|" + request.getParameter("resId") + (i + 1), URLEncoder.encode(jobj.toString(), "utf-8"));
+			cookie.setMaxAge(60 * 60 * 24 * 365);
+			cookie.setPath("Foodi/chat/");
+			response.addCookie(cookie);
+		}
+			
+		return cookieArr.toString();
 	}
 
 }

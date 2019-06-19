@@ -18,7 +18,7 @@ public class GoodService {
 		String loginId = (String)request.getSession().getAttribute("loginId");
 		GoodVO goodVO = new GoodVO();
 		goodVO.setUserId(loginId);
-		goodVO.setFeedNo(request.getParameter("feedNo"));
+		goodVO.setFeedNo(Integer.parseInt(request.getParameter("feedNo")));
 		return dao.goodInsert(goodVO);
 	}
 	
@@ -26,7 +26,7 @@ public class GoodService {
 		String loginId = (String)request.getSession().getAttribute("loginId");
 		GoodVO goodVO = new GoodVO();
 		goodVO.setUserId(loginId);
-		goodVO.setFeedNo(request.getParameter("feedNo"));
+		goodVO.setFeedNo(Integer.parseInt(request.getParameter("feedNo")));
 		return dao.goodDelete(goodVO);
 	}
 }

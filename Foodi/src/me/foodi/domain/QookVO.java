@@ -1,19 +1,19 @@
 package me.foodi.domain;
 
-public class GoodVO {
+public class QookVO {
 	private String userId;
 	private int feedNo;
-	private String goodDate;
+	private String qookDate;
 	
-	public GoodVO() {
+	public QookVO() {
 		super();
 	}
 
-	public GoodVO(String userId, int feedNo, String goodDate) {
+	public QookVO(String userId, int feedNo, String qookDate) {
 		super();
 		this.userId = userId;
 		this.feedNo = feedNo;
-		this.goodDate = goodDate;
+		this.qookDate = qookDate;
 	}
 
 	public String getUserId() {
@@ -32,19 +32,18 @@ public class GoodVO {
 		this.feedNo = feedNo;
 	}
 
-	public String getGoodDate() {
-		return goodDate;
+	public String getQookDate() {
+		return qookDate;
 	}
 
-	public void setGoodDate(String goodDate) {
-		this.goodDate = goodDate;
+	public void setQookDate(String qookDate) {
+		this.qookDate = qookDate;
 	}
 
 	@Override
 	public String toString() {
-		return "GoodVO [userId=" + userId + ", feedNo=" + feedNo + ", goodDate=" + goodDate + "]";
+		return "QookVO [userId=" + userId + ", feedNo=" + feedNo + ", qookDate=" + qookDate + "]";
 	}
-	
 	
 	
 }

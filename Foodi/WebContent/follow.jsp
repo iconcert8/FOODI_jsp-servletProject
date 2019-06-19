@@ -13,8 +13,6 @@
 <body>
 	<jsp:include page="notify.jsp"></jsp:include>
 	<br>
-	<button id="qook_test">qook</button>
-	<br>
 	<b>팔로워 리스트</b>
 	<input type="text" name="flwSearch">
 	<button id="flwSearch">검색</button>

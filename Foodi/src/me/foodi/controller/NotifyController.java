@@ -27,7 +27,6 @@ public class NotifyController extends HttpServlet {
     	String ctxPath = request.getContextPath();
     	String path = uri.substring(ctxPath.length()+1);
     	
-    	request.getSession().setAttribute("loginId", "iconcert8");
     	
     	Action action = null;
     	ActionForward forward = null;

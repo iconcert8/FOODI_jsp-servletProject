@@ -32,7 +32,8 @@ function reqMsg() {
 	
 	var sendMsg = {
 		"chatMsg" : chatTest.val(),
-		"resId" : resId
+		"resId" : resId,
+		"lastNo" : lastNo
 	}
 	console.log(sendMsg);
 	
@@ -85,8 +86,6 @@ function resList() {
 	});
 }
 
-
-
 function chatView() {
 	$.ajax({
 		type: "get",
@@ -106,7 +105,7 @@ function chatView() {
 		},
 		error : function (data) {
 			console.log('chatView get fail');
-			setTimeout(resMsg, 5000);
+			setTimeout(chatView, 5000);
 		}
 	});	
 }
@@ -127,7 +126,7 @@ function updateCheckRead(data) {
 			if(item.reqId == resId) {		
 				$('.user > .read').text('0');
 				$('.user > .read').hide();
-//			상대방이 읽은것이 확인되면
+//			자신이보낸 메세지를 상대방이 읽은것이 확인되면
 			} else if(item.chatChk == 0) {
 				$('.user > .read').text('0');
 				$('.user > .read').hide();
@@ -189,14 +188,16 @@ function async() {
 	});
 }
 
-//클릭 이벤트
+
 $(function() {
+	//클릭 이벤트
 	$(document).on('click', '#resList > div', function() {
 		let res = $(this).text();
 		console.log(res);
 		location.href = 'view?resId='+res;
 	});
 	
+//	enter키
 	$('textarea[name="chatMsg"]').keydown(function(event) {
 		if (event.keyCode == 13) {
 			event.preventDefault();

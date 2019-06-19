@@ -31,12 +31,13 @@ public class FeedDAO {
 
 	public int insertFeed(FeedVO feedVO) {
 		SqlSession sqlSession = getSqlsessionFactory().openSession();
-		
 		int re = -1;
 		
 		try {
+			System.out.println("2");
 			re = sqlSession.getMapper(FeedMapper.class).insertFeed(feedVO);
 			if (re > 0) {
+				
 				sqlSession.commit();
 			} else {
 				sqlSession.rollback();

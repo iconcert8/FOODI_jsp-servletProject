@@ -62,7 +62,9 @@ public class FeedService {
 			String feedImgs = (String) multi.getFilesystemName("feedImgs");
 			feedVO.setFeedImgs(feedImgs);
 		}
-
+		
+		System.out.println(feedVO);
+		
 		return dao.insertFeed(feedVO);
 	}
 }

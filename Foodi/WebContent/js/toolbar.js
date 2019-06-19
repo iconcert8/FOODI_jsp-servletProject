@@ -3,4 +3,15 @@ $(function() {
 		$("#menuBar").toggleClass("hidden");
 		event.preventDefault();
 	});
+	
+	$("#notify").click(function(event){
+		$("#notifyList").toggleClass("hidden");
+		event.preventDefault();
+	});
+	
+	$("#logout").click(function(event){
+		request.get
+	});
+	
+	
 })

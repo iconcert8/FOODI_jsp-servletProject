@@ -22,7 +22,7 @@
 		</ul>
 		<ul>
 			<li>태그</li>
-			<li><input type="text" name="tag"></li>
+			<li><input type="text" name="tagName"></li>
 		</ul>
 		<ul>
 			<li>기본사진</li>

@@ -11,8 +11,8 @@ public class ChatSelectLastResIdAction implements ActionJson {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		ChatVO lastMsg = ChatService.getInstance().chatSelectLastMsgService(request);
-		return lastMsg.getResId();
+		ChatVO lastRes = ChatService.getInstance().ChatSelectLastResIdService(request);
+		return lastRes.getResId();
 	}
 
 }

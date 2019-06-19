@@ -23,6 +23,10 @@
 		<span>${member.userNick }</span>
 	</nav>
 		<hr>
+		
+	<article id="search">
+		<input type="text" onkeyup="search()">
+	</article>
 	<section id="chatView">
 <%-- 		<c:forEach var="chat" items="${chatList }"> --%>
 <%-- 			<div>ID : ${chat.reqId } / To : ${chat.resId }<br>${chat.chatDate } &nbsp; ${chat.chatMsg } <br> --%>

@@ -5,6 +5,7 @@
 var request = new Request();
 var resId = request.getParameter("resId");
 var lastNo = 0;
+var setAsyncTime = 1000;
 
 //get방식 parameter 가져오기
 function Request() {
@@ -26,13 +27,15 @@ function Request() {
 	}
 }
 
+//send Msg
 function reqMsg() {
 	let chatTest = $('textarea[name="chatMsg"]');
 	
 	var sendMsg = {
 		"chatMsg" : chatTest.val(),
-		"resId" : resId
-	} 
+		"resId" : resId,
+		"lastNo" : lastNo
+	}
 	console.log(sendMsg);
 	
 	chatTest.val('');
@@ -55,6 +58,7 @@ function reqMsg() {
 	});
 }
 
+//person list
 function resList() {
 	$.ajax({
 		type : "post",
@@ -84,17 +88,15 @@ function resList() {
 	});
 }
 
-
-
+//select
 function chatView() {
 	$.ajax({
-		type: "get",
+		type: "post",
         url: "get",
         data: {"resId" : resId},
         dataType : "json",
         success: function (data) {
 			console.log('chatView get success');
-			console.log(data);
 			
 //			임시처리
 			$('#chatView').empty();
@@ -106,52 +108,69 @@ function chatView() {
 		},
 		error : function (data) {
 			console.log('chatView get fail');
-			setTimeout(resMsg, 5000);
+			setTimeout(chatView, 5000);
 		}
 	});	
 }
 
+//check read update
+function updateCheckRead(data) {
+	$.each(data, function(i, item) {
+		if($('.user > .read').last().css('display') != 'none') {
+//			보낸사람이 상대방이면
+//			console.log('reqId : ' + item["reqId"] + ', resId : ' + resId);
+			if(item.reqId == resId) {		
+				$('.user > .read').text('0');
+				$('.user > .read').hide();
+//			자신이보낸 메세지를 상대방이 읽은것이 확인되면
+			} else if(item.chatChk == 0) {
+				$('.user > .read').text('0');
+				$('.user > .read').hide();
+			}
+		}
+	});
+}
+
+
+//draw check
 function updateView(data) {
-	$.each(data, function(i, elt) {
-		if(elt.chatNo > lastNo) {
-			drawMsg(i, elt, data);
+	$.each(data, function(i, item) {
+		if(item.chatNo > lastNo) {
+			drawMsg(i, item, data);
 		}
-		if(elt.reqId == resId) {
-			$('.user > .read').text('0');
-			$('.user > .read').hide();
-		} else if(elt.chatChk == 0) {
-			$('.user > .read').text('0');
-			$('.user > .read').hide();
-		}
-	})
-	
+	});
 }
 
 // message 그리기
 function drawMsg(i, item, data) {
 	if(resId == item.reqId) {				
 		$('<div class="res"></div>').append(item.reqId + '/test To : ' + item.resId + '<br>')
-			.append('<span class="resMsg">' + item.chatMsg + '</span>&nbsp;')
-			.append('<span class="date">' + item.chatDate + '</span>&nbsp;')
+			.append('<span class="resMsg">' + item.chatMsg + '&nbsp;</span>')
+			.append('<span class="date">' + item.chatDate + '&nbsp;</span>')
 			.append('<span class="read">' + item.chatChk + '</span>')
 			.appendTo('#chatView');
 	} else {
 		$('<div class="user"></div>').append(item.reqId + '/test To : ' + item.resId + '<br>')
-		.append('<span class="read">' + item.chatChk + '</span>&nbsp;')
-		.append('<span class="date">' + item.chatDate + '</span>&nbsp;')
+		.append('<span class="read">' + item.chatChk + '&nbsp;</span>')
+		.append('<span class="date">' + item.chatDate + '&nbsp;</span>')
 		.append('<span class="resMsg">' + item.chatMsg + '</span>')
 		.appendTo('#chatView');
 	}
 	if(data.length -1 == i) {
 		lastNo = item.chatNo;
 		console.log('lastNo : ' + lastNo);
-		console.log(typeof lastNo);
+	}
+	if($('.res > .read').last().css('display') != 'none') {
+		if($('.res > .read').last().text() == 0) {
+			$('.res > .read').hide();
+		}
 	}
 }
 
+// 지속적 요청
 function async() {
 	$.ajax({
-		type : "get",
+		type : "post",
 		url : "async",
 		data : {
 			"lastNo" : lastNo,
@@ -162,6 +181,7 @@ function async() {
 			console.log('async success');
 			if(data != null) {
 				updateView(data);
+				updateCheckRead(data);
 			}
 		},
 		error: function() {
@@ -170,10 +190,32 @@ function async() {
 		complete: function() {
 			setTimeout(function() {
 				async();
-			}, 5000);
+			}, setAsyncTime);
 		}
 	}); 
 }
+
+function search() {
+	
+}
+
+
+$(function() {
+	//클릭 이벤트
+	$(document).on('click', '#resList > div', function() {
+		var res = $(this).text();
+		console.log(res);
+		location.href = 'view?resId='+res;
+	});
+	
+//	enter키
+	$('textarea[name="chatMsg"]').keyup(function(event) {
+		if (event.keyCode == 13) {
+			event.preventDefault();
+            reqMsg();
+        }
+	})
+})
 
 resList();
 chatView();

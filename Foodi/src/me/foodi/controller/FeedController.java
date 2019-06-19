@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
+import me.foodi.action.InsertFeedAction;
 import me.foodi.action.NewsFeedAction;
 import me.foodi.action.NewsFeedListAction;
 import me.foodi.action.NewsFeedReplyAction;
@@ -34,7 +35,7 @@ public class FeedController extends HttpServlet {
 		ActionForward forward = null;
 
 		if (path.equals("feed/insertFeed.do")) {
-
+			action = new InsertFeedAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

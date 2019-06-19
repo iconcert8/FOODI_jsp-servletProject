@@ -7,6 +7,7 @@ function followList(key, successFunction){
 		dataType: 'json',
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 		data: {"flwSearchKey" : key},
+		error: function(error){console.log(error);},
 		success: function(data){
 			//data return followerList, followingList
 			successFunction(data);
@@ -23,6 +24,7 @@ function followInsert(resId, $this, successFunction){
 		dataType: 'json',
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 		data: {"resId": resId},
+		error: function(error){console.log(error);},
 		success: function(data){
 			//data return resId
 			successFunction(data, $this);
@@ -38,6 +40,7 @@ function followDelete(resId, $this, successFunction){
 		dataType: 'json',
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 		data: {"resId": resId},
+		error: function(error){console.log(error);},
 		success: function(data){
 			//data return resId
 			successFunction(data, $this);
@@ -52,6 +55,7 @@ function notificationInsertFollow(resId, successFunction){
 		type: 'get',
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 		data: {"resId":resId, "type":"follow"},
+		error: function(error){console.log(error);},
 		success: function(data){
 			//data return none
 			successFunction(data);

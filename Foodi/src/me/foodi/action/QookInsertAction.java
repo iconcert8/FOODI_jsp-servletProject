@@ -3,17 +3,17 @@ package me.foodi.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import me.foodi.service.GoodService;
+import me.foodi.service.QookService;
 
-public class GoodDeleteAction implements Action {
+public class QookInsertAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		GoodService service = GoodService.getInstance();
+		QookService service = QookService.getInstance();
 		
-		service.goodDeleteService(request);
-
+		service.qookInsertService(request);
+		
 		return null;
 	}
 

@@ -1,4 +1,5 @@
 ﻿document.write("<script type='text/javascript' src='/Foodi/js/follow.js'></script>");
+document.write("<script type='text/javascript' src='/Foodi/js/qook.js'></script>");
 
 $(document).ready(function(){
 	
@@ -15,7 +16,7 @@ $(document).ready(function(){
 		//add following
 		var resId = $(this).val();
 		followInsert(resId, $(this), flrFollow);
-		notificationInsertFollow(resId, null);
+		notificationInsertFollow(resId, function(){});
 	});
 	
 	//followerList follow cancel
@@ -34,7 +35,7 @@ $(document).ready(function(){
 	$(document).on("click","#flnList .nofln", function(){
 		var resId = $(this).val();
 		followInsert(resId, $(this), flnFollow);
-		notificationInsertFollow(resId, null);
+		notificationInsertFollow(resId, function(){});
 	});
 	
 });

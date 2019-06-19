@@ -10,18 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
-import me.foodi.action.NotifyCheckNewAction;
-import me.foodi.action.NotifyInsertAction;
-import me.foodi.action.NotifyListAction;
+import me.foodi.action.QookDeleteAction;
+import me.foodi.action.QookInsertAction;
 
-@WebServlet("/notify/*")
-public class NotifyController extends HttpServlet {
+@WebServlet("/qook/*")
+public class QookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public NotifyController() {
+  
+    public QookController() {
         super();
+        // TODO Auto-generated constructor stub
     }
-    
+
     public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String uri = request.getRequestURI();
     	String ctxPath = request.getContextPath();
@@ -31,24 +31,16 @@ public class NotifyController extends HttpServlet {
     	Action action = null;
     	ActionForward forward = null;
     	
-    	if(path.equals("notify/insert")){
-    		action = new NotifyInsertAction();
+    	if(path.equals("qook/insert")){
+    		action = new QookInsertAction();
     		try{
     			forward = action.execute(request, response);
     		}catch (Exception e) {
     			e.printStackTrace();
     		}
     		return;
-    	}else if(path.equals("notify/list")){
-    		action = new NotifyListAction();
-    		try{
-    			forward = action.execute(request, response);
-    		}catch (Exception e) {
-    			e.printStackTrace();
-    		}
-    		return;
-    	}else if(path.equals("notify/checkNew")){
-    		action = new NotifyCheckNewAction();
+    	}else if(path.equals("qook/delete")){
+    		action = new QookDeleteAction();
     		try{
     			forward = action.execute(request, response);
     		}catch (Exception e) {
@@ -56,15 +48,13 @@ public class NotifyController extends HttpServlet {
     		}
     		return;
     	}
-    	
-    	
-    	
     }
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}
+
 }

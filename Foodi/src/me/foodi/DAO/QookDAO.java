@@ -7,13 +7,13 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import me.foodi.domain.GoodVO;
-import me.foodi.mapper.GoodMapper;
+import me.foodi.domain.QookVO;
+import me.foodi.mapper.QookMapper;
 
-public class GoodDAO {
+public class QookDAO {
 	
-	private static GoodDAO dao = new GoodDAO();
-	public static GoodDAO getInstance(){
+	private static QookDAO dao = new QookDAO();
+	public static QookDAO getInstance(){
 		return dao;
 	}
 	
@@ -28,11 +28,11 @@ public class GoodDAO {
 		return new SqlSessionFactoryBuilder().build(in);
 	}
 	
-	public int goodInsert(GoodVO goodVO){
+	public int qookInsert(QookVO qookVO){
 		int re = -1;
 		SqlSession session = getSqlSessionFactory().openSession();
 		try{
-			re = session.getMapper(GoodMapper.class).goodInsert(goodVO);
+			re = session.getMapper(QookMapper.class).qookInsert(qookVO);
 			if(re > 0){
 				session.commit();
 			}else{
@@ -48,11 +48,11 @@ public class GoodDAO {
 		return re;
 	}
 	
-	public int goodDelete(GoodVO goodVO){
+	public int qookDelete(QookVO qookVO){
 		int re = -1;
 		SqlSession session = getSqlSessionFactory().openSession();
 		try{
-			re = session.getMapper(GoodMapper.class).goodDelete(goodVO);
+			re = session.getMapper(QookMapper.class).qookDelete(qookVO);
 			if(re > 0){
 				session.commit();
 			}else{

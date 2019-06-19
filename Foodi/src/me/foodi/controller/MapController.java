@@ -13,7 +13,7 @@ import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
 import me.foodi.action.MapAction;
 
-@WebServlet("*.do")
+@WebServlet("/map/*")
 public class MapController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,7 +30,7 @@ public class MapController extends HttpServlet {
     	Action action = null;
     	ActionForward forward = null;
     	
-    	if(path.equals("map.do")){
+    	if(path.equals("map/map")){
     		action = new MapAction();
     		try {
 				forward = action.execute(request, response);

@@ -7,5 +7,7 @@
 		values(userInfo_seq.nextval,#{userId},#{userPass},#{userNick},#{userEamil},#{userImg},#{userLock})
 	</insert>
 
-
+	<select id="testGet" parameterType="String" resultType="UserInfoVO">
+		select * from userInfo where userId = #{value}
+	</select>
 </mapper>

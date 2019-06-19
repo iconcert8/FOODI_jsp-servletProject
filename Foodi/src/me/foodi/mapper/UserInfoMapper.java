@@ -5,5 +5,5 @@ import me.foodi.domain.UserInfoVO;
 public interface UserInfoMapper {
 	
 	int userInfoInsert(UserInfoVO userInfoVO);
-
+	UserInfoVO testGet(String userId);
 }

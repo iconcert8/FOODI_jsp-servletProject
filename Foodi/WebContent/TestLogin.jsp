@@ -5,11 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
-	<form action="map.do" method="post">
-	<div>id: <input type="text" name="userId"/></div>
-	<input type="submit" value="등록"/>
+	<h3>자신의 DB에 있는 ID를 입력하시오</h3>
+	<h4>session에 'loginUser'라는 키값으로 userInfo객체가 들어갈것임</h4>
+	<form action="userInfo/testGet" method="post">
+		ID : <input type="text" name="id"><br>
+		<input type="submit" value="GO">
 	</form>
 </body>
 </html>

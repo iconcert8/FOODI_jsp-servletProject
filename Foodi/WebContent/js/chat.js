@@ -20,6 +20,7 @@ function Request() {
 			
 			if(temp[0].toUpperCase() == param.toUpperCase()) {
 				requestParam = paramArr[i].split("=")[1];
+				console.log(requestParam);
 				break;
 			}
 		}

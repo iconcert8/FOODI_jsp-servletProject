@@ -50,9 +50,14 @@ public class ChatController extends HttpServlet {
 					action = new ChatSelectLastResIdAction();
 					try {
 						String resId = action.execute(request, response);
-
+						
 						forward.setRedirect(true);
-						forward.setPath("view?resId=" + URLEncoder.encode(resId, "UTF-8"));
+						if(resId != null) {
+							forward.setPath("view?resId=" + URLEncoder.encode(resId, "UTF-8"));
+						} else {
+							forward.setPath("view?resId=");
+						}
+						
 
 					} catch (Exception e) {
 						// TODO Auto-generated catch block

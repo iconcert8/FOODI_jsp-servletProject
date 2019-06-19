@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+
+#menuBar {
+}
+
+#userMenu li {
+	display: inline;
+}
+
+.hidden {
+	display: none;
+}

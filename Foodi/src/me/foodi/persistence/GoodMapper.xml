@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="me.foodi.mapper.FollowMapper">
-	
-	<select id="goodChk"></select>
-	
+<mapper namespace="me.foodi.mapper.GoodMapper">
+
 	<insert id="goodInsert" parameterType="GoodVO">
 		insert into good
 		values (#{userId}, #{feedNo}, sysdate)
 	</insert>
 
-	
+	<delete id="goodDelete" parameterType="GoodVO">
+		delete from good
+		where userId = #{userId} and feedNo = #{feedNo}
+	</delete>
 </mapper>

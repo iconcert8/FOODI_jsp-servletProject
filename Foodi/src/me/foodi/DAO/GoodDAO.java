@@ -47,4 +47,24 @@ public class GoodDAO {
 		}
 		return re;
 	}
+	
+	public int goodDelete(GoodVO goodVO){
+		int re = -1;
+		SqlSession session = getSqlSessionFactory().openSession();
+		try{
+			re = session.getMapper(GoodMapper.class).goodDelete(goodVO);
+			if(re > 0){
+				session.commit();
+			}else{
+				session.rollback();
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session != null){
+				session.close();
+			}
+		}
+		return re;
+	}
 }

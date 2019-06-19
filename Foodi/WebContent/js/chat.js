@@ -193,7 +193,7 @@ function async() {
 				async();
 			}, setAsyncTime);
 		}
-	});
+	}); 
 }
 
 function search() {

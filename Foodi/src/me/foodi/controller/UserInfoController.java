@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
+import me.foodi.action.LogoutAction;
 import me.foodi.action.TestGetAction;
 
 
@@ -45,6 +46,13 @@ public class UserInfoController extends HttpServlet {
     		}catch (Exception e) {
     			e.printStackTrace();
     		}
+    	}else if(path.equals("userInfo/logout.do")){
+    		action = new LogoutAction();
+    		try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
     	}
     	
     	if(forward != null){

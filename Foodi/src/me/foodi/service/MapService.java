@@ -17,8 +17,8 @@ public class MapService {
 		return service;
 	}
 	
-	public String[] listMapService(HttpServletRequest request)throws Exception{
-		String[] locs = dao.listMap(request.getParameter("userId"));
+	public String[] listMapService(String userId){
+		String[] locs = dao.listMap(userId);
 		return locs;
 	}
 

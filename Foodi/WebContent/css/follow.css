@@ -1,9 +1,25 @@
 @charset "UTF-8";
+/* all */
+*{margin:0px; padding:0px;}
+body{ margin:0 auto; width:1400px; }
+ul{list-style: none;}
 
-.fln {
-	background-color: #99c2ff;
-}
+/* head */
+nav{height: 60px;}
+header{margin-top: 30px;}
+header div{display: inline-block;}
+#searchBox{float: right;}
 
-.nofln {
-	background-color: #d9d9d9;
-}
+/* section */
+section{margin-top:50px;}
+ul{margin-top: 20px;}
+article{float:left; width:660px;}
+section article:LAST-CHILD{margin-left: 70px;}
+#line{width:2px; height:700px; float:left; background-color: gray;}
+li{margin-bottom: 20px;}
+li label{display: inline-block; width: 200px; margin-left: 60px;}
+li button{margin-left: 150px;}
+
+/* follow button */
+.fln {background-color: #99c2ff; font-size: 20px; padding: 1px 20px; border-radius: 20px; font-weight:bold;}
+.nofln {background-color: #d9d9d9; font-size: 20px; padding: 1px 20px; border-radius: 20px; font-weight:bold;}

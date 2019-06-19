@@ -14,13 +14,14 @@ import me.foodi.action.ActionForward;
 import me.foodi.action.InsertFeedAction;
 import me.foodi.action.NewsFeedAction;
 import me.foodi.action.NewsFeedListAction;
+import me.foodi.action.NewsFeedReplyAction;
 
 
 @WebServlet("/feed/*")
 public class FeedController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public FeedController() {
+	public FeedController() { 
 		super();
 	}
 
@@ -35,7 +36,6 @@ public class FeedController extends HttpServlet {
 
 		if (path.equals("feed/insertFeed.do")) {
 			action = new InsertFeedAction();
-
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -55,6 +55,14 @@ public class FeedController extends HttpServlet {
 			System.out.println("ok");
 			try{
 				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+	}else if(path.equals("feed/insertNewsfeedReply.do")){
+			action = new NewsFeedReplyAction();
+			System.out.println("ok");
+			try{
+				forward = action.execute(request, response);		
 			}catch(Exception e){
 				e.printStackTrace();
 			}

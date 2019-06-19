@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import me.foodi.DAO.NotifyDAO;
 import me.foodi.domain.NotifyVO;
+import me.foodi.domain.UserInfoVO;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
@@ -19,33 +20,52 @@ public class NotifyService {
 		return service;
 	}
 	
+	public UserInfoVO getUser(HttpServletRequest request){
+		UserInfoVO userInfoVO = (UserInfoVO)request.getSession().getAttribute("loginUser");
+		return userInfoVO;
+	}
+	
 	public int notifyInsertService(HttpServletRequest request){
-		String loginId = (String)request.getSession().getAttribute("loginId");
 		NotifyVO notifyVO = new NotifyVO();
-		notifyVO.setReqId(loginId);
+		notifyVO.setReqId(getUser(request).getUserId());
 		notifyVO.setResId(request.getParameter("resId"));
 		
 		String type = request.getParameter("type");
 		if(type.equals("follow")){
-			notifyVO.setNotifyMsg(loginId+"님이 팔로우 하였습니다");			
+			notifyVO.setNotifyType("follow");
+			notifyVO.setNotifyMsg(getUser(request).getUserId()+"님이 팔로우 하였습니다");			
 		}else if(type.equals("good")){
 			String feed = request.getParameter("feed");
-			System.out.println("feed: "+feed);
 			JSONObject json = (JSONObject)JSONSerializer.toJSON(feed);
+			
 			int feedNo = Integer.parseInt(json.getString("feedNo"));
 			String feedContent = json.getString("feedContent").substring(0, 6)+"..";
-			String feedImg = json.getString("feedImg");
 			
-			notifyVO.setNotifyMsg(loginId+"님이 "+feedContent+" 게시물에 좋아요를 눌렀습니다");
+			notifyVO.setNotifyType("good");
+			notifyVO.setFeedNo(feedNo);
+			notifyVO.setNotifyMsg(getUser(request).getUserId()+"님이 "+feedContent+" 게시물에 좋아요를 눌렀습니다");
 		}else if(type.equals("qook")){
 			String feed = request.getParameter("feed");
-			System.out.println("feed: "+feed);
 			JSONObject json = (JSONObject)JSONSerializer.toJSON(feed);
-			int feedNo = Integer.parseInt(json.getString("feedNo"));
-			String feedContent = json.getString("feedContent").substring(0, 6)+"..";
-			String feedImg = json.getString("feedImg");
 			
-			notifyVO.setNotifyMsg(loginId+"님이 "+feedContent+" 게시물을 쿡 하였습니다");
+			int feedNo = Integer.parseInt(json.getString("feedNo"));			
+			String feedContent = json.getString("feedContent");
+			if(feedContent.length() > 6){feedContent = feedContent.substring(0, 6)+"..";}
+			
+			notifyVO.setNotifyType("qook");
+			notifyVO.setFeedNo(feedNo);
+			notifyVO.setNotifyMsg(getUser(request).getUserId()+"님이 "+feedContent+" 게시물을 쿡 하였습니다");
+		}else if(type.equals("reply")){
+			String reply = request.getParameter("reply");
+			JSONObject json = (JSONObject)JSONSerializer.toJSON(reply);
+			
+			int feedNo = Integer.parseInt(json.getString("feedNo"));
+			String replyContent = json.getString("replyContent");
+			if(replyContent.length() > 6){replyContent = replyContent.substring(0, 6)+"..";}
+			
+			notifyVO.setNotifyType("reply");
+			notifyVO.setFeedNo(feedNo);
+			notifyVO.setNotifyMsg(getUser(request).getUserId()+"님이 \""+replyContent+"\" 댓글을 달았습니다");
 		}else{
 			notifyVO.setNotifyMsg("기타 알림");
 		}
@@ -54,9 +74,8 @@ public class NotifyService {
 	}
 	
 	public List<NotifyVO> notifyListService(HttpServletRequest request){
-		String loginId = (String)request.getSession().getAttribute("loginId");
 		NotifyVO notifyVO = new NotifyVO();
-		notifyVO.setResId(loginId);
+		notifyVO.setResId(getUser(request).getUserId());
 		
 		String startRowStr = request.getParameter("startRow");
 		int startRow = -1;
@@ -70,9 +89,8 @@ public class NotifyService {
 	}
 	
 	public int notifyCheckNewService(HttpServletRequest request){
-		String loginId = (String)request.getSession().getAttribute("loginId");
 		NotifyVO notifyVO = new NotifyVO();
-		notifyVO.setResId(loginId);
+		notifyVO.setResId(getUser(request).getUserId());
 		
 		int currentSum = Integer.parseInt(request.getParameter("ntfSum"));
 		int dbSum = dao.notifyCntList(notifyVO);

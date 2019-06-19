@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<!-- 2019/06/18 19:40 toolbar에 추가함 -->
 	<form action="search/searchresult.do" method="post">
 	검색어: <input type="text" name="searchKeyword"/><input type="submit" value="검색"/>
 	</form> 

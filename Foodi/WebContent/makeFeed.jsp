@@ -7,29 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-
-<style type="text/css">
-input {
-	apperance: none;
-	-webkit-apperance: none;
-}
-
-/* 드래그 드랍이 가능한 공간 표시 */
-#imgs {
-	width: 500px;
-	height: 50px;
-	background-color: lightgray;
-}
-
-li {
-	display: inline;
-}
-</style>
-
+<link rel="stylesheet" href="css/makeFeed.css">
 </head>
 <body>
 	<form action="feed/insertFeed.do" method="post"
-		enctype="multipart/form-data">
+		enctype="multipart/form-data" id="insertForm">
 		<ul>
 			<li>작성자</li>
 			<li>${userId}<input type="hidden" name="userId" value="a"></li>
@@ -40,7 +22,7 @@ li {
 		</ul>
 		<ul>
 			<li>태그</li>
-			<li><input type="text" name="tag"></li>
+			<li><input type="text" name="tagName"></li>
 		</ul>
 		<ul>
 			<li>기본사진</li>

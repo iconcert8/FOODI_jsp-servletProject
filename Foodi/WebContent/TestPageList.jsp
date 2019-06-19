@@ -7,8 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="search/searchresult" method="post">
-	검색어: <input type="text" name="searchKeyword"/><input type="submit" value="검색"/>
-	</form> 
+	<ul>
+		<li><a href="/Foodi/follow/list">팔로우 리스트</a></li>
+		<li><a href="/Foodi/map/map">지도보기</a></li>
+		<li><a href="/Foodi/timeline/timeline">타임라인</a></li>
+		<li><a></a></li>
+		<li><a></a></li>
+		<li><a></a></li>
+	</ul>
 </body>
 </html>

@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="search/searchresult" method="post">
-	검색어: <input type="text" name="searchKeyword"/><input type="submit" value="검색"/>
-	</form> 
+	없는 아이디
 </body>
 </html>

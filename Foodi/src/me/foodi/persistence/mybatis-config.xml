@@ -40,6 +40,7 @@
 		<mapper resource="me/foodi/persistence/NotifyMapper.xml" />
 		<mapper resource="me/foodi/persistence/NewsFeedMapper.xml" />
 		<mapper resource="me/foodi/persistence/MapMapper.xml"/>
+		<mapper resource="me/foodi/persistence/TimeLineMapper.xml"/>
 	</mappers>
 	
 </configuration>

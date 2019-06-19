@@ -30,14 +30,21 @@ public class SearchController extends HttpServlet {
     	Action action = null;
     	ActionForward forward = null;
     	
-    	if(path.equals("search/searchresult.do")){
+    	if(path.equals("search/searchresult")){
     		action = new SearchAction();
     		try{
     			forward = action.execute(request, response);
     		}catch (Exception e) {
     			e.printStackTrace();
     		}
-    	}else if(path.equals("search/search.do")){
+    	}else if(path.equals("search/search")){
+    		action = new SearchFormAction();
+    		try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}else if(path.equals("search/ssg")){
     		action = new SearchFormAction();
     		try {
 				forward = action.execute(request, response);

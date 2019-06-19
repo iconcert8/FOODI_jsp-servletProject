@@ -10,6 +10,9 @@
 <meta charset="UTF-8">
 <title>messenger</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/Foodi/css/chat.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
 	<header>
@@ -24,20 +27,16 @@
 	</nav>
 		<hr>
 		
-	<article id="search">
-		<input type="text" onkeyup="search()">
+	<article>
+		<input type="text" id="search">
 	</article>
 	<section id="chatView">
-<%-- 		<c:forEach var="chat" items="${chatList }"> --%>
-<%-- 			<div>ID : ${chat.reqId } / To : ${chat.resId }<br>${chat.chatDate } &nbsp; ${chat.chatMsg } <br> --%>
-<%-- 			<c:if test="${chat.chatChk >= 1 }">안읽음</c:if> --%>
-<%-- 			<c:if test="${chat.chatChk < 1 }">읽음</c:if> --%>
-<!-- 			</div> -->
-<%-- 		</c:forEach> --%>
+		
 	</section>
-	<aside id="resList">
+	<aside>
 		<hr>
 		채팅 목록
+		<div id="resList"></div>
 	</aside>
 	
 	<footer>

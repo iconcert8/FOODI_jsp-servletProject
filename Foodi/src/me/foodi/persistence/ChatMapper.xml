@@ -31,6 +31,11 @@
 			where reqId = #{userId}
 	</select>
 	
+	<select id="chatReqList" resultType="String" parameterType="String">
+		select distinct reqId from chat
+			where resId = #{userId}
+	</select>
+	
 	<insert id="chatSend" parameterType="me.foodi.domain.ChatVO">
 		insert into chat
 			VALUES(chat_seq.nextval, #{chatMsg}, SYSTIMESTAMP, '1', '1', NULL, #{reqId}, #{resId})

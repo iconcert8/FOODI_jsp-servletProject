@@ -38,34 +38,22 @@ public class ChatController extends HttpServlet {
 
 //		로그인 검사
 		if (request.getSession().getAttribute("loginUser") != null) {
-			
+
 			UserInfoVO userInfo = (UserInfoVO) request.getSession().getAttribute("loginUser");
 			request.setAttribute("userId", userInfo.getUserId());
 
 			System.out.println("[!] chat servlet method : get | " + path);
 			if (path.equals("chat/view")) {
 				forward = new ActionForward();
-//			?resId= 없을시
-				if (request.getParameter("resId") == null) {
-					action = new ChatSelectLastResIdAction();
-					try {
-						String resId = action.execute(request, response);
-						
-						forward.setRedirect(true);
-						if(resId != null) {
-							forward.setPath("view?resId=" + URLEncoder.encode(resId, "UTF-8"));
-						} else {
-							forward.setPath("view?resId=");
-						}
-						
-
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				} else {
-					forward.setRedirect(false);
-					forward.setPath("/chat.jsp");
+				forward.setRedirect(false);
+				forward.setPath("/chat.jsp");
+			} else if (path.equals("chat/first")) {
+				action = new ChatSelectLastResIdAction();
+				try {
+					String resId = action.execute(request, response);
+					response.getWriter().write(resId);
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		} else {
@@ -87,7 +75,7 @@ public class ChatController extends HttpServlet {
 
 //		로그인 검사
 		if (request.getSession().getAttribute("loginUser") != null) {
-			
+
 			UserInfoVO userInfo = (UserInfoVO) request.getSession().getAttribute("loginUser");
 			request.setAttribute("userId", userInfo.getUserId());
 

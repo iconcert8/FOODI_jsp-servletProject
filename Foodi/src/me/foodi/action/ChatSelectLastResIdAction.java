@@ -14,8 +14,9 @@ public class ChatSelectLastResIdAction implements ActionJson {
 		ChatVO lastRes = ChatService.getInstance().ChatSelectLastResIdService(request);
 		String resId = null;
 		if(lastRes != null) {
-			resId = lastRes.getReqId();
+			resId = lastRes.getResId();
 		}
+		System.out.println("resId : " + resId);
 		return resId;
 	}
 

@@ -1,14 +1,9 @@
 package me.foodi.service;
 
-import java.awt.List;
 import java.io.File;
-import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -33,7 +28,7 @@ public class FeedService {
 
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8",
 				new DefaultFileRenamePolicy());
-
+		
 		FeedVO feedVO = new FeedVO();
 		feedVO.setUserId(multi.getParameter("userId"));
 		feedVO.setFeedContent(multi.getParameter("feedContent"));

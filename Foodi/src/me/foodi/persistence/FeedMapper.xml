@@ -4,7 +4,7 @@
 <mapper namespace="me.foodi.mapper.FeedMapper">
 	<insert id="insertFeed" parameterType="FeedVO">
 		INSERT INTO feed VALUES
-		(feed_seq.nextval, #{userId}, #{feedContent}, #{feedImg, jdbcType=VARCHAR}, #{feedImgs, jdbcType=VARCHAR}, 0, 'feedLoc', sysdate, sysdate, 'feedLock')
+		(feed_seq.nextval, #{userId}, #{feedContent}, #{feedImg, jdbcType=VARCHAR}, #{feedImgs, jdbcType=VARCHAR}, 0, #{feedLoc}, sysdate, sysdate, #{feedLock})
 	</insert>
  
 </mapper>

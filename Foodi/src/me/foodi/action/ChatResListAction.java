@@ -24,7 +24,7 @@ public class ChatResListAction implements ActionJson {
 		JSONArray arr = new JSONArray();
 		String resId = (String) request.getParameter("resId");
 		
-		if (resId.equals("")) {
+		if (request.getParameter("new") != null) {
 			resId = request.getParameter("new");
 			tree.add(resId);
 		}

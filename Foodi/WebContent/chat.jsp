@@ -11,6 +11,7 @@
 <title>messenger</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="/Foodi/css/chat.css">
+    <link rel="stylesheet" href="/Foodi/css/all.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
@@ -19,34 +20,44 @@
 		채팅창입니다.
 	</header>
 	<nav>
-		<c:if test="${member.userImg}">
-			<img alt="profile Img" src="thum/${member.userImg }">
-		</c:if>
-		<span>${member.userId }</span><br>
-		<span>${member.userNick }</span>
+		메뉴바 들어 갈 곳 
 	</nav>
 		<hr>
 		
-	<article>
-		<input type="text" id="search">
-	</article>
-	<section id="chatView">
+	<section>
+		<article id="left" class="side">
+			<input type="text" id="search">
+		</article>
 		
-	</section>
-	<aside>
-		<hr>
+		<article id="middle">
+			<div id="resInfo">
+			
+			</div>
+			<div id="chatView">
+	
+			</div>
+			<div id="sendMsg">
+				<form action="view" method="post">
+					<textarea rows="3" cols="100" name="chatMsg" autofocus="autofocus"></textarea>
+					<input type="button" value="send" onclick="reqMsg()">
+		<!-- 			<input type="submit" value="send"> -->
+				</form>
+			</div>
+		</article>
+		
+		
+		
+		<article id="right" class="side">				
 		채팅 목록
+		<hr>
 		<div id="resList"></div>
-	</aside>
+		</article>		
+	</section>
 	
 	<footer>
-		<form action="view" method="post">
-			<textarea rows="3" cols="100" name="chatMsg" autofocus="autofocus"></textarea>
-			<input type="button" value="send" onclick="reqMsg()">
-<!-- 			<input type="submit" value="send"> -->
-		</form>
+
 	</footer>
-	
+
 	<script type="text/javascript" src="/Foodi/js/chat.js" charset="utf-8"></script>
 </body>
 </html>

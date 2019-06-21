@@ -12,13 +12,19 @@
 			order by chatDate
 	</select>
 	
-	<select id="chatSelectLastMsg" parameterType="String" resultType="me.foodi.domain.ChatVO">
+	<select id="chatSelectLastMsg" parameterType="hashmap" resultType="me.foodi.domain.ChatVO">
 		select * from chat
 			where chatNo = (select max(chatNo)
-							from chat
-							where reqid = #{userId} or resid = #{userId})
-
+					from chat
+					where reqId IN (#{reqId}, #{resId}) and resId IN (#{resId}, #{reqId}))
 	</select>
+	
+	<select id="chatSelectLastResId" parameterType="String" resultType="me.foodi.domain.ChatVO">
+		select *
+  			from chat
+ 			where CHATNO = (select max(CHATNO) from chat WHERE reqid = #{userId})
+	</select>
+	
 	
 	<select id="chatResList" resultType="String" parameterType="String">
 		select distinct resId from chat

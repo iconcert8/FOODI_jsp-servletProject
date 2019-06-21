@@ -1,16 +1,18 @@
 package me.foodi.domain;
-
+  
 public class FeedVO {
-	private int feedNo; //피드 번호
-	private String userId; //피드 유저
-	private String feedContent; //피드 내용
-	private String feedImg; //피드이미지
-	private String feedImgs; //피드 추가 이미지
-	private int feedGoodCnt; //좋아요
-	private String feedLoc; //피드 위치
-	private String feedDate; //작성 일자
-	private String feedUpdate; //수정 날짜
-	private String feedLock; //공개 여부
+	private int feedNo; //�뵾�뱶 踰덊샇
+	private String userId; //�뵾�뱶 �쑀��
+	private String feedContent; //�뵾�뱶 �궡�슜
+	private String feedImg; //�뵾�뱶�씠誘몄�
+	private String feedImgs; //�뵾�뱶 異붽� �씠誘몄�
+	private int feedGoodCnt; //醫뗭븘�슂
+	private String feedLoc; //�뵾�뱶 �쐞移�
+	private String feedDate; //�옉�꽦 �씪�옄
+	private String feedUpdate; //�닔�젙 �궇吏�
+	private String feedLock; //怨듦컻 �뿬遺�
+	private String isGood;
+	private String isQook;
 
 
 	public FeedVO() {
@@ -18,6 +20,25 @@ public class FeedVO {
 	}
 
 
+	
+	public FeedVO(int feedNo, String userId, String feedContent, String feedImg, String feedImgs, int feedGoodCnt,
+			String feedLoc, String feedDate, String feedUpdate, String feedLock, String isGood, String isQook) {
+		super();
+		this.feedNo = feedNo;
+		this.userId = userId;
+		this.feedContent = feedContent;
+		this.feedImg = feedImg;
+		this.feedImgs = feedImgs;
+		this.feedGoodCnt = feedGoodCnt;
+		this.feedLoc = feedLoc;
+		this.feedDate = feedDate;
+		this.feedUpdate = feedUpdate;
+		this.feedLock = feedLock;
+		this.isGood = isGood;
+		this.isQook = isQook;
+	}
+
+	
 	public int getFeedNo() {
 		return feedNo;
 	}
@@ -98,29 +119,27 @@ public class FeedVO {
 		this.feedLock = feedLock;
 	}
 
-
-
-
-	public FeedVO(int feedNo, String userId, String feedContent, String feedImg, String feedImgs,
-			int feedGoodCnt, String feedLoc, String feedDate, String feedUpdate, String feedLock) {
-		super();
-		this.feedNo = feedNo;
-		this.userId = userId;
-		this.feedContent = feedContent;
-		this.feedImg = feedImg;
-		this.feedImgs = feedImgs;
-		this.feedGoodCnt = feedGoodCnt;
-		this.feedLoc = feedLoc;
-		this.feedDate = feedDate;
-		this.feedUpdate = feedUpdate;
-		this.feedLock = feedLock;
+	public String getIsGood() {
+		return isGood;
 	}
- 
+
+	public void setIsGood(String isGood) {
+		this.isGood = isGood;
+	}
+
+	public String getIsQook() {
+		return isQook;
+	}
+
+	public void setIsQook(String isQook) {
+		this.isQook = isQook;
+	}
+
 	@Override
 	public String toString() {
-		return "FeedVO [feedNo=" + feedNo + ", userId=" + userId + ", feedContent=" + feedContent
-				+ ", feedImg=" + feedImg + ", feedImgs=" + feedImgs + ", feedGoodCnt=" + feedGoodCnt + ", feedLoc="
-				+ feedLoc + ", feedDate=" + feedDate + ", feedUpdate=" + feedUpdate + ", feedLock=" + feedLock + "]";
+		return "FeedVO [feedNo=" + feedNo + ", userId=" + userId + ", feedContent=" + feedContent + ", feedImg="
+				+ feedImg + ", feedImgs=" + feedImgs + ", feedGoodCnt=" + feedGoodCnt + ", feedLoc=" + feedLoc
+				+ ", feedDate=" + feedDate + ", feedUpdate=" + feedUpdate + ", feedLock=" + feedLock + ", isGood="
+				+ isGood + ", isQook=" + isQook + "]";
 	}
-
 }

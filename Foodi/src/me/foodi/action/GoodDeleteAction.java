@@ -9,9 +9,10 @@ public class GoodDeleteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		GoodService service = GoodService.getInstance();
 		
-		
+		service.goodDeleteService(request);
 
 		return null;
 	}

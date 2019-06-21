@@ -8,8 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>검색 결과</h1>
-	<a href="search/search.do"><div>검색 창으로 돌아가기</div></a>
+	<h1><form action="search/ssg" method="post">${searchKeyword } 에 대한 검색 결과<input type="hidden" value="${searchKeyword }" name="searchKeyword"/><input type="submit" value="SSG"/></form></h1>
+	<a href="search/search"><div>검색 창으로 돌아가기</div></a>
 	<br><br>
 	<h2>사용자</h2><br><br>
 	<c:forEach var="u" items="${userlist }">

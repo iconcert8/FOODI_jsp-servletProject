@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+/* all */
+*{margin:0px; padding:0px;}
+body{ margin:0 auto; width:1400px; }
+
+/* head */
+nav{height:60px;}
+header{height:450px; text-align: center; background-image: url("/Foodi/css/images/mainFood.png");}
+h1{width:450px; height:200px; margin-top:80px; display: inline-block; background-color: gray;}
+.search{display: inline-block; height:40px; margin-top: 20px; background-color: gray;}
+#searchIcon{width:50px; margin-right: 10px;}
+#search{width: 500px;}
+
+/* section */
+section{margin-top:20px;}
+article{height: 250px; background-color: #ddad80; margin-top: 10px;}
+#line{height:3px; background-color: #ddad80;}

@@ -18,9 +18,10 @@ public class SearchAction implements Action {
 		service.insertSearchService(request);
 		List<UserInfoVO> userlist = service.searchUserService(request);
 		List<SearchFeedVO> feedlist = service.searchFeedService(request);
-		
+		String searchKeyword = request.getParameter("searchKeyword");
 		request.setAttribute("userlist", userlist);
 		request.setAttribute("feedlist", feedlist);
+		request.setAttribute("searchKeyword", searchKeyword);
 		ActionForward forward = new ActionForward();
 		forward.setPath("/searchresult.jsp");
 		forward.setRedirect(false);

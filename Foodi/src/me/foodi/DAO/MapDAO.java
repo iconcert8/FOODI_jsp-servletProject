@@ -1,19 +1,13 @@
 package me.foodi.DAO;
 
 import java.io.InputStream;
-import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import me.foodi.domain.FeedVO;
-import me.foodi.domain.SearchFeedVO;
-import me.foodi.domain.SearchVO;
-import me.foodi.domain.UserInfoVO;
 import me.foodi.mapper.MapMapper;
-import me.foodi.mapper.SearchMapper;
 
 public class MapDAO {
 	private static MapDAO dao = new MapDAO();

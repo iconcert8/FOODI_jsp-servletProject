@@ -39,7 +39,6 @@ public class UserInfoController extends HttpServlet {
     		}catch (Exception e) {
     			e.printStackTrace();
     		}
-    		
     	}else if(path.equals("userInfo/testGet")){
     		action = new TestGetAction();
     		try{
@@ -47,7 +46,6 @@ public class UserInfoController extends HttpServlet {
     		}catch (Exception e) {
     			e.printStackTrace();
     		}
-    		
     	}else if(path.equals("userInfo/logout.do")){
     		action = new LogoutAction();
     		try {

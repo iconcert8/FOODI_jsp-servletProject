@@ -11,6 +11,15 @@
 
 .custom-menu li {
 	list-style-type: none;
-	padding: 3px;
+	padding: 5px;
 	text-align: center;
+}
+
+.resSelected {
+	background-color: #e0fa7c;
+}
+
+.dateDay {
+	text-align: center;
+	text-shadow: 0 0 2px #000;
 }

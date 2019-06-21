@@ -36,6 +36,17 @@
 			where resId = #{userId}
 	</select>
 	
+	<select id="chatResInfo" resultType="UserInfoVO" parameterType="String">
+		select userId, userNick, userImg
+			from userInfo
+			where userId = #{resId}
+	</select>
+	
+	<select id="chatSearchCheck" parameterType="hashmap" resultType="String">
+		select resId from follow
+			where reqId = #{reqId} and resId = #{resId}
+	</select>
+	
 	<insert id="chatSend" parameterType="me.foodi.domain.ChatVO">
 		insert into chat
 			VALUES(chat_seq.nextval, #{chatMsg}, SYSTIMESTAMP, '1', '1', NULL, #{reqId}, #{resId})
@@ -45,6 +56,12 @@
 		update chat
 			set chatChk = '0'
 			where reqid = #{resId} and resid = #{reqId}
+	</update>
+	
+	<update id="chatDeleteMessage" parameterType="hashmap">
+		update chat
+			set chatDel = '0'
+			where reqid = #{reqId} and chatno = #{chatNo}
 	</update>
 	
 </mapper>

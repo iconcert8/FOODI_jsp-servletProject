@@ -14,8 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import me.foodi.action.ActionForward;
 import me.foodi.action.ActionJson;
 import me.foodi.action.ChatListAction;
+import me.foodi.action.ChatResInfoAction;
 import me.foodi.action.ChatResListAction;
+import me.foodi.action.ChatSearchCheckAction;
+import me.foodi.action.ChatSearchMemberAction;
 import me.foodi.action.ChatAsyncAction;
+import me.foodi.action.ChatDeleteMessageAction;
 import me.foodi.action.ChatSelectLastResIdAction;
 import me.foodi.action.ChatSendAction;
 import me.foodi.domain.UserInfoVO;
@@ -116,7 +120,44 @@ public class ChatController extends HttpServlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			} else if (path.equals("chat/searchFollow")) {
+				action = new ChatSearchMemberAction();
+
+				try {
+					String updateList = action.execute(request, response);
+					responseJson(response, updateList);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if (path.equals("chat/resInfo")) {
+				action = new ChatResInfoAction();
+
+				try {
+					String updateList = action.execute(request, response);
+					responseJson(response, updateList);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if (path.equals("chat/searchCheck")) {
+				action = new ChatSearchCheckAction();
+
+				try {
+					String updateList = action.execute(request, response);
+					responseJson(response, updateList);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if (path.equals("chat/delete")) {
+				action = new ChatDeleteMessageAction();
+
+				try {
+					String updateList = action.execute(request, response);
+					responseJson(response, updateList);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
+
 		} else {
 			forward = new ActionForward();
 			forward.setRedirect(true);

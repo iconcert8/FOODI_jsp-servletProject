@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import me.foodi.domain.ChatVO;
+import me.foodi.domain.UserInfoVO;
 
 public class ChatDAO {
 	
@@ -90,6 +91,27 @@ public class ChatDAO {
 		
 		commitAndClose(sqlSession);
 		return chatResList;
+	}
+
+	public UserInfoVO chatResInfo(String resId) {
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		UserInfoVO userInfo = sqlSession.selectOne("chatResInfo", resId);		
+		commitAndClose(sqlSession);
+		return userInfo;
+	}
+
+	public String chatSearchCheck(Map<String, String> user) {
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		String resId = sqlSession.selectOne("chatSearchCheck", user);
+		commitAndClose(sqlSession);
+		return resId;
+	}
+
+	public int chatDeleteMessage(Map<String, String> del) {
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		int re = sqlSession.update("chatDeleteMessage", del);
+		commitAndClose(sqlSession);
+		return re;
 	}
 	
 }

@@ -1,12 +1,14 @@
 package me.foodi.DAO;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import me.foodi.domain.TagVO;
 import me.foodi.mapper.TagMapper;
 
 public class TagDAO {
@@ -50,5 +52,22 @@ public class TagDAO {
 			}
 		}
 		return re;
+	}
+	
+	public List<TagVO> listHTG(){
+		List<TagVO> list = null;
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		
+		try{
+			list = sqlSession.getMapper(TagMapper.class).listHTG();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (sqlSession != null) {
+				sqlSession.close();
+			}
+		}
+		
+		return list;
 	}
 }

@@ -7,4 +7,23 @@
 		(feed_seq.nextval, #{userId}, #{feedContent}, #{feedImg}, #{feedImgs}, 0, 'feedLoc', sysdate, sysdate, 'feedLock')
 	</insert>
  
+ 	<!-- Hot Tag Feed list -->
+ 	<select id="listTagFeed" parameterType="String" resultType="UserAndFeedVO">
+ 		<if test="value != null"> 		
+	 		<![CDATA[
+	 		select u.userId, u.userNick, u.userEmail, u.userImg, u.userLock, f.feedNo, f.feedContent, f.feedImg, f.feedLock
+			from feed f, feedTag t, userInfo u
+			where f.feedNo = t.feedNo and f.userId = u.userId and t.tagName=#{value} and rownum <= 8
+			]]>
+ 		</if>
+ 		<if test="value == null">
+ 			<![CDATA[
+ 			select u.userId, u.userNick, u.userEmail, u.userImg, u.userLock, f.feedNo, f.feedContent, f.feedImg, f.feedLock
+			from feed f, userInfo u
+			where f.userId = u.userId and rownum <= 16
+			order by feedNo desc
+			]]>
+ 		</if>
+ 	</select>
+ 	
 </mapper>

@@ -6,5 +6,16 @@
 		()
 	
 	</insert>
-		
+	
+	<select id="listHTG" resultType="TagVO">
+		<![CDATA[
+		select tagName
+		from (select t.tagName, count(t.tagName) as hotTag
+      			from feedTag t, feed f 
+     			where t.feedNo = f.feedNo and f.feedDate > (sysdate - 7)
+      			group by t.tagName
+      			order by hotTag desc)
+		where rownum< 3
+		]]>
+	</select>
 </mapper>

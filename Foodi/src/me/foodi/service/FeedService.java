@@ -1,6 +1,7 @@
 package me.foodi.service;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +11,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import me.foodi.DAO.FeedDAO;
 import me.foodi.domain.FeedVO;
+import me.foodi.domain.UserAndFeedVO;
 import me.foodi.util.ImageUtil;
 
 public class FeedService {
@@ -59,5 +61,14 @@ public class FeedService {
 		}
 
 		return dao.insertFeed(feedVO);
+	}
+	
+	
+	public List<UserAndFeedVO> listTagFeedService(HttpServletRequest request) throws Exception {
+		String tagName = request.getParameter("tagName");	
+		if(tagName.equals("")){
+			tagName = null;
+		}
+		return dao.listTagFeed(tagName);
 	}
 }

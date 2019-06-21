@@ -11,11 +11,10 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class ChatResListAction implements ActionJson {
-	
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		String resId = (String) request.getParameter("resId");
+
 		List<String> resList = ChatService.getInstance().chatResListService(request);
 		List<String> reqList = ChatService.getInstance().chatReqListService(request);
 		TreeSet<String> tree = new TreeSet<String>();
@@ -23,9 +22,16 @@ public class ChatResListAction implements ActionJson {
 		tree.addAll(reqList);
 		
 		JSONArray arr = new JSONArray();
-		for(String s : tree) {
+		String resId = (String) request.getParameter("resId");
+		
+		if (resId.equals("")) {
+			resId = request.getParameter("new");
+			tree.add(resId);
+		}
+		
+		for (String s : tree) {
 			JSONObject jobj = new JSONObject();
-			if(s.equals(resId)) { 
+			if (s.equals(resId)) {
 				jobj.put("selected", s);
 				arr.add(jobj);
 			} else {
@@ -33,7 +39,7 @@ public class ChatResListAction implements ActionJson {
 				arr.add(jobj);
 			}
 		}
-		
+
 		return arr.toString();
 	}
 

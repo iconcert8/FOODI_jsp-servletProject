@@ -4,7 +4,12 @@
 <mapper namespace="me.foodi.mapper.FeedMapper">
 	<insert id="insertFeed" parameterType="FeedVO">
 		INSERT INTO feed VALUES
-		(feed_seq.nextval, #{userId}, #{feedContent}, #{feedImg}, #{feedImgs}, 0, 'feedLoc', sysdate, sysdate, 'feedLock')
+		(feed_seq.nextval, #{userId}, #{feedContent}, #{feedImg, jdbcType=VARCHAR}, #{feedImgs, jdbcType=VARCHAR}, 0, #{feedLoc}, sysdate, sysdate, #{feedLock})
 	</insert>
+	
+	<select id="getFeedNo" parameterType="FeedVO" resultType="int">
+		SELECT feedNo FROM feed
+		WHERE userId = #{userId} AND feedContent = #{feedContent} AND feedLoc = #{feedLoc} AND feedLock = #{feedLock} 
+	</select>
  
 </mapper>

@@ -1,5 +1,7 @@
 package me.foodi.mapper;
 
+import me.foodi.domain.TagVO;
+
 public interface TagMapper {
-	int insertTag(int feedNo, String tagName[]);
+	int insertTag(TagVO tagVO);
 }

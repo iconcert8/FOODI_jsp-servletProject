@@ -3,7 +3,8 @@
 <mapper namespace="me.foodi.mapper.TagMapper">
 	<insert id="insertTag" parameterType="TagVO">
 		INSERT INTO feedTag VALUES
-		()
+		(#{feedNo}, #{tagName})
+		
 	
 	</insert>
 		

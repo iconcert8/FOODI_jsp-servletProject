@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import me.foodi.domain.TagVO;
 import me.foodi.mapper.TagMapper;
 
 public class TagDAO {
@@ -29,22 +30,21 @@ public class TagDAO {
 		return new SqlSessionFactoryBuilder().build(in);
 	}
 
-	public int insertTag(int feedNo, String tagName[]){
+	public int insertTag(TagVO tagVO) {
 		SqlSession sqlSession = getSqlsessionFactory().openSession();
-		
-		int re  = -1;
-		
+		int re = -1;
+
 		try {
-			re = sqlSession.getMapper(TagMapper.class).insertTag(feedNo, tagName);
-			
-			if(re > 0){
+			re = sqlSession.getMapper(TagMapper.class).insertTag(tagVO);
+
+			if (re > 0) {
 				sqlSession.commit();
-			}else{
+			} else {
 				sqlSession.rollback();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			if (sqlSession != null) {
 				sqlSession.close();
 			}

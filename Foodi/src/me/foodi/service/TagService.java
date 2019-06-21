@@ -1,9 +1,16 @@
 package me.foodi.service;
 
+import java.util.Iterator;
+import java.util.TreeSet;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import me.foodi.DAO.TagDAO;
+import me.foodi.domain.TagVO;
 
 public class TagService {
 	private static TagService service = new TagService();
@@ -14,12 +21,27 @@ public class TagService {
 		return service;
 	}
 
-	public int insertTag(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		int feedNo = Integer.parseInt(request.getParameter(""));
+	public int insertTag(MultipartRequest multi, int feedNo) throws Exception {
+		String tagName[] = multi.getParameter("tagName").replaceAll(" ", "").replaceAll(",", "").split("#");
+		TagVO tagVO = new TagVO();
+		TreeSet<String> tagNameOverlap = new TreeSet<>();
 
-		String tagName[] = request.getParameter("tagName").replaceAll(" ", "").split("#");
+		for (int i = 1; i < tagName.length; i++) {
+			tagNameOverlap.add("#" + tagName[i]);
+		}
 
-		return dao.insertTag(feedNo, tagName);
+		// 태그 삽입 용
+		Iterator<String> iter = tagNameOverlap.iterator();
+
+		while (iter.hasNext()) {
+			if (iter.equals("")) {
+				break;
+			}
+			tagVO.setFeedNo(feedNo);
+			tagVO.setTagName(iter.next());
+
+			dao.insertTag(tagVO);
+		}
+		return 0;
 	}
 }

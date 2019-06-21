@@ -1,8 +1,15 @@
 package me.foodi.domain;
-  
-public class FeedVO {
-	private int feedNo; 
+
+public class UserAndFeedVO {
+	//user
 	private String userId;
+	private String userPass;
+	private String userNick;
+	private String userEamil;
+	private String userImg;
+	private String userLock;
+	//feed
+	private int feedNo; 
 	private String feedContent; 
 	private String feedImg;
 	private String feedImgs;
@@ -13,19 +20,22 @@ public class FeedVO {
 	private String feedLock; 
 	private String isGood;
 	private String isQook;
-
-
-	public FeedVO() {
+	
+	public UserAndFeedVO() {
 		super();
 	}
 
-
-	
-	public FeedVO(int feedNo, String userId, String feedContent, String feedImg, String feedImgs, int feedGoodCnt,
+	public UserAndFeedVO(String userId, String userPass, String userNick, String userEamil, String userImg,
+			String userLock, int feedNo, String feedContent, String feedImg, String feedImgs, int feedGoodCnt,
 			String feedLoc, String feedDate, String feedUpdate, String feedLock, String isGood, String isQook) {
 		super();
-		this.feedNo = feedNo;
 		this.userId = userId;
+		this.userPass = userPass;
+		this.userNick = userNick;
+		this.userEamil = userEamil;
+		this.userImg = userImg;
+		this.userLock = userLock;
+		this.feedNo = feedNo;
 		this.feedContent = feedContent;
 		this.feedImg = feedImg;
 		this.feedImgs = feedImgs;
@@ -38,21 +48,60 @@ public class FeedVO {
 		this.isQook = isQook;
 	}
 
-	
-	public int getFeedNo() {
-		return feedNo;
-	}
-
-	public void setFeedNo(int feedNo) {
-		this.feedNo = feedNo;
-	}
-
 	public String getUserId() {
 		return userId;
 	}
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getUserPass() {
+		return userPass;
+	}
+
+	public void setUserPass(String userPass) {
+		this.userPass = userPass;
+	}
+
+	public String getUserNick() {
+		return userNick;
+	}
+
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
+	}
+
+	public String getUserEamil() {
+		return userEamil;
+	}
+
+	public void setUserEamil(String userEamil) {
+		this.userEamil = userEamil;
+	}
+
+	public String getUserImg() {
+		return userImg;
+	}
+
+	public void setUserImg(String userImg) {
+		this.userImg = userImg;
+	}
+
+	public String getUserLock() {
+		return userLock;
+	}
+
+	public void setUserLock(String userLock) {
+		this.userLock = userLock;
+	}
+
+	public int getFeedNo() {
+		return feedNo;
+	}
+
+	public void setFeedNo(int feedNo) {
+		this.feedNo = feedNo;
 	}
 
 	public String getFeedContent() {
@@ -137,9 +186,13 @@ public class FeedVO {
 
 	@Override
 	public String toString() {
-		return "FeedVO [feedNo=" + feedNo + ", userId=" + userId + ", feedContent=" + feedContent + ", feedImg="
-				+ feedImg + ", feedImgs=" + feedImgs + ", feedGoodCnt=" + feedGoodCnt + ", feedLoc=" + feedLoc
-				+ ", feedDate=" + feedDate + ", feedUpdate=" + feedUpdate + ", feedLock=" + feedLock + ", isGood="
-				+ isGood + ", isQook=" + isQook + "]";
+		return "UserAndFeedVO [userId=" + userId + ", userPass=" + userPass + ", userNick=" + userNick + ", userEamil="
+				+ userEamil + ", userImg=" + userImg + ", userLock=" + userLock + ", feedNo=" + feedNo
+				+ ", feedContent=" + feedContent + ", feedImg=" + feedImg + ", feedImgs=" + feedImgs + ", feedGoodCnt="
+				+ feedGoodCnt + ", feedLoc=" + feedLoc + ", feedDate=" + feedDate + ", feedUpdate=" + feedUpdate
+				+ ", feedLock=" + feedLock + ", isGood=" + isGood + ", isQook=" + isQook + "]";
 	}
+
+	
+	
 }

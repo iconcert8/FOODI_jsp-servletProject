@@ -1,36 +1,16 @@
 @charset "UTF-8";
 /* all */
-* {margin: 0px;padding: 0px;}
-body {width: 1400px;margin: 0 auto;}
+*{margin: 0px; padding: 0px;}
+body {width:1400px; margin: 0 auto;}
 a{text-decoration: none;}
 
 /* nav */
 nav > div {float: left;}
-nav {
-	height: 60px;
-	overflow: hidden;
-	opacity: 0.5;
-}
+nav {height: 60px; opacity: 0.5;}
 
 /* section */
-section {
-	margin-top: 20px;
-}
+section{margin-top: 20px;}
+article{float: left; overflow: hidden;}
+#middle{width: 855px; margin-left: 10px; margin-right: 10px;}
+.side{width:250px; height:830px; padding:5px; border: 1px solid;}
 
-article {
-	float: left;
-	overflow: hidden;
-}
-
-#middle {
-	width: 855px;
-	margin-left: 10px;
-	margin-right: 10px;
-}
-
-.side {
-	width: 250px;
-	height: 830px;
-	padding: 5px;
-	border: 1px solid;
-}

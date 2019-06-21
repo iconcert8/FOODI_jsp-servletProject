@@ -1,6 +1,7 @@
 package me.foodi.DAO;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -49,5 +50,22 @@ public class TagDAO {
 				sqlSession.close();
 			}
 		}
+	}
+	
+	public List<TagVO> listHTG(){
+		List<TagVO> list = null;
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		
+		try{
+			list = sqlSession.getMapper(TagMapper.class).listHTG();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (sqlSession != null) {
+				sqlSession.close();
+			}
+		}
+		
+		return list;
 	}
 }

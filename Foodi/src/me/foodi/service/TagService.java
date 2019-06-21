@@ -1,13 +1,12 @@
 package me.foodi.service;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import me.foodi.DAO.TagDAO;
 import me.foodi.domain.TagVO;
@@ -42,5 +41,9 @@ public class TagService {
 
 			dao.insertTag(tagVO);
 		}
+	}
+	
+	public List<TagVO> listHTG(HttpServletRequest request) throws Exception{
+		return dao.listHTG();
 	}
 }

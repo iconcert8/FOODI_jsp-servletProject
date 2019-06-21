@@ -14,7 +14,7 @@
 		<li><a href="/Foodi/newsfeed.jsp">뉴스피드 페이지</a></li>
 		<li><a href="/Foodi/chat/view">Messenger</a></li>
 		<li><a href="../toolbar.jsp">툴바</a></li>
-		<li><a></a></li>
+		<li><a href="/Foodi/main.jsp">메인 페이지</a></li>
 		<li><a></a></li>
 		<li><a></a></li>
 		<li><a></a></li>

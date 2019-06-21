@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.custom-menu {
+    z-index:1000;
+    position: absolute;
+    background-color:#e3e3e3;
+    border: 1px solid black;
+    padding: 0px;
+    margin: 0px;
+}
+
+.custom-menu li {
+	list-style-type: none;
+	padding: 3px;
+	text-align: center;
+}

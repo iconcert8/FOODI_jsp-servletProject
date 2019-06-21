@@ -2,13 +2,14 @@
  * 
  */
 
-var request = new Request();
-var resId = request.getParameter("resId");
+//var request = new Request();
+//var resId = request.getParameter("resId");
+var resId = '';
 var lastNo = 0;
 var setAsyncTime = 1000;
 
 //get방식 parameter 가져오기
-function Request() {
+/*function Request() {
 	var requestParam = "";
 	this.getParameter = function (param) {
 		var url = decodeURI(location.href);
@@ -20,11 +21,32 @@ function Request() {
 			
 			if(temp[0].toUpperCase() == param.toUpperCase()) {
 				requestParam = paramArr[i].split("=")[1];
+				console.log('resId : ' + requestParam);
 				break;
 			}
 		}
 		return requestParam;
 	}
+}*/
+
+function first() {
+	$.ajax({
+		type: "get",
+		url: "first",
+		success: function (data) {
+			console.log('first success');
+			resId = data;
+			if(resId) {
+				chatView();
+			}
+		},
+		error: function() {
+			console.log('first fail');
+		},
+		complete: function() {
+			resList();
+		}
+	});
 }
 
 //send Msg
@@ -38,6 +60,7 @@ function reqMsg() {
 	}
 	console.log(sendMsg);
 	
+//	전송후 비우기
 	chatTest.val('');
 	
 	$.ajax({
@@ -68,6 +91,7 @@ function resList() {
 		dataType: "json",
 		success : function (data) {
 			console.log('resList success');
+			$('#resList').empty();
 			$.each(data, function(i, item) {
 				var div = $('<div></div>');
 // 						if(i.chatImg != null) {
@@ -200,22 +224,52 @@ function search() {
 }
 
 
+//검색 자동완성
+//$( "#tags" ).autocomplete({
+// source: availableTags
+//});
+
+//이벤트 리스너생성
 $(function() {
 	//클릭 이벤트
 	$(document).on('click', '#resList > div', function() {
 		var res = $(this).text();
-		console.log(res);
-		location.href = 'view?resId='+res;
+		resId = res;
+		chatView();
+		resList();
 	});
 	
 //	enter키
-	$('textarea[name="chatMsg"]').keyup(function(event) {
-		if (event.keyCode == 13) {
+	$('textarea[name="chatMsg"]').keydown(function(event) {
+//		키코드 이벤트 유무 검사
+		var keyCode = event.keyCode ? event.keyCode : event.which;
+		if (keyCode == 13) {
 			event.preventDefault();
             reqMsg();
         }
 	})
+	
+	$('#search').keydown(function(event) {
+		var keyCode = event.keyCode ? event.keyCode : event.which;
+		if (keyCode == 13) {
+			event.preventDefault();
+            search();
+        } else {
+        	
+        }
+	})
 })
 
-resList();
-chatView();
+//오른쪽버튼 메뉴
+$(document).on("contextmenu", '.resMsg', function(event) { 
+    event.preventDefault();
+    $('.custom-menu').hide();
+    $("<div class='custom-menu'><ul><li>복사</li><li>삭제</li></ul></div>")
+        .appendTo("body")
+        .css({top: event.pageY + "px", left: event.pageX + "px"});
+}).on("click", function(event) {
+    $("div.custom-menu").hide();
+});
+
+first();
+

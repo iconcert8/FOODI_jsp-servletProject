@@ -12,7 +12,12 @@ public class ChatSelectLastResIdAction implements ActionJson {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ChatVO lastRes = ChatService.getInstance().ChatSelectLastResIdService(request);
-		return lastRes.getResId();
+		String resId = null;
+		if(lastRes != null) {
+			resId = lastRes.getResId();
+		}
+		System.out.println("resId : " + resId);
+		return resId;
 	}
 
 }

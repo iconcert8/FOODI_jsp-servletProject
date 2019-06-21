@@ -79,6 +79,11 @@ public class ChatService {
 		String userId = (String) request.getAttribute("userId");
 		return dao.chatResList(userId);
 	}
+	
+	public List<String> chatReqListService(HttpServletRequest request) {
+		String userId = (String) request.getAttribute("userId");
+		return dao.chatReqList(userId);
+	}
 
 	public ChatVO ChatSelectLastResIdService(HttpServletRequest request) {
 		String userId = ((String) request.getAttribute("userId"));
@@ -138,8 +143,8 @@ public class ChatService {
 //				return o1.getInt("chatChk") - o2.getInt("chatChk");
 //			}
 //		});
-		
 		cookieArr.sort((o1, o2) -> ((JSONObject)o1).getInt("chatChk") - ((JSONObject)o2).getInt("chatChk"));
+		
 		System.out.println(cookieArr);
 		for(int i=0; i < cookieArr.size(); i++) {
 			JSONObject jobj = (JSONObject) cookieArr.get(i);

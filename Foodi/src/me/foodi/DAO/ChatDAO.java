@@ -83,5 +83,13 @@ public class ChatDAO {
 		commitAndClose(sqlSession);
 		return lastRes;
 	}
+
+	public List<String> chatReqList(String userId) {
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		List<String> chatResList = sqlSession.selectList("chatReqList", userId);
+		
+		commitAndClose(sqlSession);
+		return chatResList;
+	}
 	
 }

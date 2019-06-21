@@ -21,7 +21,7 @@ public class TagService {
 		return service;
 	}
 
-	public int insertTag(MultipartRequest multi, int feedNo) throws Exception {
+	public void insertTag(MultipartRequest multi, int feedNo) throws Exception {
 		String tagName[] = multi.getParameter("tagName").replaceAll(" ", "").replaceAll(",", "").split("#");
 		TagVO tagVO = new TagVO();
 		TreeSet<String> tagNameOverlap = new TreeSet<>();
@@ -42,6 +42,5 @@ public class TagService {
 
 			dao.insertTag(tagVO);
 		}
-		return 0;
 	}
 }

@@ -30,7 +30,7 @@ public class TagDAO {
 		return new SqlSessionFactoryBuilder().build(in);
 	}
 
-	public int insertTag(TagVO tagVO) {
+	public void insertTag(TagVO tagVO) {
 		SqlSession sqlSession = getSqlsessionFactory().openSession();
 		int re = -1;
 
@@ -49,6 +49,5 @@ public class TagDAO {
 				sqlSession.close();
 			}
 		}
-		return re;
 	}
 }

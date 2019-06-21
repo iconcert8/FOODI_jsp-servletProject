@@ -2,9 +2,11 @@
 /* all */
 *{margin: 0px; padding: 0px;}
 body {width:1400px; margin: 0 auto;}
+a{text-decoration: none;}
 
 /* nav */
-nav{height: 60px; overflow:hidden; border: 1px solid;}
+nav > div {float: left;}
+nav {height: 60px; opacity: 0.5; position: fixed; top:0px;}
 
 /* section */
 section{margin-top: 20px;}

@@ -1,12 +1,14 @@
 package me.foodi.DAO;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import me.foodi.domain.TagVO;
 import me.foodi.mapper.TagMapper;
 
 public class TagDAO {
@@ -29,26 +31,41 @@ public class TagDAO {
 		return new SqlSessionFactoryBuilder().build(in);
 	}
 
-	public int insertTag(int feedNo, String tagName[]){
+	public void insertTag(TagVO tagVO) {
 		SqlSession sqlSession = getSqlsessionFactory().openSession();
-		
-		int re  = -1;
-		
+		int re = -1;
+
 		try {
-			re = sqlSession.getMapper(TagMapper.class).insertTag(feedNo, tagName);
-			
-			if(re > 0){
+			re = sqlSession.getMapper(TagMapper.class).insertTag(tagVO);
+
+			if (re > 0) {
 				sqlSession.commit();
-			}else{
+			} else {
 				sqlSession.rollback();
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (sqlSession != null) {
+				sqlSession.close();
+			}
+		}
+	}
+	
+	public List<TagVO> listHTG(){
+		List<TagVO> list = null;
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		
+		try{
+			list = sqlSession.getMapper(TagMapper.class).listHTG();
+		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			if (sqlSession != null) {
 				sqlSession.close();
 			}
 		}
-		return re;
+		
+		return list;
 	}
 }

@@ -14,8 +14,9 @@
 		enctype="multipart/form-data" id="insertForm">
 		<ul>
 			<li>작성자</li>
-			<li>${userId}<input type="hidden" name="userId" value="a"></li>
+			<li>${loginUser.userId}<input type="hidden" name="userId" value="${loginUser.userId}"></li>
 		</ul>
+		
 		<ul>
 			<li>내용</li>
 			<li><textarea row="10" cols="50" name="feedContent"></textarea></li>

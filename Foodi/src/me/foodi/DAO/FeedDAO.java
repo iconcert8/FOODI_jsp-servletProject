@@ -1,6 +1,7 @@
 package me.foodi.DAO;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import me.foodi.domain.FeedVO;
+import me.foodi.domain.UserAndFeedVO;
 import me.foodi.mapper.FeedMapper;
 
 public class FeedDAO {
@@ -31,13 +33,13 @@ public class FeedDAO {
 
 	public int insertFeed(FeedVO feedVO) {
 		SqlSession sqlSession = getSqlsessionFactory().openSession();
-		
 		int re = -1;
-		
+		int feedNo = 0;
 		try {
 			re = sqlSession.getMapper(FeedMapper.class).insertFeed(feedVO);
 			if (re > 0) {
 				sqlSession.commit();
+				feedNo = sqlSession.getMapper(FeedMapper.class).getFeedNo(feedVO);
 			} else {
 				sqlSession.rollback();
 			}
@@ -48,6 +50,22 @@ public class FeedDAO {
 				sqlSession.close();
 			}
 		}
-		return re;
+		return feedNo;
+	}
+	
+	public List<UserAndFeedVO> listTagFeed(String tagName){
+		List<UserAndFeedVO> list = null;
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		
+		try{
+			list = sqlSession.getMapper(FeedMapper.class).listTagFeed(tagName);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (sqlSession != null) {
+				sqlSession.close();
+			}
+		}
+		return list;
 	}
 }

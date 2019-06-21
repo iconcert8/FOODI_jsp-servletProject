@@ -14,7 +14,7 @@
 	<%-- <jsp:include page="notify.jsp"></jsp:include> --%>
 	<nav>
 		메뉴바 
-	</nav>
+	</nav> 
 	<header>
 		<h2>Follow</h2>
 		<div>ㅡ</div> <div id="searchBox"><input type="text" name="flwSearch"><button id="flwSearch">검색</button></div>

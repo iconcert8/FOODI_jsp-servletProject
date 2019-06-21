@@ -1,6 +1,7 @@
 $(function() {
 	$("#menuButton").click(function() {
 		$("#menuBar").toggleClass("hidden");
+		$(".menuOnOff").toggleClass("hidden");
 		event.preventDefault();
 	});
 	
@@ -8,6 +9,7 @@ $(function() {
 		$("#notifyList").toggleClass("hidden");
 		event.preventDefault();
 	});
+
 	
 	$("#logout").click(function(event){
 		request.get

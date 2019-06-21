@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/Foodi/css/main.css">
+<script type="text/javascript" src="/Foodi/js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/Foodi/js/mainView.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -22,13 +24,21 @@
 		<h2>HOT TAG</h2>
 		<div id="line"></div>
 		<article>
-			<h3>#떡볶이</h3>
-			<div>피드 리스트</div>
+			<h3 id="firstH3"></h3>
+			<div class="arrow arrowLeft"><b><</b></div>
+			<div class="ulBox">
+				<ul id="firstUl"></ul>
+			</div>
+			<div class="arrow arrowRight"><b>></b></div>
 		</article>
 	
 		<article>
-			<h3>#피자</h3>
-			<div>피드 리스트</div>
+			<h3 id="secondH3"></h3>
+			<div class="arrow arrowLeft"><b><</b></div>
+			<div class="ulBox">
+				<ul id="secondUl"></ul>
+			</div>
+			<div class="arrow arrowRight"><b>></b></div>
 		</article>
 	</section>
 </body>

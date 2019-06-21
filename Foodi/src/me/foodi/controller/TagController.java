@@ -11,18 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
-import me.foodi.action.FeedTagListAction;
-import me.foodi.action.InsertFeedAction;
-import me.foodi.action.NewsFeedAction;
-import me.foodi.action.NewsFeedListAction;
-import me.foodi.action.NewsFeedReplyAction;
+import me.foodi.action.TagHTGListACtion;
 
 
-@WebServlet("/feed/*")
-public class FeedController extends HttpServlet {
+@WebServlet("/tag/*")
+public class TagController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public FeedController() { 
+	public TagController() { 
 		super();
 	}
 
@@ -35,44 +31,11 @@ public class FeedController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 
-		if (path.equals("feed/insertFeed.do")) {
-			action = new InsertFeedAction();
+		if (path.equals("tag/listHTG")) {
+			action = new TagHTGListACtion();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-		} else if (path.equals("feed/newsFeed.do")) {
-			action = new NewsFeedAction();
-			System.out.println("ok");
-			try{
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else if(path.equals("feed/newsfeedList.do")){
-			action = new NewsFeedListAction();
-			System.out.println("ok");
-			try{
-				forward = action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			} 
-		}else if(path.equals("feed/insertNewsfeedReply.do")){
-			action = new NewsFeedReplyAction();
-			System.out.println("ok");
-			try{
-				forward = action.execute(request, response);		
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-			return ;
-		}else if(path.equals("feed/listTagFeed")){
-			action = new FeedTagListAction();
-			try{
-				forward = action.execute(request, response);
-			}catch (Exception e) {
 				e.printStackTrace();
 			}
 			return;

@@ -13,5 +13,12 @@ h1{width:450px; height:200px; margin-top:80px; display: inline-block; background
 
 /* section */
 section{margin-top:20px;}
-article{height: 250px; background-color: #ddad80; margin-top: 10px;}
-#line{height:3px; background-color: #ddad80;}
+article{height: 250px; margin-top: 10px;}
+h2{color: red;}
+h3{color: orange;}
+#line{height:3px; background-color: black;}
+.ulBox{width: 1280px; overflow: hidden; float: left; position: relative;}
+ul{width: 1280px; position: relative; left: 0px;}
+li{display: inline-block; background-color: orange; width: 300px; height: 200px; margin-left: 10px; margin-right: 10px;}
+.arrow{float:left; width: 60px; font-size: 40px; color:orange;  text-align: center; line-height: 190px;}
+.arrow:HOVER {cursor: pointer; color: gray;}

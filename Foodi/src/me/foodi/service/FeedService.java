@@ -1,20 +1,15 @@
 package me.foodi.service;
 
-import java.awt.List;
 import java.io.File;
-import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import me.foodi.DAO.FeedDAO;
 import me.foodi.domain.FeedVO;
+import me.foodi.domain.UserAndFeedVO;
 import me.foodi.util.ImageUtil;
 
 public class FeedService {
@@ -26,13 +21,9 @@ public class FeedService {
 		return service;
 	}
 
-	public int insertFeed(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
+	public int insertFeed(MultipartRequest multi) throws Exception {
 		String uploadPath = "C:\\Users\\kosta\\git\\foodi\\Foodi\\WebContent\\upload";
 		int size = 100 * 1024 * 1024; // 100mb 설정
-
-		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8",
-				new DefaultFileRenamePolicy());
 
 		FeedVO feedVO = new FeedVO();
 		feedVO.setUserId(multi.getParameter("userId"));
@@ -62,7 +53,16 @@ public class FeedService {
 			String feedImgs = (String) multi.getFilesystemName("feedImgs");
 			feedVO.setFeedImgs(feedImgs);
 		}
-
+		
 		return dao.insertFeed(feedVO);
+	}
+	
+	
+	public List<UserAndFeedVO> listTagFeedService(HttpServletRequest request) throws Exception {
+		String tagName = request.getParameter("tagName");	
+		if(tagName.equals("")){
+			tagName = null;
+		}
+		return dao.listTagFeed(tagName);
 	}
 }

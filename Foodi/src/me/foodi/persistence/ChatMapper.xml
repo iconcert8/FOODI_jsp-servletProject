@@ -22,7 +22,7 @@
 	<select id="chatSelectLastResId" parameterType="String" resultType="me.foodi.domain.ChatVO">
 		select *
   			from chat
- 			where CHATNO = (select max(CHATNO) from chat WHERE reqid = #{userId})
+ 			where CHATNO = (select max(CHATNO) from chat WHERE reqid = #{userId} OR resid = #{userId})
 	</select>
 	
 	

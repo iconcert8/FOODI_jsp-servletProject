@@ -3,10 +3,11 @@
 *{margin: 0px; padding: 0px;}
 body {width:1400px; margin: 0 auto;}
 a{text-decoration: none;}
+li{list-style: none;}
 
 /* nav */
 nav > div {float: left;}
-nav {height: 60px; opacity: 0.5; position: fixed; top:0px;}
+nav {height: 60px;}
 
 /* section */
 section{margin-top: 20px;}

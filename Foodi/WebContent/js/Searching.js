@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	
 	
-	$(document).on("click","#ssgbtn", function(){
+	$(document).on("click",".ssgbtn", function(){
 		var searchKeyword=$('#searchKeyword').text();
 		ssgInsert(searchKeyword,$(this));
 	});
@@ -29,9 +29,7 @@ function ssgInsert(searchKeyword, $this){
 		data: {"searchKeyword": searchKeyword},
 		error: function(error){console.log(error);},
 		success: function(data){
-			//data return resId
-			$(this).val('complete');
-			alert("ok");
+			$('.ssgbtn').val("완료").removeClass('ssgbtn');
 		}
 	});
 }

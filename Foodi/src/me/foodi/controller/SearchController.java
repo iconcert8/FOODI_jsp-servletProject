@@ -52,6 +52,7 @@ public class SearchController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+    		return;
     	}
     	
     	if(forward != null){

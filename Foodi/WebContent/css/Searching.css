@@ -2,8 +2,7 @@
 #search_result{
 	border: 5px solid #ffcd47;
 	margin-left: 10px;
-	padding-left: 10px;
-	width:550px;
+	padding:20px 20px;
 	font-size: 40px;
 }
 
@@ -62,23 +61,26 @@ li{
 #feed_tag{
 	padding-left: 80px;
 }
-button{
-  background:#ffcd47;
-  color:#fff;
-  border:none;
+input{
+	background:#ffcd47;
+	color:#fff;
+	border:none;
+	height:60px;
+	font-size:1.6em;
+	padding:0 2em;
+	margin-left: 30px;
+}
+.ssgbtn{
   position:relative;
-  height:60px;
-  font-size:1.6em;
-  padding:0 2em;
   cursor:pointer;
   transition:800ms ease all;
   outline:none;
 }
-button:hover{
+.ssgbtn:hover{
   background:#fff;
   color:#ffcd47;
 }
-button:before,button:after{
+.ssgbtn:before, .ssgbtn:after{
   content:'';
   position:absolute;
   top:0;
@@ -88,13 +90,13 @@ button:before,button:after{
   background: #ffcd47;
   transition:400ms ease all;
 }
-button:after{
+.ssgbtn:after{
   right:inherit;
   top:inherit;
   left:0;
   bottom:0;
 }
-button:hover:before,button:hover:after{
+.ssgbtn:hover:before,.ssgbtn:hover:after{
   width:100%;
   transition:800ms ease all;
 }

@@ -19,7 +19,7 @@ public class TimelineAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		TimeLineService service2 = TimeLineService.getInstance();
 		String r_id=request.getParameter("userId");
-		UserInfoVO r_user=service2.searchUserService(r_id);
+		UserInfoVO r_user;
 		
 		//session으로부터 아이디 불러오기
 		HttpSession session = request.getSession(true);
@@ -31,6 +31,7 @@ public class TimelineAction implements Action {
 			request.setAttribute("user", user);
 		}else{
 			userId=r_id;
+			r_user=service2.searchUserService(r_id);
 			request.setAttribute("user", r_user);
 		}
 		

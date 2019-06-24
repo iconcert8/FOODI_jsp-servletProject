@@ -16,14 +16,9 @@ public class SsgAction implements Action {
 		UserInfoVO user = (UserInfoVO) session.getAttribute("loginUser");
 		String userId=user.getUserId();
 		service.insertSsgService(request,userId);
-		String[] ssgs = service.searchSsgService(userId);
-		for(int i=0;i<ssgs.length;i++){
-			request.setAttribute("ssg"+i, ssgs[i]);
-		}
-		ActionForward forward = new ActionForward();
-		forward.setPath("/Ssg.jsp");
-		forward.setRedirect(false);
-		return forward;
+
+
+		return null;
 	}
 
 }

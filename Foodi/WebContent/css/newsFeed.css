@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+li{margin-top: 40px;}
+
+#lightBox{width: 900px; height: 600px; overflow: auto;}
+.black{
+	visibility: hidden;
+}
+.light{
+	position:fixed;
+	top:200px; left:500px;
+	box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px, rgba(0,0,0,0.5) 2px 2px 3px 3px;
+	visibility: visible;
+	background-color: white;
+}
+
+#close{	width: 10px; height: 10px; float: right; margin-right: 5px;}
+#close:HOVER {cursor:pointer; color: gray;}

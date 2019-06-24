@@ -1,6 +1,22 @@
 ﻿$(document).ready(function(){
 	getList()
-
+	
+	$(document).on('click', '.detail',function(){
+		getFeed($(this).val());
+		$("#lightBox").removeClass("black");	
+		$("#lightBox").addClass("light");	
+	}); 
+	$(document).on('click', '#close',function(){
+		$('#lightBox').empty();
+		$("#lightBox").removeClass("light");	
+		$("#lightBox").addClass("black");	
+	});
+	
+	$(document).on('click', '#replySend', function(){
+		var feedNo = $(this).val();
+		var replyContent = $("#replyText").val();
+		insertReply(feedNo, replyContent);
+	});
 })
 
 function getList(){
@@ -9,69 +25,135 @@ function getList(){
 		type : 'get', 
 		dataType : 'json',
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-		data : {"feedNo" : "feedNo"},
-		success : successHandler,
+		success : successList,
 		error: function(error){console.log(error);}
 
-	}); 
+	});  
+}
 
+function getFeed(feedNo){
 	$.ajax({
-		url : 'feed/newsfeedReply.do',
+		url : 'feed/get',
 		type : 'get', 
 		dataType : 'json',
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-		data : {"feedNo" : "12"},
-		success : successFootler,
-		error: function(error){console.log(error);}
+		data : {"feedNo" : feedNo},
+		error: function(error){console.log(error);},
+		success : successFeed
 
 	});
- 
-} 
+}
 
-function successHandler(data){ 
-	//배열 , 키
+function getReply(feedNo){
+	$.ajax({
+		url : 'feed/getReply',
+		type : 'get', 
+		dataType : 'json',
+		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+		data : {"feedNo" : feedNo},
+		error: function(error){console.log(error);},
+		success : successReply
+
+	});
+}
+
+function insertReply(feedNo, replyContent){
+	$.ajax({
+		url : 'feed/insertReply',
+		type : 'get', 
+		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+		data : {"feedNo" : feedNo, "replyContent":replyContent},
+		error: function(error){console.log(error);},
+		success : function(){}
+	});
+}
+
+function successList(data){ 
 	$.each(data, function(index, item){
-
-		var html = '<div class="view">'; 
-		html += '<div class="cont">';
-		html += '<div class="fn1">' + item.feedNo + '</div>';
-		html += '<div class="fn2">' + item.userId + '</div>';
-		html += '<div class="fn3">' + item.feedContent + '</div>';
-		html += '<div class="fn4">' + item.feedImg + '	</div>';
-		html += '<div class="fn5">' + item.feedImgs + '</div>';
-		html += '<div class="fn6">' + item.feedGoodCount + '</div>';
-		html += '<div class="fn7">' + item.feedLoc + '</div>';
-		html += '<div class="fn8">' + item.feedDate + '</div>';
-		html += '<div class="fn9">' + item.feedUpdate + '</div>';
-		html += '<div class="fn10">' + item.feedLock + '</div>'; 
-		html += '<table border="1" class="fnd">';
-		html += '<tr>';
-		html += '<td class="fnd1"><button value="good" >좋아요</button></td>';
-		html += '<td class="fnd3"><button class="sbn_view" value="reply">댓글</button></td>';
-		html += '<td class="fnd2"><button value="qook">쿡</button></td>';		
-		html += '<input type="button" class="sbn_view1" value="상세페이지">';
-		html +=  '<a href="feed/newsfeedDetail.do?feedNo=' + item.feedNo + '">상세</a>';
-		html += '</tr>'; 
-		html +=	'</table>'; 
-		html += '</div>';
-		html += '<br><br>';
+		var html ='<li>'
+				+	'<div>'
+				+		'<div>'+item.userImg+'</div>'
+				+		'<label>'+item.userId+'</label>'
+				+	'</div>'
+				+	'<div>'
+				+		'<label>'+item.feedContent+'</label>'
+				+		'<div>'+item.feedImg+'</div>'
+				+	'</div>'
+				+	'<button class="detail" value="'+item.feedNo+'">상세보기</button>'
+				+	'<div>'
+				+		'<button>좋아요</button>'+'<button class="detail" value="'+item.feedNo+'">댓글</button>'+'<button>쿡</button>'
+				+	'</div>'
+				+ '</li>';
+		var writer ='<li>'
+				+		'<div>'
+				+			'<div>'+item.userImg+'</div>'
+				+			'<label>'+item.userId+'</label>'
+				+		'</div>'
+				+	'</li>';
 		$('#nfList').append(html).trigger("create");
+		$('#wtrList').append(writer).trigger("create");
 	}); 	 
 
-} 
- 
-function successFootler(data){
-	$.each(data, function(index, item){
-		var html = '<tr>'; 
-		html += '<td>' + item.feedNo + '</td>';
-		html += '<td>' + item.replyNo + '</td>';
-		html += '<td>' + item.userId + '</td>';
-		html += '<td>' + item.feedContent + '</td>';
-		html += '</tr>';
-		$('#nfrList').append(html).trigger("create");
+}
 
+function successFeed(data){
+	var html='<b id="close">X</b>'
+		+	'<div>'
+		+		'<div>'+data.userImg+'</div>'
+		+		'<label>'+data.userId+'</label>'
+		+	'</div>'
+		+	'<div>'
+		+		'<label>'+data.feedContent+'</label>'
+		+		'<div>'+data.feedImg+'</div>'
+		+	'</div>'
+		+	'<div>'
+		+		'<button>좋아요</button>'+'<button>쿡</button>'
+		+	'</div>'
+		+	'<div>'
+		+		'<input type="text" id="replyText">'+'<button id="replySend" value="'+data.feedNo+'">작성</button>'
+		+	'</div>';
+	$("#lightBox").append(html).trigger("create");
+	
+	getReply(data.feedNo);
+}
+ 
+function successReply(data){
+	var html='<div>';
+	$.each(data, function(index, item){
+		html+= '<p>'
+			+		'<b>'+item.userId +'</b>'+'<label> '+new Date(item.replyDate.time).format("yyyy/MM/dd HH:mm") +'</label><br>'
+			+		'<label>'+item.replyContent +'</label>'
+			+ '</p>';
 	});	
+	html += '</div>';
+	$("#lightBox").append(html).trigger("create");
 }  
-			
+
+
+Date.prototype.format = function(f) {
+    if (!this.valueOf()) return " ";
+ 
+    var weekName = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+    var d = this;
+     
+    return f.replace(/(yyyy|yy|MM|dd|E|hh|mm|ss|a\/p)/gi, function($1) {
+        switch ($1) {
+            case "yyyy": return d.getFullYear();
+            case "yy": return (d.getFullYear() % 1000).zf(2);
+            case "MM": return (d.getMonth() + 1).zf(2);
+            case "dd": return d.getDate().zf(2);
+            case "E": return weekName[d.getDay()];
+            case "HH": return d.getHours().zf(2);
+            case "hh": return ((h = d.getHours() % 12) ? h : 12).zf(2);
+            case "mm": return d.getMinutes().zf(2);
+            case "ss": return d.getSeconds().zf(2);
+            case "a/p": return d.getHours() < 12 ? "오전" : "오후";
+            default: return $1;
+        }
+    });
+};
+String.prototype.string = function(len){var s = '', i = 0; while (i++ < len) { s += this; } return s;};
+String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
+Number.prototype.zf = function(len){return this.toString().zf(len);};
 
 

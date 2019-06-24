@@ -3,12 +3,11 @@ package me.foodi.service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import me.foodi.DAO.NewsFeedDAO;
 import me.foodi.domain.FeedVO;
 import me.foodi.domain.ReplyVO;
+import me.foodi.domain.UserAndFeedVO;
 import me.foodi.domain.UserInfoVO;
 
 public class NewsFeedService {
@@ -20,7 +19,7 @@ public class NewsFeedService {
 		return service;
 	}
   
-	public List<FeedVO> newsFeedListService(HttpServletRequest request) throws Exception {
+	public List<UserAndFeedVO> newsFeedListService(HttpServletRequest request) throws Exception {
 		UserInfoVO userInfoVO = (UserInfoVO)request.getSession().getAttribute("loginUser");
 		
 		FeedVO feedVO = new FeedVO();
@@ -29,25 +28,25 @@ public class NewsFeedService {
 		return dao.newsFeedList(feedVO);
 	}
 	
-	public List<ReplyVO> newsfeedReplyService(HttpServletRequest request){
-UserInfoVO userInfoVO = (UserInfoVO)request.getSession().getAttribute("loginUser");
-		
-		ReplyVO replyVO = new ReplyVO();
-		replyVO.setUserId(userInfoVO.getUserId());
-		
-		
-		return dao.newsfeedReply(Integer.parseInt(request.getParameter("feedNo")));
+	public List<ReplyVO> feedReplyGetService(HttpServletRequest request){
+		return dao.feedReplyGet(Integer.parseInt(request.getParameter("feedNo")));
 	}
-	public int insertNewsfeedReplyService(HttpServletRequest request){ 
+	public int feedReplyInsertService(HttpServletRequest request){ 
 		UserInfoVO userInfoVO = (UserInfoVO)request.getSession().getAttribute("loginUser");
 		
 		ReplyVO replyVO = new ReplyVO();
 		replyVO.setUserId(userInfoVO.getUserId());
+		replyVO.setFeedNo(Integer.parseInt(request.getParameter("feedNo")));
+		replyVO.setReplyContent(request.getParameter("replyContent"));
 		
-		return dao.insertNewsfeedReply(replyVO);
+		return dao.feedReplyInsert(replyVO);
 	}
 	
-	public FeedVO detailNewsFeedService(HttpServletRequest request){
-		return dao.detailNewsFeed(Integer.parseInt(request.getParameter("feedNo")));
+	public UserAndFeedVO detailNewsFeedService(HttpServletRequest request){
+		UserInfoVO userInfoVO = (UserInfoVO)request.getSession().getAttribute("loginUser");
+		FeedVO feedVO = new FeedVO();
+		feedVO.setUserId(userInfoVO.getUserId());
+		feedVO.setFeedNo(Integer.parseInt(request.getParameter("feedNo")));
+		return dao.detailNewsFeed(feedVO);
 	}
 }

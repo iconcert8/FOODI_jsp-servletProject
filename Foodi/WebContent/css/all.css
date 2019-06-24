@@ -3,14 +3,14 @@
 *{margin: 0px; padding: 0px;}
 body {width:1400px; margin: 0 auto;}
 a{text-decoration: none;}
+li{list-style: none;}
 
 /* nav */
 nav > div {float: left;}
-nav {height: 60px; opacity: 0.5; position: fixed; top:0px;}
+nav {height: 60px; position: fixed; top:0px; background-color: gray; width: 1400px;}
 
 /* section */
 section{margin-top: 60px;}
 article{float: left; overflow: hidden;}
 #middle{width: 855px; margin-left: 10px; margin-right: 10px;}
 .side{width:250px; height:830px; padding:5px; border: 1px solid;}
-

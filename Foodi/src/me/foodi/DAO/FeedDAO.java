@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import me.foodi.domain.FeedVO;
+import me.foodi.domain.ReplyVO;
 import me.foodi.domain.UserAndFeedVO;
 import me.foodi.mapper.FeedMapper;
 
@@ -67,5 +68,76 @@ public class FeedDAO {
 			}
 		}
 		return list;
+	}
+	
+	public List<UserAndFeedVO> newsFeedList(FeedVO feedVO){
+		List<UserAndFeedVO> list = null;
+		SqlSession session = getSqlsessionFactory().openSession();
+	
+		try{
+			list = session.getMapper(FeedMapper.class).listNewsFeed(feedVO);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			session.close();
+		} 
+		
+		return list;
+	
+	}
+	
+	public List<ReplyVO> feedReplyGet(int feedNo){
+		List<ReplyVO> list = null;
+		SqlSession session = getSqlsessionFactory().openSession();
+		
+		try{
+			list = session.getMapper(FeedMapper.class).feedReplyGet(feedNo);	
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			if(session != null){
+				session.close();
+			}
+		}
+		
+		return list;	
+	}
+	
+	public int feedReplyInsert(ReplyVO replyVO){
+		int re = -1;
+		SqlSession session = getSqlsessionFactory().openSession();
+		
+		try{
+			re = session.getMapper(FeedMapper.class).feedReplyInsert(replyVO);
+			if(re > 0){
+				session.commit();
+			}else{
+				session.rollback();
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			if(session != null){
+				session.close();
+			}
+		}
+		return re;
+	}
+	 
+	public UserAndFeedVO detailNewsFeed(FeedVO feedVO){
+		UserAndFeedVO userAndFeedVO = null;
+		SqlSession session = getSqlsessionFactory().openSession();
+		
+		try{
+			userAndFeedVO = session.getMapper(FeedMapper.class).newsfeedDetail(feedVO);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			if(session != null){
+				session.close();
+			}
+		}
+		
+		return userAndFeedVO;
 	}
 }

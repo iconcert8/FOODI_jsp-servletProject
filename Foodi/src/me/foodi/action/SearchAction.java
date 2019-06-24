@@ -23,7 +23,7 @@ public class SearchAction implements Action {
 		request.setAttribute("feedlist", feedlist);
 		request.setAttribute("searchKeyword", searchKeyword);
 		ActionForward forward = new ActionForward();
-		forward.setPath("/searchresult.jsp");
+		forward.setPath("/Searching.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

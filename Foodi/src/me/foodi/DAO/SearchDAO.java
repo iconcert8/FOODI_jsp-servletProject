@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import me.foodi.domain.SearchFeedVO;
 import me.foodi.domain.SearchVO;
+import me.foodi.domain.SsgVO;
 import me.foodi.domain.UserInfoVO;
 import me.foodi.mapper.SearchMapper;
 
@@ -76,5 +77,37 @@ public class SearchDAO {
 		}finally {
 			sqlSession.close();
 		}
+	}
+	
+	public void insertSsg(SsgVO ssg){
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re= -1;
+		try {
+			re=sqlSession.getMapper(SearchMapper.class).insertSsg(ssg);
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+	}
+	
+	public String[] searchSsg(String userId){
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		String[] list = null;
+
+		try {
+			list=sqlSession.getMapper(SearchMapper.class).searchSsg(userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return list;
 	}
 }

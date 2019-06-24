@@ -7,6 +7,7 @@ $(function() {
 	
 	$("#notify").click(function(event){
 		$("#notifyList").toggleClass("hidden");
+		
 		event.preventDefault();
 	});
 

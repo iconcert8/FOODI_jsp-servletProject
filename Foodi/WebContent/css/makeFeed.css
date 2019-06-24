@@ -1,4 +1,8 @@
 @CHARSET "UTF-8";
-#insertForm > ul > li {
+li {
 	display: inline;
+}
+
+#middle{
+	margin-top: 20px;
 }

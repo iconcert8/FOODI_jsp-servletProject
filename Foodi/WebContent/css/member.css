@@ -1,0 +1,105 @@
+@charset "UTF-8";
+/* all */
+*{margin: 0px; padding: 0px;}
+body {width:1400px; margin: 0 auto;}
+a{text-decoration: none;}
+li{list-style: none;}
+
+/* nav */
+nav > div {float: left;}
+nav {height: 60px;}
+
+/* section */
+section{margin-top: 20px;}
+article{float: left; overflow: hidden;}
+#middle{width: 600px; 
+margin-left:400px; 
+margin-right: 10px;
+border: 2px solid;
+border-color: #FFC30B;
+height: 750px;
+margin-top: 30px;
+}
+
+h2{
+	text-align: center;
+}
+.side{width:250px; height:830px; padding:5px; border: 1px solid;}
+
+/* head */
+nav{
+	height:60px;
+}
+
+header{
+	height:450px; 
+	margin-left: 450px;
+}
+
+li{
+	margin-top: 30px;
+	margin-left: 100px; 
+}
+
+#userimg{
+	margin-top:30px;
+	margin-left: 220px;
+	width: 150px;
+	height: 150px;
+	background: gray;
+	border-radius: 50%;
+	background-image: url("/Foodi/css/images/coo.png");
+	
+}
+#jump{
+	margin-top: 50px;
+	
+}
+
+#f1{
+	margin-left:70px;
+}
+
+input{
+	border:2px 2px 2px 2px solid;
+	border-color: #FFC30B;
+
+}	
+
+#up{
+	width:140px;
+	height: 30px;
+	background-color: #FFC30B;
+}
+
+#ch{
+	width:140px;
+	height: 30px;
+	background-color: #FFC30B;
+}
+
+#ij{
+	width: 60px;
+	margin-left: 10px;
+	background-color: #FFC30B;
+}
+
+#hi{
+	
+	width: 60px;
+	margin-left: 10px;
+	background-color: #FFC30B;
+}
+
+.line{
+	margin-left:50px;
+	margin-top:30px;
+	border:0.5px solid;
+	width: 500px;
+	border-color: gray;
+}
+
+.ci{
+	margin-top: 40px;
+	margin-left: 150px;
+}

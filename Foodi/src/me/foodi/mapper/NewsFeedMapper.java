@@ -14,5 +14,7 @@ public interface NewsFeedMapper {
 	
 	int insertNewsfeedReply(ReplyVO replyVO);
 	
+	FeedVO newsfeedDetail(int feedNo);
+
 }
   

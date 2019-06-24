@@ -12,6 +12,8 @@
 	<form action="userInfo/testGet" method="post">
 		ID : <input type="text" name="id"><br>
 		<input type="submit" value="GO">
-	</form>
+	</form>	
 </body>
-</html>
+</html> 
+ 
+ 

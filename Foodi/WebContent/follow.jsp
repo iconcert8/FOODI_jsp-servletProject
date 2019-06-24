@@ -13,7 +13,7 @@
 <body>
 	<%-- <jsp:include page="notify.jsp"></jsp:include> --%>
 	<nav>
-		메뉴바
+		메뉴바 
 	</nav> 
 	<header>
 		<h2>Follow</h2>

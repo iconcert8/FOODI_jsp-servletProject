@@ -29,7 +29,7 @@ public class FeedService {
 	public int insertFeed(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String uploadPath = "C:\\Users\\kosta\\git\\foodi\\Foodi\\WebContent\\upload";
-		int size = 100 * 1024 * 1024; // 100mb 설정
+		int size = 100 * 1024 * 1024; // 100mb �꽕�젙
 
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8",
 				new DefaultFileRenamePolicy());
@@ -44,8 +44,8 @@ public class FeedService {
 			String feedImg = (String) multi.getFilesystemName("feedImg");
 			feedVO.setFeedImg(feedImg);
 
-			String head = feedImg.substring(0, feedImg.indexOf(".")); // 파일 이름
-			String extension = feedImg.substring(feedImg.indexOf(".") + 1); // 파일확장자
+			String head = feedImg.substring(0, feedImg.indexOf(".")); // �뙆�씪 �씠由�
+			String extension = feedImg.substring(feedImg.indexOf(".") + 1); // �뙆�씪�솗�옣�옄
 			String imgPath = uploadPath + "\\" + feedImg;
 			File src = new File(imgPath);
 

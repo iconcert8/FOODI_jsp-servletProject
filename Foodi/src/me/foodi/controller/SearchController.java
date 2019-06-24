@@ -13,6 +13,7 @@ import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
 import me.foodi.action.SearchAction;
 import me.foodi.action.SearchFormAction;
+import me.foodi.action.SsgAction;
 
 @WebServlet("/search/*")
 public class SearchController extends HttpServlet {
@@ -45,7 +46,7 @@ public class SearchController extends HttpServlet {
 				e.printStackTrace();
 			}
     	}else if(path.equals("search/ssg")){
-    		action = new SearchFormAction();
+    		action = new SsgAction();
     		try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

@@ -7,10 +7,10 @@ li{list-style: none;}
 
 /* nav */
 nav > div {float: left;}
-nav {height: 60px;}
+nav {height: 60px; position: fixed; top:0px; background-color: gray; width: 1400px;}
 
 /* section */
-section{margin-top: 20px;}
+section{margin-top: 60px;}
 article{float: left; overflow: hidden;}
 #middle{width: 855px; margin-left: 10px; margin-right: 10px;}
 .side{width:250px; height:830px; padding:5px; border: 1px solid;}

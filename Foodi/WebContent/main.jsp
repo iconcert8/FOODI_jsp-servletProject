@@ -11,7 +11,7 @@
 </head>
 <body>
 	<nav>
-		
+		<jsp:include page="toolbar.jsp"></jsp:include>
 	</nav>
 	
 	<header>

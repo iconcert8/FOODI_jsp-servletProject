@@ -21,8 +21,8 @@ public class NewsFeedListAction implements Action {
 		String json = JSONArray.fromObject(list).toString();
 		System.out.println(json);
 		response.getWriter().write(json);
-		 
-		
+		  
+		  
 		return null;
 	}                                    
 

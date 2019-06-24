@@ -40,7 +40,7 @@ function htgList(){
 		error: function(error){console.log(error);},
 		success: function(data){
 			if(data[1] == null){
-				htgFeedList1("");
+				htgFeedList("");
 				$("#firstH3").html("#최근피드");			
 				$("#secondH3").html("#최근피드");			
 			}else{

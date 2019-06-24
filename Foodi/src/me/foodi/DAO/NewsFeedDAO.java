@@ -86,5 +86,22 @@ public class NewsFeedDAO {
 		}
 		return re;
 	}
+	 
+	public FeedVO detailNewsFeed(int feedNo){
+		FeedVO feedVO = null;
+		SqlSession session = getSqlSessionFactory().openSession();
+		
+		try{
+			feedVO = session.getMapper(NewsFeedMapper.class).newsfeedDetail(feedNo);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			if(session != null){
+				session.close();
+			}
+		}
+		
+		return feedVO;
+	}
 }
 

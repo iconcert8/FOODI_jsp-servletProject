@@ -1,6 +1,7 @@
 package me.foodi.DAO;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import me.foodi.domain.QookVO;
+import me.foodi.domain.UserAndFeedVO;
 import me.foodi.mapper.QookMapper;
 
 public class QookDAO {
@@ -66,5 +68,20 @@ public class QookDAO {
 			}
 		}
 		return re;
+	}
+	
+	public List<UserAndFeedVO> qookFeedList(QookVO qookVO){
+		List<UserAndFeedVO> list = null;
+		SqlSession session = getSqlSessionFactory().openSession();
+		try{
+			list = session.getMapper(QookMapper.class).qookFeedList(qookVO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session != null){
+				session.close();
+			}
+		}
+		return list;
 	}
 }

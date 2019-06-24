@@ -10,7 +10,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/toolbar.js"></script>
-<link rel="stylesheet" href="css/all.css">
 <link rel="stylesheet" href="css/toolbar.css">
 </head>
 <body>

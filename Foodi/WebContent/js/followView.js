@@ -1,5 +1,4 @@
 ﻿document.write("<script type='text/javascript' src='/Foodi/js/follow.js'></script>");
-document.write("<script type='text/javascript' src='/Foodi/js/qook.js'></script>");
 
 $(document).ready(function(){
 	

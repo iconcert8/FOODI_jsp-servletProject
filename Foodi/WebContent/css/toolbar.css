@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+ul {
+	list-style: none;
+}
+
 #userMenu li {
 	display: inline;
 }
@@ -9,25 +13,60 @@
 }
 
 #menuButton {
-	
+	margin-right: 150px;
 }
 
 #searchForm {
-	
+	margin: 3px 50px;
+}
+
+#searchSpace {
+	font-size: 30px;
+	width: 600px;
+	height: 50px;
+}
+
+#searchButton {
+	height: 50px;
+	width: 50px;
+	margin-top: 0px;
 }
 
 #menuBar {
 	margin-top: 60px;
-	margin-left: auto;
-	margin-right: auto;
 	width: 250px;
-	height: 200px;
+	height: 500px;
 	padding: 5px;
-	margin-top: 60px;
+	position: absolute;
+	left: 0px;
+	background-color: yellow;
 }
 
 #userMenu {
 	position: relative;
-	margin-right: 10px;
 	float: right;
+	right: 0%;
+}
+
+#notifyList {
+	margin-top: 60px;
+	width: 250px;
+	height: 500px;
+	padding: 6px;
+	position: absolute;
+	right: 0px;
+	background-color: blue;
+}
+
+.menuProfileImg{
+	width: 250px;
+	height: 250px;
+}
+
+.menuNick {
+	font-weight: bold;
+}
+
+.menuLink {
+	font-weight: bold;
 }

@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import me.foodi.domain.ChatNotifyVO;
 import me.foodi.domain.ChatVO;
 import me.foodi.domain.UserInfoVO;
 
@@ -95,7 +96,7 @@ public class ChatDAO {
 
 	public UserInfoVO chatResInfo(String resId) {
 		SqlSession sqlSession = getSqlsessionFactory().openSession();
-		UserInfoVO userInfo = sqlSession.selectOne("chatResInfo", resId);		
+		UserInfoVO userInfo = sqlSession.selectOne("chatResInfo", resId);
 		commitAndClose(sqlSession);
 		return userInfo;
 	}
@@ -112,6 +113,19 @@ public class ChatDAO {
 		int re = sqlSession.update("chatDeleteMessage", del);
 		commitAndClose(sqlSession);
 		return re;
+	}
+
+	public List<ChatNotifyVO> chatReadless(String userId) {
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		List<ChatNotifyVO> readlessList = sqlSession.selectList("chatReadless", userId);
+		commitAndClose(sqlSession);
+		return readlessList;
+	}
+
+	public String chatNotify(String userId) {
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		String notify = sqlSession.selectOne("chatNotify", userId);
+		return notify;
 	}
 	
 }

@@ -12,9 +12,15 @@ public class ChatSelectLastResIdAction implements ActionJson {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ChatVO lastRes = ChatService.getInstance().ChatSelectLastResIdService(request);
+		String userId = (String) request.getAttribute("userId");
 		String resId = "";
 		if(lastRes != null) {
-			resId = lastRes.getResId();
+			if(!userId.equals(lastRes.getResId())) {
+				resId = lastRes.getResId();
+			} else {
+				resId = lastRes.getReqId();
+			}
+			
 		}
 		return resId;
 	}

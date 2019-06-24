@@ -2,34 +2,11 @@
  * 
  */
 
-//var request = new Request();
-//var resId = request.getParameter("resId");
 var resId = '';
 var lastNo = 0;
-var setAsyncTime = 1000;
+var setAsyncTime = 5000;
 var asyncInterval;
-
-
-//get방식 parameter 가져오기
-/*function Request() {
-	var requestParam = "";
-	this.getParameter = function (param) {
-		var url = decodeURI(location.href);
-		
-		var paramArr = (url.substring(url.indexOf('?') + 1, url.length)).split('&');
-		
-		for(var i=0; i < paramArr.length; i++) {
-			var temp = paramArr[i].split("=");
-			
-			if(temp[0].toUpperCase() == param.toUpperCase()) {
-				requestParam = paramArr[i].split("=")[1];
-				console.log('resId : ' + requestParam);
-				break;
-			}
-		}
-		return requestParam;
-	}
-}*/
+var listRefreshTime = 0;
 
 function first() {
 	$.ajax({
@@ -52,8 +29,8 @@ function first() {
 }
 
 //send Msg
-function reqMsg() {
-	let chatTest = $('textarea[name="chatMsg"]');
+function sendMsg() {
+	let chatTest = $('input[name="chatMsg"]');
 	
 	var sendMsg = {
 		"chatMsg" : chatTest.val(),
@@ -79,22 +56,18 @@ function reqMsg() {
 			if(!asyncInterval) {
 				async();
 			}
-		},
-		complete : function () {
-			console.log('reqMsg post done');
 		}
 	});
 }
 
 //person list
-function resList(resId, newUser) {
+function resList(resId) {
 	$.ajax({
 		type : "post",
 		url : "reslist",
 //     			data : {"resId" : resId},
 		data : {
 			"resId" : resId,
-			"new" : newUser
 		},
 		dataType: "json",
 		success : function (data) {
@@ -106,7 +79,11 @@ function resList(resId, newUser) {
 // 							div.append('<img src="'+ i.chatImg +'"/>');
 // 						}
 				if(item.resId != null) {
-					div.append('<span>' + item.resId + '</span>');
+					div.append('<span class="listResId">' + item.resId + '</span>');
+					if(item.readless != null) {
+						div.append('&nbsp;<span class="readless">' + item.readless + '</span>');
+						div.addClass('readless');
+					}
 					div.appendTo('#resList');
 				} else if(item.selected != null){
 					div.append('<span class="resSelected">' + item.selected + '</span>');
@@ -219,9 +196,9 @@ function drawMsg(i, item, data) {
 		dateTime = (dateT[3] < 12 ? '오전 ' + dateT[3] : '오후 ' + (dateT[3] - 12)) + ':' + dateT[4];
 		if(resId == item.reqId) {
 			var divres = $('<div class="res"></div>');
-			divres.append(item.reqId + '/test To : ' + item.resId + '<br>')
+			divres.append('<span class="resId">' + item.reqId + '</span><br>')
 				.append('<input type="hidden" class="chatNo" value="' + item.chatNo + '"></input>')
-				.append('<span class="resMsg">' + item.chatMsg + '&nbsp;</span>')
+				.append('<span class="message">' + item.chatMsg + '&nbsp;</span>')
 				.append('<span class="date">' + dateTime + '&nbsp;</span>');
 			if(parseInt(item.chatChk)){
 				divres.append('<span class="read">' + item.chatChk + '</span>');
@@ -229,13 +206,14 @@ function drawMsg(i, item, data) {
 			divres.appendTo('#chatView');
 		} else {
 			var divuser = $('<div class="user"></div>');
-			divuser.append(item.reqId + '/test To : ' + item.resId + '<br>')
-				.append('<input type="hidden" class="chatNo" value="' + item.chatNo + '"></input>');
+			divuser
+				.append('<input type="hidden" class="chatNo" value="' + item.chatNo + '"></input>')
+				.append('<button value="del" class="delete">del</button>&nbsp;');
 			if(parseInt(item.chatChk)){
 				divuser.append('<span class="read">' + item.chatChk + '&nbsp;</span>');
 			}
 			divuser.append('<span class="date">' + dateTime + '&nbsp;</span>')
-				.append('<span class="resMsg">' + item.chatMsg + '</span>&nbsp;<button value="del" class="delete">del</button>')
+				.append('<span class="message">' + item.chatMsg + '</span>')
 				.appendTo('#chatView');
 		}
 	}
@@ -249,6 +227,9 @@ function drawMsg(i, item, data) {
 			$('.res > .read').hide();
 		}
 	}
+	
+	var element = document.getElementById('chatView');
+	element.scrollTop = element.scrollHeight;
 }
 
 // 지속적 요청
@@ -272,33 +253,45 @@ function async() {
 			console.log('async fail');
 		},
 		complete: function() {
+			if(listRefreshTime != 2) {
+				listRefreshTime++;
+			} else {
+				resList(resId);
+				listRefreshTime = 0;
+			}
+				
 			asyncInterval = setTimeout(function() {
 				async();
 			}, setAsyncTime);
 		}
-	}); 
-}
-
-function clickList() {
-
+	});
+	
+	
 }
 
 //이벤트 리스너생성
 $(function() {
-	//클릭 이벤트
+	
+//	메시지 보내기 버튼 이벤트
+	$(document).on('click', '#sendMsg > input[value="send"]', function() {
+		sendMsg();
+	});
+	
+	
+	//목록 선택 이벤트
 	$(document).on('click', '#resList > div', function() {
-		var res = $(this).text();
+		var res = $(this).find('span.listResId').text();
 		resId = res;
 		selectUser();
 	});
 	
 //	enter키
-	$('textarea[name="chatMsg"]').keydown(function(event) {
+	$('input[name="chatMsg"]').keydown(function(event) {
 //		키코드 이벤트 유무 검사
 		var keyCode = event.keyCode ? event.keyCode : event.which;
 		if (keyCode == 13) {
 			event.preventDefault();
-            reqMsg();
+            sendMsg();
         }
 	});
 	
@@ -320,17 +313,21 @@ $(function() {
 				dataType : 'json',
 				data : { keyword : request.term },
 				success: function(data) {
-					response(data);
+//					response(data);
+					$('#leftList').empty();
+					$.each(data, function(i, elt) {
+						$('#leftList').append('<div class="searchResult">' + elt + '</div>')
+					});			
 				},
 				error: function () {
 					console.log('search fail');
 				}			
 			});
 		},
-//		select: function( event, selected ) {
-//	        console.log(selected.item.value);
-//	        searchCheck(selected.item.value);
-//	    }
+	});
+	
+	$(document).on('click', '.searchResult', function(event) {
+		searchCheck($(this).text());
 	});
 })
 
@@ -352,7 +349,8 @@ function searchCheck(keyword) {
 					resId = data.userId;
 					drawResInfo(data);
 					$('#chatView').empty();
-					resList(null, data.userId);
+					resId = data.userId
+					resList(resId);
 				}
 			} else {
 				clearTimeout(asyncInterval);
@@ -362,25 +360,10 @@ function searchCheck(keyword) {
 				$('#resInfo').html('<span>Follow목록에 없는 ID입니다.</span>');
 			}
 		}
-	})
-	
+	});
 }
 
-//var selectMsg;
-//삭제버튼
-$(document)
-// 마우스 오른쪽 버튼 메뉴
-//.on("contextmenu", '.resMsg', function(event) { 
-//    event.preventDefault();
-//    selectMsg = event.target;
-//    $('.custom-menu').hide();
-//    $("<div class='custom-menu'><ul><li id='delete'>삭제</li></ul></div>")
-//        .appendTo("body")
-//        .css({top: event.pageY + "px", left: event.pageX + "px"});
-//}).on("click", function(event) {
-//    $("div.custom-menu").hide();
-//})
-.on('click', '#chatView .delete', function(event) {
+$(document).on('click', '#chatView .delete', function(event) {
 	var del = confirm("Do you want to delete message?");
 	if(del) {
 		$.ajax({

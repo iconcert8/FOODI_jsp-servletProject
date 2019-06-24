@@ -1,6 +1,8 @@
 package me.foodi.domain;
 
-public class ChatVO {
+import java.io.Serializable;
+
+public class ChatVO implements Serializable {
 	private int chatNo;
 	private String chatMsg;
 	private String chatDate;

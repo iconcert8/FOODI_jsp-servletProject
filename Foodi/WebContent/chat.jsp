@@ -16,17 +16,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
-	<header>
-		채팅창입니다.
-	</header>
-	<nav>
-		메뉴바 들어 갈 곳 
-	</nav>
-		<hr>
+	<jsp:include page="toolbar2.jsp"></jsp:include>
+<!-- 		<hr> -->
 		
 	<section>
 		<article id="left" class="side">
 			<input type="text" id="search">
+			<div id="leftList"></div>
 		</article>
 		
 		<article id="middle">
@@ -38,8 +34,8 @@
 			</div>
 			<div id="sendMsg">
 				<form action="view" method="post">
-					<textarea rows="3" cols="100" name="chatMsg" autofocus="autofocus"></textarea>
-					<input type="button" value="send" onclick="reqMsg()">
+					<input type="text" name="chatMsg" autofocus="autofocus"></textarea>
+					<input type="button" value="send">
 		<!-- 			<input type="submit" value="send"> -->
 				</form>
 			</div>

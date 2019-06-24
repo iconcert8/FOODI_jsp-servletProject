@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import me.foodi.DAO.ChatDAO;
+import me.foodi.domain.ChatNotifyVO;
 import me.foodi.domain.ChatVO;
 import me.foodi.domain.UserInfoVO;
 
@@ -104,6 +105,16 @@ public class ChatService {
 		del.put("reqId", reqId);
 		del.put("chatNo", chatNo);
 		return dao.chatDeleteMessage(del);
+	}
+
+	public List<ChatNotifyVO> chatReadlessService(HttpServletRequest request) {
+		String userId = (String) request.getAttribute("userId");
+		return dao.chatReadless(userId);
+	}
+
+	public String chatNotifyService(HttpServletRequest request) {
+		String userId = (String) request.getAttribute("userId");
+		return dao.chatNotify(userId);
 	}
 
 }

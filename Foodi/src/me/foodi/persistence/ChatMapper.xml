@@ -22,7 +22,7 @@
 	<select id="chatSelectLastResId" parameterType="String" resultType="me.foodi.domain.ChatVO">
 		select *
   			from chat
- 			where CHATNO = (select max(CHATNO) from chat WHERE reqid = #{userId})
+ 			where CHATNO = (select max(CHATNO) from chat WHERE reqid = #{userId} OR resid = #{userId})
 	</select>
 	
 	
@@ -42,9 +42,21 @@
 			where userId = #{resId}
 	</select>
 	
+	<select id="chatReadless" resultType="me.foodi.domain.ChatNotifyVO" parameterType="String">
+		SELECT reqId as resId, count(*) as readless FROM chat
+			where chatchk >= 1 AND resid = #{userId}
+			GROUP BY reqid
+	</select>
+	
 	<select id="chatSearchCheck" parameterType="hashmap" resultType="String">
 		select resId from follow
 			where reqId = #{reqId} and resId = #{resId}
+	</select>
+	
+	<select id="chatNotify">
+		SELECT count(*) readless FROM chat
+			where chatchk >= 1 AND resid = #{userId}
+			GROUP BY reqid
 	</select>
 	
 	<insert id="chatSend" parameterType="me.foodi.domain.ChatVO">

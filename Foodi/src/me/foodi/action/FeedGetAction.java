@@ -4,14 +4,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.domain.UserAndFeedVO;
-import me.foodi.service.NewsFeedService;
+import me.foodi.service.FeedService;
 import net.sf.json.JSONObject;
 
 public class FeedGetAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		NewsFeedService service = NewsFeedService.getInstance();
+		FeedService service = FeedService.getInstance();
 		
 		UserAndFeedVO feedVO = service.detailNewsFeedService(request);
 		

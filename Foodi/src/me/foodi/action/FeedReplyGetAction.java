@@ -6,14 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.domain.ReplyVO;
-import me.foodi.service.NewsFeedService;
+import me.foodi.service.FeedService;
 import net.sf.json.JSONArray;
 
 public class FeedReplyGetAction implements Action{
  
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		NewsFeedService service = NewsFeedService.getInstance();
+		FeedService service = FeedService.getInstance();
 		
 		List<ReplyVO> list = service.feedReplyGetService(request);
 		String json = JSONArray.fromObject(list).toString();

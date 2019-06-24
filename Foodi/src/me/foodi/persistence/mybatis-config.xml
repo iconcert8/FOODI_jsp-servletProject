@@ -46,7 +46,6 @@
 		<mapper resource="me/foodi/persistence/NotifyMapper.xml" />
 		<mapper resource="me/foodi/persistence/TimeLineMapper.xml"/>
 		<mapper resource="me/foodi/persistence/TagMapper.xml"/>
-		<mapper resource="me/foodi/persistence/NewsFeedMapper.xml" />
 		<mapper resource="me/foodi/persistence/MapMapper.xml"/>
 	</mappers>
 	

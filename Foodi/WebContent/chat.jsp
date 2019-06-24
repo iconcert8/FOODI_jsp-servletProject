@@ -16,7 +16,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
-	<jsp:include page="toolbar2.jsp"></jsp:include>
 <!-- 		<hr> -->
 		
 	<section>

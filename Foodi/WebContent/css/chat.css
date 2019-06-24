@@ -15,15 +15,8 @@
 	text-align: center;
 }
 
-.resSelected {
-	background-color: #e0fa7c;
-}
 
-.dateDay {
-	text-align: center;
-	text-shadow: 0 0 2px #000;
-}
-
+/* send input */
 input[name=chatMsg] {
 	width : 90%;
 	padding : 11px 20px;
@@ -55,16 +48,26 @@ input[value=send]:hover {
 	color : white;
 }
 
+/* resInfo */
+
 #resInfo {
 	height : 100px;
+	border-bottom: 1px solid #9b9b9b;
 }
 
+/* chatview */
 #chatView {
 	height : 690px;
 	overflow-y: auto;
 }
 
-/* chatview */
+
+.dateDay {
+	text-align: center;
+	text-shadow: 0 0 2px #000;
+}
+
+
 .res {
 	text-align: left;
 	margin : 5px;
@@ -83,4 +86,64 @@ input[value=send]:hover {
 	border : 2px solid #fccc29;
 	border-radius: 10px;
 	padding : 2px 5px
+}
+
+/* reslist */
+#resList {
+	padding : 10px 15px 10px 15px;
+}
+
+.resList {
+	cursor: pointer;	
+	padding : 10px 10px;	
+}
+
+.resList:hover {
+	border : 1px solid #6cb8fd;
+	border-radius: 5px;
+}
+
+.resSelected {
+	background-color: #e0fa7c;
+	border-radius: 5px;
+}
+
+.ChatTitle {
+	font-weight: bold;
+	padding : 10px 20px;
+	font-size : 20px;
+}
+
+/* search */
+
+#idSearch {
+	margin-top : 20px
+}
+
+#search {
+	width : 70%;
+	border : 2px solid #fccc29;
+	border-radius: 5px 0 0 5px;
+	padding : 11px 6px;
+	font-size: 16px;
+}
+
+#searchbtn {
+	width : 22%;
+	background-color: #fccc29;
+	white: white;
+	border : 2px solid #fccc29;
+	border-color:#fccc29;
+	border-radius: 0 5px 5px 0;
+	padding : 10px 5px;
+	font-size: 15px;
+	position : relative;
+	top : 1px;
+	transition-duration : 0.4s;
+	cursor: pointer;
+}
+
+#searchbtn:hover {
+	background-color : white;
+	color: black;
 }

@@ -16,17 +16,23 @@ $(function() {
 		request.get
 	});
 	
-	$('#searchForm').autocomplete({
+	$('#searchSpace').autocomplete({
 		source : function(request, response) {
+			console.log(request.term);
 			$.ajax({
 				type:'post',
-				url:'',
+				url:'search/auto',
 				data: {
-					search : request.term
+					"search" : request.term
 				},
 				dataType : 'json',
 				success : function(data) {
-					response(data);
+					if(data) {
+						response(data);
+					}
+				},
+				error : function() {
+					console.log('error');
 				}
 			});
 		},

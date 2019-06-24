@@ -19,4 +19,10 @@
 		where rownum< 3
 		]]>
 	</select>
+	
+	<select id="searchAutoComplete" resultType="String" parameterType="String">
+		select tagName
+			from feedTag
+				where tagName like #{keyword}
+	</select>
 </mapper>

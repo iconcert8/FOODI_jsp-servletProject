@@ -9,18 +9,21 @@
 <head>
 <meta charset="UTF-8">
 <title>messenger</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!--     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
     <link rel="stylesheet" href="/Foodi/css/chat.css">
-    <link rel="stylesheet" href="/Foodi/css/all.css">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<!--     <link rel="stylesheet" href="/Foodi/css/all.css"> -->
 </head>
 <body>
+	<jsp:include page="toolbar.jsp"></jsp:include>
 <!-- 		<hr> -->
-		
+	
 	<section>
 		<article id="left" class="side">
-			<input type="text" id="search">
+			<div class="ChatTitle">ID Search</div>
+				<hr>
+			<div id="idSearch">
+				<input type="text" id="search"><input type="button" id="searchbtn" value="ID찾기">
+			</div>
 			<div id="leftList"></div>
 		</article>
 		
@@ -43,9 +46,9 @@
 		
 		
 		<article id="right" class="side">				
-		채팅 목록
-		<hr>
-		<div id="resList"></div>
+			<div class="ChatTitle">List</div>
+			<hr>
+			<div id="resList"></div>
 		</article>		
 	</section>
 	

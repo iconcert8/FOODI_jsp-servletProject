@@ -74,7 +74,7 @@ function resList(resId) {
 			console.log('resList success');
 			$('#resList').empty();
 			$.each(data, function(i, item) {
-				var div = $('<div></div>');
+				var div = $('<div class="resList"></div>');
 // 						if(i.chatImg != null) {
 // 							div.append('<img src="'+ i.chatImg +'"/>');
 // 						}
@@ -86,7 +86,8 @@ function resList(resId) {
 					}
 					div.appendTo('#resList');
 				} else if(item.selected != null){
-					div.append('<span class="resSelected">' + item.selected + '</span>');
+					div.append('<span>' + item.selected + '</span>');
+					div.addClass('resSelected');
 					div.appendTo('#resList');
 				}
 			})
@@ -138,7 +139,7 @@ function selectUser() {
 			}
 		},
 		error : function (data) {
-			console.log('cselectUser fail');
+			console.log('selectUser fail');
 		}
 	});
 }
@@ -150,7 +151,7 @@ function drawResInfo(data) {
 		$('<img alt="profile image" src="upload_thumbImg/' + data.userImg + '"></img>').appendTo('#resInfo');
 	}
 	$('<span class="resId">' + data.userId + '</span><br>').appendTo('#resInfo');
-	$('<span class="resNick">' + data.userNick + '</span><br><hr>').appendTo('#resInfo');
+	$('<span class="resNick">' + data.userNick + '</span><br>').appendTo('#resInfo');
 }
 
 //check read update

@@ -2,14 +2,15 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/toolbar.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="/Foodi/js/toolbar.js"></script>
 <link rel="stylesheet" href="/Foodi/css/all.css">
 <link rel="stylesheet" href="/Foodi/css/toolbar.css">
 </head>
@@ -36,7 +37,7 @@
 		<!-------------------------  로그인 했을경우 나타날 화면  ------------------------->
 		<c:if test="${loginUser != null}">
 			<ul>
-				<li><a href="makeFeed.jsp">
+				<li><a href="/Foodi/makeFeed.jsp">
 					<img src="/Foodi/css/icon/feed.png" width="50" height="50" />
 				</a></li>&nbsp;&nbsp;
 
@@ -44,7 +45,7 @@
 					<img src="/Foodi/css/icon/kook.png" width="50" height="50" />
 				</a></li>&nbsp;&nbsp;
 
-				<li><a href="#">
+				<li><a href="/Foodi/chat/view">
 					<img src="/Foodi/css/icon/chat.png" width="50"	height="50" />
 				</a></li>&nbsp;&nbsp;
 
@@ -52,7 +53,7 @@
 					<img src="/Foodi/css/icon/notification.png" width="50" height="50" />
 				</a></li>&nbsp;&nbsp;
 
-				<li><a href="userInfo/logout.do" method="post">
+				<li><a href="/Foodi/userInfo/logout.do" method="post">
 					<img src="/Foodi/css/icon/logout.png" width="50" height="50" />
 				</a></li>&nbsp;&nbsp;
 			</ul>

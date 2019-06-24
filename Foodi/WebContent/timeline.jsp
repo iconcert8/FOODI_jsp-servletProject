@@ -11,7 +11,9 @@
 
 </head>
 <body>
-	<nav>메뉴바 들어 갈 곳</nav>
+	<nav>
+		<jsp:include page="toolbar.jsp"></jsp:include>
+	</nav>
 	<section>
 		<article id="left" class="side">
 			<h2 id="ssg_title">MY SSG</h2>

@@ -117,7 +117,7 @@ input[value=send]:hover {
 /* search */
 
 #idSearch {
-	margin-top : 20px
+	margin: 20px 5px 10px 5px
 }
 
 #search {
@@ -146,4 +146,18 @@ input[value=send]:hover {
 #searchbtn:hover {
 	background-color : white;
 	color: black;
+}
+
+.searchResult {
+	cursor: pointer;	
+	padding : 10px 10px;
+	border-radius: 5px
+}
+
+.searchResult:hover {
+	background-color: #85e0d2;
+}
+
+#leftList {
+	padding: 10px 15px 10px 15px
 }

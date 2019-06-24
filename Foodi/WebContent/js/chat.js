@@ -229,6 +229,7 @@ function drawMsg(i, item, data) {
 		}
 	}
 	
+//	scroll to bottom
 	var element = document.getElementById('chatView');
 	element.scrollTop = element.scrollHeight;
 }
@@ -328,7 +329,8 @@ $(function() {
 	});
 	
 	$(document).on('click', '.searchResult', function(event) {
-		searchCheck($(this).text());
+//		searchCheck($(this).text());
+		$('#search').val($(this).text()).focus();
 	});
 })
 

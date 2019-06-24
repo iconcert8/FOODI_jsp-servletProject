@@ -1,7 +1,9 @@
-﻿$(document).ready(function(){
+﻿document.write("<script type='text/javascript' src='/Foodi/js/good.js'></script>");
+
+$(document).ready(function(){
 	getList()
 	
-	$(document).on('click', '.detail',function(){
+	$(document).on('click', '.detail_btn',function(){
 		getFeed($(this).val());
 		$("#lightBox").removeClass("black");	
 		$("#lightBox").addClass("light");	
@@ -18,6 +20,11 @@
 		var replyContent = $("#replyText").val();
 		insertReply(feedNo, replyContent);
 	});
+	
+	$(document).on('click', '.isNotGood', function(){
+		/*var $this = $(this);
+		goodInsert(feedNo, $this, successFunction)*/
+	})
 })
 
 function getList(){
@@ -72,18 +79,28 @@ function insertReply(feedNo, replyContent){
 
 function successList(data){ 
 	$.each(data, function(index, item){
-		var html ='<li>'
-				+	'<div>'
-				+		'<div>'+item.userImg+'</div>'
-				+		'<label>'+item.userId+'</label>'
+		var html ='<li class="feed">'
+				+	'<div class="feed_top">'
+				+		'<a href="/Foodi/timeline/timeline?userId=${'+item.userId+'}"><img alt="ProfImg" src="'+item.userImg+'" class="feed_userimg"/></a>'
+				+		'<a href="/Foodi/timeline/timeline?userId=${'+item.userId+'}"><label class="feed_userid">'+item.userId+'</label></a>'				
+				+		'<div class="feed_date">'+item.feedDate+'</div>'
+				+		'<div class="feed_content">'+item.feedContent+'</div>'
 				+	'</div>'
-				+	'<div>'
-				+		'<label>'+item.feedContent+'</label>'
-				+		'<div>'+item.feedImg+'</div>'
+				+	'<div class="feed_middle">'
+				+		'<img alt="no images" src="'+item.feedImg+'" class="feed_img"/>'
 				+	'</div>'
-				+	'<button class="detail" value="'+item.feedNo+'">상세보기</button>'
-				+	'<div>'
-				+		'<button>좋아요</button>'+'<button class="detail" value="'+item.feedNo+'">댓글</button>'+'<button>쿡</button>'
+				+	'<div class="feed_bottom">';
+			if(item.isGood == ""){
+				html += '<button class="isNotGood" value="'+item.feedNo+'">좋아요</button>';
+			}else{
+				html += '<button class="isGood" value="'+item.feedNo+'">좋아요</button>'
+			}
+			if(item.isQook == ""){
+				html += '<button class="isNotQook" value="'+item.feedNo+'">쿡</button>';
+			}else{
+				html += '<button class="isQook" value="'+item.feedNo+'">쿡</button>';				
+			}
+			html+=		'<button class="detail_btn" value="'+item.feedNo+'">상세보기</button>'
 				+	'</div>'
 				+ '</li>';
 		var writer ='<li>'
@@ -94,24 +111,24 @@ function successList(data){
 				+	'</li>';
 		$('#nfList').append(html).trigger("create");
 		$('#wtrList').append(writer).trigger("create");
-	}); 	 
-
+	}); 
 }
 
 function successFeed(data){
-	var html='<div>'
-		+		'<div>'+data.userImg+'</div>'
-		+		'<label>'+data.userId+'</label>'
+	var html='<div class="reply_top">'
+		+		'<a href="/Foodi/timeline/timeline?userId=${'+data.userId+'}"><img alt="ProfImg" src="'+data.userImg+'" class="feed_userimg"/></a>'
+		+		'<a href="/Foodi/timeline/timeline?userId=${'+data.userId+'}"><label class="feed_userid">'+data.userId+'</label></a>'				
+		+		'<div class="feed_date">'+data.feedDate+'</div>'
+		+		'<div class="feed_content">'+data.feedContent+'</div>'
+		+	'</div>'
+		+	'<div class="reply_middle">'
+		+		'<img alt="no images" src="'+data.feedImg+'" class="feed_img"/>'
+		+	'</div>'
+		+	'<div class="reply_bottom">'
+		+		'<button value="'+item.feedNo+'">좋아요</button>'+'<button value="'+item.feedNo+'">쿡</button>'
 		+	'</div>'
 		+	'<div>'
-		+		'<label>'+data.feedContent+'</label>'
-		+		'<div>'+data.feedImg+'</div>'
-		+	'</div>'
-		+	'<div>'
-		+		'<button>좋아요</button>'+'<button>쿡</button>'
-		+	'</div>'
-		+	'<div>'
-		+		'<input type="text" id="replyText">'+'<button id="replySend" value="'+data.feedNo+'">작성</button>'
+		+		'<textarea id="replyText"></textarea>'+'<button id="replySend" value="'+data.feedNo+'">작성</button>'
 		+	'</div>';
 	$("#feedInfoBox").append(html).trigger("create");
 	

@@ -33,6 +33,7 @@
 			<div id="lightBox" class="black">
 				<b id="close">X</b>
 				<div id="feedInfoBox"></div>
+				<b>댓글</b>
 				<div id="replyBox"></div>				
 			</div>
 		</article> 

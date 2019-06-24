@@ -31,8 +31,8 @@ body{
 				center : new daum.maps.LatLng(37.478964178779556,
 						126.8816736103818), // 지도의 중심좌표
 				level : 9
-			// 지도의 확대 레벨
-			};
+			// 지도의 확대 레벨 
+			}; 
 
 			// 지도를 생성합니다    
 			var map = new daum.maps.Map(mapContainer, mapOption);

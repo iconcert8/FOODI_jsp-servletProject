@@ -29,17 +29,25 @@ public class NewsFeedService {
 		return dao.newsFeedList(feedVO);
 	}
 	
-	public List<ReplyVO> newsfeedReply(HttpServletRequest request){
+	public List<ReplyVO> newsfeedReplyService(HttpServletRequest request){
+UserInfoVO userInfoVO = (UserInfoVO)request.getSession().getAttribute("loginUser");
+		
+		ReplyVO replyVO = new ReplyVO();
+		replyVO.setUserId(userInfoVO.getUserId());
+		
+		
 		return dao.newsfeedReply(Integer.parseInt(request.getParameter("feedNo")));
 	}
 	public int insertNewsfeedReplyService(HttpServletRequest request){ 
-		ReplyVO replyVO = new ReplyVO();
+		UserInfoVO userInfoVO = (UserInfoVO)request.getSession().getAttribute("loginUser");
 		
-		replyVO.setReplyNo(Integer.parseInt(request.getParameter("replyNo")));
-		replyVO.setFeedNo(Integer.parseInt(request.getParameter("replyno")));
-		replyVO.setReplyContent(request.getParameter("replyContent"));
-		replyVO.setUserId(request.getParameter("userId"));
+		ReplyVO replyVO = new ReplyVO();
+		replyVO.setUserId(userInfoVO.getUserId());
 		
 		return dao.insertNewsfeedReply(replyVO);
+	}
+	
+	public FeedVO detailNewsFeedService(HttpServletRequest request){
+		return dao.detailNewsFeed(Integer.parseInt(request.getParameter("feedNo")));
 	}
 }

@@ -13,6 +13,7 @@ import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
 import me.foodi.action.InsertFeedAction;
 import me.foodi.action.NewsFeedAction;
+import me.foodi.action.NewsFeedDetailAction;
 import me.foodi.action.NewsFeedListAction;
 import me.foodi.action.NewsFeedReplyAction;
 
@@ -41,7 +42,7 @@ public class FeedController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
+			/*
 		} else if (path.equals("feed/newsFeed.do")) {
 			action = new NewsFeedAction();
 			System.out.println("ok");
@@ -49,26 +50,35 @@ public class FeedController extends HttpServlet {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			}*/
 		}else if(path.equals("feed/newsfeedList.do")){
 			action = new NewsFeedListAction();
+			System.out.println("ok");
+			try{ 
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+		}else if(path.equals("feed/newsfeedDetail.do")){
+			action = new NewsFeedDetailAction();
 			System.out.println("ok");
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
-			} 
-	}else if(path.equals("feed/insertNewsfeedReply.do")){
+			}
+		}else if(path.equals("feed/newsfeedReply.do")){
 			action = new NewsFeedReplyAction();
 			System.out.println("ok");
 			try{
-				forward = action.execute(request, response);		
+				forward = action.execute(request, response);
+				
 			}catch(Exception e){
 				e.printStackTrace();
 			}
 			return ;
 		}
-	
+
 
 		if (forward != null) {
 			if (forward.isRedirect()) {

@@ -7,7 +7,8 @@
 		$("#lightBox").addClass("light");	
 	}); 
 	$(document).on('click', '#close',function(){
-		$('#lightBox').empty();
+		$('#feedInfoBox').empty();
+		$('#replyBox').empty();
 		$("#lightBox").removeClass("light");	
 		$("#lightBox").addClass("black");	
 	});
@@ -53,7 +54,6 @@ function getReply(feedNo){
 		data : {"feedNo" : feedNo},
 		error: function(error){console.log(error);},
 		success : successReply
-
 	});
 }
 
@@ -64,7 +64,9 @@ function insertReply(feedNo, replyContent){
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 		data : {"feedNo" : feedNo, "replyContent":replyContent},
 		error: function(error){console.log(error);},
-		success : function(){}
+		success : function(){
+			successInsertReply(feedNo);
+		}
 	});
 }
 
@@ -97,8 +99,7 @@ function successList(data){
 }
 
 function successFeed(data){
-	var html='<b id="close">X</b>'
-		+	'<div>'
+	var html='<div>'
 		+		'<div>'+data.userImg+'</div>'
 		+		'<label>'+data.userId+'</label>'
 		+	'</div>'
@@ -112,23 +113,25 @@ function successFeed(data){
 		+	'<div>'
 		+		'<input type="text" id="replyText">'+'<button id="replySend" value="'+data.feedNo+'">작성</button>'
 		+	'</div>';
-	$("#lightBox").append(html).trigger("create");
+	$("#feedInfoBox").append(html).trigger("create");
 	
 	getReply(data.feedNo);
 }
  
 function successReply(data){
-	var html='<div>';
 	$.each(data, function(index, item){
-		html+= '<p>'
+		var html= '<p>'
 			+		'<b>'+item.userId +'</b>'+'<label> '+new Date(item.replyDate.time).format("yyyy/MM/dd HH:mm") +'</label><br>'
 			+		'<label>'+item.replyContent +'</label>'
 			+ '</p>';
+		$("#replyBox").append(html).trigger("create");
 	});	
-	html += '</div>';
-	$("#lightBox").append(html).trigger("create");
 }  
 
+function successInsertReply(feedNo){
+	$("#replyBox").empty();
+	getReply(feedNo);
+}
 
 Date.prototype.format = function(f) {
     if (!this.valueOf()) return " ";

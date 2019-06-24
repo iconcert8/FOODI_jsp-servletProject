@@ -30,7 +30,11 @@
 	 		<ul id="nfList">
 	 		
 	 		</ul>
-			<div id="lightBox" class="black"></div>
+			<div id="lightBox" class="black">
+				<b id="close">X</b>
+				<div id="feedInfoBox"></div>
+				<div id="replyBox"></div>				
+			</div>
 		</article> 
 		
 		<article id="right" class="side">

@@ -49,7 +49,7 @@
 	
 	<insert id="feedReplyInsert" parameterType="ReplyVO">
 		insert into reply
-		values (reply_seq.nextval. #{feedNo}, #{replyContent}, sysdate, #{userid})
+		values (reply_seq.nextval, #{feedNo}, #{replyContent}, sysdate, #{userId})
 	</insert>   
 	
 	<select id="newsfeedDetail" parameterType="FeedVO" resultType="UserAndFeedVO">

@@ -33,7 +33,7 @@
 			</ul>
 
 
-			<ul>
+			<ul> 
 
 				<li>닉네임&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="updateUserNick"></li>
 			</ul>

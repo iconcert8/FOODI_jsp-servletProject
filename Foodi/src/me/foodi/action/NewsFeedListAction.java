@@ -22,7 +22,7 @@ public class NewsFeedListAction implements Action {
 		System.out.println(json);
 		response.getWriter().write(json);
 		  
-		
+		  
 		return null;
 	}                                    
 

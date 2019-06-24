@@ -5,11 +5,42 @@ body{ margin:0 auto; width:1400px; }
 
 /* head */
 nav{height:60px;}
-header{height:450px; text-align: center; background-image: url("/Foodi/css/images/mainFood.png");}
-h1{width:450px; height:200px; margin-top:80px; display: inline-block; background-color: gray;}
-.search{display: inline-block; height:40px; margin-top: 20px; background-color: gray;}
-#searchIcon{width:50px; margin-right: 10px;}
-#search{width: 500px;}
+header{height:450px; 
+text-align: center; 
+background-image: url("/Foodi/css/images/mg.png");}
+
+
+h1{
+	width:450px; 
+background-image: url("/Foodi/css/icon/logo.png");
+height:200px; 
+margin-top:40px;   
+display: inline-block; 
+} 
+
+
+
+.search-1{display: inline-block; 
+height:40px; margin-top: 50px;
+margin-top: 10px;
+ 
+ }
+ 
+.search-2{display: inline-block; 
+height:40px; margin-top: 50px;
+ 
+ }
+ 
+ #search{width: 500px;
+margin-right:50px;
+background-image: url("/Foodi/css/icon/searchBar.png");
+} 	
+ 
+ 
+#searchIcon{width:50px; 
+margin-left:30px;
+background-image: url("/Foodi/css/icon/dot.png");}
+
 
 /* section */
 section{margin-top:20px;}

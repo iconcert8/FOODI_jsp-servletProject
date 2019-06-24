@@ -17,10 +17,20 @@ $(function() {
 	
 	$('#searchForm').autocomplete({
 		source : function(request, response) {
-			
+			$.ajax({
+				type:'post',
+				url:'',
+				data: {
+					search : request.term
+				},
+				dataType : 'json',
+				success : function(data) {
+					response(data);
+				}
+			});
 		},
 		select: function(event, item) {
-			
+			location.href = '';
 		}
 	});
 	

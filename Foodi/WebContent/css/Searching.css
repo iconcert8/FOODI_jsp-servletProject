@@ -3,7 +3,7 @@
 	border: 5px solid #ffcd47;
 	margin-left: 10px;
 	padding-left: 10px;
-	width:450px;
+	width:550px;
 	font-size: 40px;
 }
 
@@ -61,4 +61,40 @@ li{
 }
 #feed_tag{
 	padding-left: 80px;
+}
+button{
+  background:#ffcd47;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+button:hover{
+  background:#fff;
+  color:#ffcd47;
+}
+button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #ffcd47;
+  transition:400ms ease all;
+}
+button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
 }

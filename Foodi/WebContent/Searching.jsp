@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/Foodi/css/all.css">
 <link rel="stylesheet" href="/Foodi/css/Searching.css">
+<script type="text/javascript" src="/Foodi/js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/Foodi/js/Searching.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -15,14 +17,11 @@
 		<article id="left" class="side">좌측</article>
 
 		<article id="middle">
-			<h2>
+			
 				<h1 id="search_result">
-					<form action="ssg" method="post">${searchKeyword }
-						에 대한 검색 결과<input type="hidden" value="${searchKeyword }"
-							name="searchKeyword" /><input type="submit" value="SSG" style="font-size:30px;" />
-					</form>
+					<p id="searchKeyword">${searchKeyword }</p>에 대한 검색 결과<div id="btn"><button style="font-size:30px;" id="ssgbtn">SSG</button></div>
 				</h1>
-			</h2>
+			
 			<br>
 			<br>
 			

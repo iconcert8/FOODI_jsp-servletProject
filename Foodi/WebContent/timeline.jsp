@@ -155,15 +155,19 @@
 				<c:forEach var="f" items="${feeds }">
 					<div id="feed">
 						<div id="feed_top">
-						<img alt="ProfImg" src="${f.userImg }" id="feed_userimg"/>
-						<div id="feed_userid">${f.userId }</div>
+						<a href="/Foodi/timeline/timeline?userId=${f.userId }"><img alt="ProfImg" src="${f.userImg }" id="feed_userimg"/></a>
+						<a href="/Foodi/timeline/timeline?userId=${f.userId }"><div id="feed_userid">${f.userId }</div></a>
 						<div id="feed_date">${f.feedDate }</div>
 						<div id="feed_content">${f.feedContent }</div>
 						</div>
 						<div id="feed_middle">
 						<img alt="no images" src="${f.feedImg }" id="feed_img"/>
 						</div>
-						<input type="button" value="좋아요 : ${f.feedGoodCnt}"/>
+						<div id="feed_bottom">
+						<button id="good_btn"><a href="#">좋아요 : ${f.feedGoodCnt}</a></button>
+						<button id="detail_btn"><a href="#">상세페이지</a></button>
+						<button id="report_btn"><a href="#">신고하기</a></button>
+						</div>
 					</div>
 					<br>
 					<br>

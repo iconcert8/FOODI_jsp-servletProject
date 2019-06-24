@@ -11,7 +11,7 @@
 </head>
 <body>
 	<nav>
-		메뉴바 들어 갈 곳 
+		<jsp:include page="toolbar.jsp"></jsp:include>
 	</nav>
 	<section>
 		<article id="left" class="side">

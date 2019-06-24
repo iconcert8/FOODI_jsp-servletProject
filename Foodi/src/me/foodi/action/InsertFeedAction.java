@@ -30,7 +30,7 @@ public class InsertFeedAction implements Action {
 		tagService.insertTag(multi, feedNo);
 
 		forward.setRedirect(true);
-		forward.setPath("foodi/makeFeed.jsp");
+		forward.setPath("/Foodi/makeFeed.jsp");
 		return forward;
 	}
 }

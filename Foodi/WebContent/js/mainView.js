@@ -54,7 +54,7 @@ function htgList(){
 }
 function htgFeedList(tagName){
 	$.ajax({
-		url: '/Foodi/feed/listTagFeed',
+		url: '/Foodi/feed/listByTag',
 		type: 'get',
 		dataType: 'json',
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -101,7 +101,7 @@ function htgFeedList(tagName){
 }
 function htgFeedList1(tagName, $ul){
 	$.ajax({
-		url: '/Foodi/feed/listTagFeed',
+		url: '/Foodi/feed/listByTag',
 		type: 'get',
 		dataType: 'json',
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -130,7 +130,7 @@ function htgFeedList1(tagName, $ul){
 }
 function htgFeedList2(tagName, $ul){
 	$.ajax({
-		url: '/Foodi/feed/listTagFeed',
+		url: '/Foodi/feed/listByTag',
 		type: 'get',
 		dataType: 'json',
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",

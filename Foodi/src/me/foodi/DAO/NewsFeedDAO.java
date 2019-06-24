@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import me.foodi.domain.FeedVO;
 import me.foodi.domain.ReplyVO;
+import me.foodi.domain.UserAndFeedVO;
 import me.foodi.mapper.NewsFeedMapper;
 
 
@@ -33,8 +34,8 @@ public class NewsFeedDAO {
 		return new SqlSessionFactoryBuilder().build(in);
 	}
 
-	public List<FeedVO> newsFeedList(FeedVO feedVO){
-		List<FeedVO> list = null;
+	public List<UserAndFeedVO> newsFeedList(FeedVO feedVO){
+		List<UserAndFeedVO> list = null;
 		SqlSession session = getSqlSessionFactory().openSession();
 	
 		try{
@@ -49,12 +50,12 @@ public class NewsFeedDAO {
 	
 	}
 	
-	public List<ReplyVO> newsfeedReply(int feedNo){
+	public List<ReplyVO> feedReplyGet(int feedNo){
 		List<ReplyVO> list = null;
 		SqlSession session = getSqlSessionFactory().openSession();
 		
 		try{
-			list = session.getMapper(NewsFeedMapper.class).newsfeedReply(feedNo);	
+			list = session.getMapper(NewsFeedMapper.class).feedReplyGet(feedNo);	
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -66,12 +67,12 @@ public class NewsFeedDAO {
 		return list;	
 	}
 	
-	public int insertNewsfeedReply(ReplyVO replyVO){
+	public int feedReplyInsert(ReplyVO replyVO){
 		int re = -1;
 		SqlSession session = getSqlSessionFactory().openSession();
 		
 		try{
-			re = session.getMapper(NewsFeedMapper.class).insertNewsfeedReply(replyVO);
+			re = session.getMapper(NewsFeedMapper.class).feedReplyInsert(replyVO);
 			if(re > 0){
 				session.commit();
 			}else{
@@ -87,12 +88,12 @@ public class NewsFeedDAO {
 		return re;
 	}
 	 
-	public FeedVO detailNewsFeed(int feedNo){
-		FeedVO feedVO = null;
+	public UserAndFeedVO detailNewsFeed(FeedVO feedVO){
+		UserAndFeedVO userAndFeedVO = null;
 		SqlSession session = getSqlSessionFactory().openSession();
 		
 		try{
-			feedVO = session.getMapper(NewsFeedMapper.class).newsfeedDetail(feedNo);
+			userAndFeedVO = session.getMapper(NewsFeedMapper.class).newsfeedDetail(feedVO);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -101,7 +102,7 @@ public class NewsFeedDAO {
 			}
 		}
 		
-		return feedVO;
+		return userAndFeedVO;
 	}
 }
 

@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
+import me.foodi.action.FeedGetAction;
+import me.foodi.action.FeedReplyGetAction;
+import me.foodi.action.FeedReplyInsertAction;
 import me.foodi.action.FeedTagListAction;
 import me.foodi.action.InsertFeedAction;
-import me.foodi.action.NewsFeedDetailAction;
 import me.foodi.action.NewsFeedListAction;
-import me.foodi.action.NewsFeedReplyAction;
 
 
 @WebServlet("/feed/*")
@@ -42,34 +43,22 @@ public class FeedController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			/*
-		} else if (path.equals("feed/newsFeed.do")) {
-			action = new NewsFeedAction();
-			System.out.println("ok");
-			try{
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}*/
 		}else if(path.equals("feed/newsfeedList.do")){
 			action = new NewsFeedListAction();
-			System.out.println("ok");
 			try{ 
 				forward = action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			} 
-		}else if(path.equals("feed/newsfeedDetail.do")){
-			action = new NewsFeedDetailAction();
-			System.out.println("ok");
+		}else if(path.equals("feed/get")){
+			action = new FeedGetAction();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(path.equals("feed/newsfeedReply.do")){
-			action = new NewsFeedReplyAction();
-			System.out.println("ok");
+		}else if(path.equals("feed/getReply")){
+			action = new FeedReplyGetAction();
 			try{
 				forward = action.execute(request, response);
 				
@@ -77,7 +66,16 @@ public class FeedController extends HttpServlet {
 				e.printStackTrace();
 			}
 			return ;
-		}else if(path.equals("feed/listTagFeed")){
+		}else if(path.equals("feed/insertReply")){
+			action = new FeedReplyInsertAction();
+			try{
+				forward = action.execute(request, response);
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			return ;
+		}else if(path.equals("feed/listByTag")){
 			action = new FeedTagListAction();
 			try{
 				forward = action.execute(request, response);

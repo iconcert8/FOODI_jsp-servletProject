@@ -5,24 +5,21 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import me.foodi.domain.UserAndFeedVO;
+import me.foodi.domain.ReplyVO;
 import me.foodi.service.NewsFeedService;
 import net.sf.json.JSONArray;
 
-public class NewsFeedListAction implements Action {
-
+public class FeedReplyGetAction implements Action{
+ 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		NewsFeedService service = NewsFeedService.getInstance();
 		
-		
-		List<UserAndFeedVO> list = service.newsFeedListService(request);
-		
+		List<ReplyVO> list = service.feedReplyGetService(request);
 		String json = JSONArray.fromObject(list).toString();
 		response.getWriter().write(json);
-		  
-		  
+		
 		return null;
-	}                                    
-
+	}
 }
+ 

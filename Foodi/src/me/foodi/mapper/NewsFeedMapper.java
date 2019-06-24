@@ -4,17 +4,17 @@ import java.util.List;
 
 import me.foodi.domain.FeedVO;
 import me.foodi.domain.ReplyVO;
-import me.foodi.domain.UserInfoVO;
+import me.foodi.domain.UserAndFeedVO;
  
 public interface NewsFeedMapper {
 	
-	List<FeedVO> listNewsFeed(FeedVO feedVO);
+	List<UserAndFeedVO> listNewsFeed(FeedVO feedVO);
 	
-	List<ReplyVO> newsfeedReply(int feedNo);
+	List<ReplyVO> feedReplyGet(int feedNo);
 	
-	int insertNewsfeedReply(ReplyVO replyVO);
+	int feedReplyInsert(ReplyVO replyVO);
 	
-	FeedVO newsfeedDetail(int feedNo);
+	UserAndFeedVO newsfeedDetail(FeedVO feeVO);
 
 }
   

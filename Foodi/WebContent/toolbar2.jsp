@@ -7,6 +7,7 @@
 <head>
 <script type="text/javascript" src="/Foodi/js/toolbar.js"></script>
 <link rel="stylesheet" href="/Foodi/css/toolbar.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 </head>
 <body>
 	<nav class="nav">
@@ -31,7 +32,7 @@
 	<div id="userMenu">
 		<c:if test="${loginUser != null}">
 			<ul>
-				<li><a href="makeFeed.jsp"> <img src="/Foodi/css/icon/feed.png"
+				<li><a href="/Foodi/makeFeed.jsp"> <img src="/Foodi/css/icon/feed.png"
 						width="50" height="50" />
 				</a></li>&nbsp;&nbsp;
 
@@ -47,7 +48,7 @@
 						src="/Foodi/css/icon/notification.png" width="50" height="50" />
 				</a></li>&nbsp;&nbsp;
 
-				<li><a href="userInfo/logout.do" method="post"> <img
+				<li><a href="/Foodi/userInfo/logout.do" method="post"> <img
 						src="/Foodi/css/icon/logout.png" width="50" height="50" />
 				</a></li>&nbsp;&nbsp;
 			</ul>
@@ -55,10 +56,10 @@
 		<!-----------------------  로그인하지 않았을 경우 나타날 화면  ----------------------->
 		<c:if test="${loginUser == null}">
 			<ul>
-				<li><a href="login.jsp"> <img src="/Foodi/css/icon/logout.png"
+				<li><a href="/Foodi/login.jsp"> <img src="/Foodi/css/icon/logout.png"
 						width="50" height="50" />
 				</a></li>&nbsp;&nbsp;
-				<li><a href="join.jsp"> <img src="/Foodi/css/icon/join.png"
+				<li><a href="/Foodi/join.jsp"> <img src="/Foodi/css/icon/join.png"
 						width="50" height="50" />&nbsp;&nbsp;
 				</a></li>
 			</ul>
@@ -96,7 +97,7 @@
 		<!-----------------------  로그인하지 않았을 경우 나타날 화면  ----------------------->
 		<c:if test="${loginUser == null}">
 			<ul>
-				<li><a href="login.jsp">로그인 하세욧</a></li>
+				<li><a href="/Foodi/login.jsp">로그인 하세욧</a></li>
 			</ul>
 		</c:if>
 		<!---------------------------------------------------------------------->

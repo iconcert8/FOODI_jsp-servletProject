@@ -4,7 +4,7 @@
 
 var resId = '';
 var lastNo = 0;
-var setAsyncTime = 1000;
+var setAsyncTime = 5000;
 var asyncInterval;
 var listRefreshTime = 0;
 
@@ -30,7 +30,7 @@ function first() {
 
 //send Msg
 function sendMsg() {
-	let chatTest = $('textarea[name="chatMsg"]');
+	let chatTest = $('input[name="chatMsg"]');
 	
 	var sendMsg = {
 		"chatMsg" : chatTest.val(),
@@ -56,9 +56,6 @@ function sendMsg() {
 			if(!asyncInterval) {
 				async();
 			}
-		},
-		complete : function () {
-			console.log('reqMsg post done');
 		}
 	});
 }
@@ -199,9 +196,9 @@ function drawMsg(i, item, data) {
 		dateTime = (dateT[3] < 12 ? '오전 ' + dateT[3] : '오후 ' + (dateT[3] - 12)) + ':' + dateT[4];
 		if(resId == item.reqId) {
 			var divres = $('<div class="res"></div>');
-			divres.append(item.reqId + '/test To : ' + item.resId + '<br>')
+			divres.append('<span class="resId">' + item.reqId + '</span><br>')
 				.append('<input type="hidden" class="chatNo" value="' + item.chatNo + '"></input>')
-				.append('<span class="resMsg">' + item.chatMsg + '&nbsp;</span>')
+				.append('<span class="message">' + item.chatMsg + '&nbsp;</span>')
 				.append('<span class="date">' + dateTime + '&nbsp;</span>');
 			if(parseInt(item.chatChk)){
 				divres.append('<span class="read">' + item.chatChk + '</span>');
@@ -209,13 +206,14 @@ function drawMsg(i, item, data) {
 			divres.appendTo('#chatView');
 		} else {
 			var divuser = $('<div class="user"></div>');
-			divuser.append(item.reqId + '/test To : ' + item.resId + '<br>')
-				.append('<input type="hidden" class="chatNo" value="' + item.chatNo + '"></input>');
+			divuser
+				.append('<input type="hidden" class="chatNo" value="' + item.chatNo + '"></input>')
+				.append('<button value="del" class="delete">del</button>&nbsp;');
 			if(parseInt(item.chatChk)){
 				divuser.append('<span class="read">' + item.chatChk + '&nbsp;</span>');
 			}
 			divuser.append('<span class="date">' + dateTime + '&nbsp;</span>')
-				.append('<span class="resMsg">' + item.chatMsg + '</span>&nbsp;<button value="del" class="delete">del</button>')
+				.append('<span class="message">' + item.chatMsg + '</span>')
 				.appendTo('#chatView');
 		}
 	}
@@ -229,6 +227,9 @@ function drawMsg(i, item, data) {
 			$('.res > .read').hide();
 		}
 	}
+	
+	var element = document.getElementById('chatView');
+	element.scrollTop = element.scrollHeight;
 }
 
 // 지속적 요청
@@ -272,7 +273,7 @@ function async() {
 $(function() {
 	
 //	메시지 보내기 버튼 이벤트
-	$(document).on('click', '#sendMsg > input[type="button"]', function() {
+	$(document).on('click', '#sendMsg > input[value="send"]', function() {
 		sendMsg();
 	});
 	
@@ -285,7 +286,7 @@ $(function() {
 	});
 	
 //	enter키
-	$('textarea[name="chatMsg"]').keydown(function(event) {
+	$('input[name="chatMsg"]').keydown(function(event) {
 //		키코드 이벤트 유무 검사
 		var keyCode = event.keyCode ? event.keyCode : event.which;
 		if (keyCode == 13) {
@@ -312,13 +313,21 @@ $(function() {
 				dataType : 'json',
 				data : { keyword : request.term },
 				success: function(data) {
-					response(data);
+//					response(data);
+					$('#leftList').empty();
+					$.each(data, function(i, elt) {
+						$('#leftList').append('<div class="searchResult">' + elt + '</div>')
+					});			
 				},
 				error: function () {
 					console.log('search fail');
 				}			
 			});
 		},
+	});
+	
+	$(document).on('click', '.searchResult', function(event) {
+		searchCheck($(this).text());
 	});
 })
 

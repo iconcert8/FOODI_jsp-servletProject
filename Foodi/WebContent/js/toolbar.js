@@ -15,5 +15,15 @@ $(function() {
 		request.get
 	});
 	
+	$('#searchForm').autocomplete({
+		source : function(request, response) {
+			
+		},
+		select: function(event, item) {
+			
+		}
+	});
+	
 	
 })
+

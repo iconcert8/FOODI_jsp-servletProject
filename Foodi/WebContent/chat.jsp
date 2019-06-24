@@ -17,11 +17,12 @@
 </head>
 <body>
 	<jsp:include page="toolbar2.jsp"></jsp:include>
-		<hr>
+<!-- 		<hr> -->
 		
 	<section>
 		<article id="left" class="side">
 			<input type="text" id="search">
+			<div id="leftList"></div>
 		</article>
 		
 		<article id="middle">
@@ -33,7 +34,7 @@
 			</div>
 			<div id="sendMsg">
 				<form action="view" method="post">
-					<textarea rows="3" cols="100" name="chatMsg" autofocus="autofocus"></textarea>
+					<input type="text" name="chatMsg" autofocus="autofocus"></textarea>
 					<input type="button" value="send">
 		<!-- 			<input type="submit" value="send"> -->
 				</form>

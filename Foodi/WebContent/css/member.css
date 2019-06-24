@@ -38,7 +38,68 @@ header{
 
 li{
 	margin-top: 30px;
-	margin-left: 200px; 
+	margin-left: 100px; 
 }
 
+#userimg{
+	margin-top:30px;
+	margin-left: 220px;
+	width: 150px;
+	height: 150px;
+	background: gray;
+	border-radius: 50%;
+	background-image: url("/Foodi/css/images/coo.png");
+	
+}
+#jump{
+	margin-top: 50px;
+	
+}
 
+#f1{
+	margin-left:70px;
+}
+
+input{
+	border:2px 2px 2px 2px solid;
+	border-color: #FFC30B;
+
+}	
+
+#up{
+	width:140px;
+	height: 30px;
+	background-color: #FFC30B;
+}
+
+#ch{
+	width:140px;
+	height: 30px;
+	background-color: #FFC30B;
+}
+
+#ij{
+	width: 60px;
+	margin-left: 10px;
+	background-color: #FFC30B;
+}
+
+#hi{
+	
+	width: 60px;
+	margin-left: 10px;
+	background-color: #FFC30B;
+}
+
+.line{
+	margin-left:50px;
+	margin-top:30px;
+	border:0.5px solid;
+	width: 500px;
+	border-color: gray;
+}
+
+.ci{
+	margin-top: 40px;
+	margin-left: 150px;
+}

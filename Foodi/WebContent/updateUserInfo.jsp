@@ -14,7 +14,7 @@
 		</article>
 		 -->
 
-	<h2>회원정보수정</h2>
+	<h2>회원 정보 수정</h2>
 
 	<article id="middle">
 		
@@ -22,48 +22,49 @@
 
 	<div>
 		<form action="userinfo/updateUserInfo.do" method="post">
+			<div id="userimg"></div>
 			<div id="jump"></div>
 			<ul></ul>
 			<ul>
 				<li>${login4User.userImg}</li>
 			</ul>
 			<ul>
-				<li><input type="file" a accept="image/*" name="updateUserImg"></li>
+				<li><input  id="f1" type="file" a accept="image/*" name="updateUserImg"></li>
 			</ul>
 
 
 			<ul>
 
-				<li>닉네임 <input type="text" name="updateUserNick"></li>
+				<li>닉네임&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="updateUserNick"></li>
 			</ul>
 
-
+			<div class="line"></div>
 			<ul>
-				<li>현재 비밀번호 <input type="password" name="originalPass"></li>
-			</ul>
-			<ul>
-
-				<li>새 비밀번호 <input type="password" name="updatePass"></li>
-			</ul>
-			<ul>
-				<li>새 비밀번호 확인 <input type="password" name="updatePassCheck"></li>
-			</ul>
-
-
-			<ul>
-				<li>E-mail 변경 : <input type="text" name="updateEmail"></li>
-				<li>인증 버튼</li>
+				<li>현재 비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="password" name="originalPass"></li>
 			</ul>
 			<ul>
 
-				<li>이메일 인증번호 : <input type="text" name="certificationNumber"></li>
-				<li>확인버튼</li>
+				<li>새 비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="password" name="updatePass"></li>
 			</ul>
 			<ul>
-				<li><input type="submit" value="변경하기"></li>
-				<li><a href="#">취소하기</a></li>
+				<li>새 비밀번호 확인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="password" name="updatePassCheck"></li>
 			</ul>
-		</form>
+	
+			<div class="line"></div>
+
+			<ul>
+				<li>E-mail &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="updateEmail"><input id="ij" type="submit" value="인증"></li>
+			</ul>
+			<ul>
+
+				<li>이메일 인증번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="certificationNumber"><input id="hi" type="submit" value="확인"></li>
+
+			</ul>
+			<ul class="ci">
+				<input id="up" type="submit" value="변경하기">
+				<a  href="#"><input id="ch" type="submit" value="취소하기"></a>
+			</ul>
+		</form> 
 	</div>
 
 	</article> <!-- 	<article id="right" class="side">

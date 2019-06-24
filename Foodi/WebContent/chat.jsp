@@ -16,12 +16,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
-	<header>
-		채팅창입니다.
-	</header>
-	<nav>
-		메뉴바 들어 갈 곳 
-	</nav>
+	<jsp:include page="toolbar2.jsp"></jsp:include>
 		<hr>
 		
 	<section>
@@ -39,7 +34,7 @@
 			<div id="sendMsg">
 				<form action="view" method="post">
 					<textarea rows="3" cols="100" name="chatMsg" autofocus="autofocus"></textarea>
-					<input type="button" value="send" onclick="reqMsg()">
+					<input type="button" value="send">
 		<!-- 			<input type="submit" value="send"> -->
 				</form>
 			</div>

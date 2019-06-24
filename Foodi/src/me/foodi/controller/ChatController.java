@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import me.foodi.action.ActionForward;
 import me.foodi.action.ActionJson;
 import me.foodi.action.ChatListAction;
+import me.foodi.action.ChatNotifyAction;
 import me.foodi.action.ChatResInfoAction;
 import me.foodi.action.ChatResListAction;
 import me.foodi.action.ChatSearchCheckAction;
@@ -53,6 +54,14 @@ public class ChatController extends HttpServlet {
 				forward.setPath("/chat.jsp");
 			} else if (path.equals("chat/first")) {
 				action = new ChatSelectLastResIdAction();
+				try {
+					String resId = action.execute(request, response);
+					response.getWriter().write(resId);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if (path.equals("chat/notify")) {
+				action = new ChatNotifyAction();
 				try {
 					String resId = action.execute(request, response);
 					response.getWriter().write(resId);

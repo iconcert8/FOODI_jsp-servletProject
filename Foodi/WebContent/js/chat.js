@@ -2,34 +2,11 @@
  * 
  */
 
-//var request = new Request();
-//var resId = request.getParameter("resId");
 var resId = '';
 var lastNo = 0;
 var setAsyncTime = 1000;
 var asyncInterval;
-
-
-//get방식 parameter 가져오기
-/*function Request() {
-	var requestParam = "";
-	this.getParameter = function (param) {
-		var url = decodeURI(location.href);
-		
-		var paramArr = (url.substring(url.indexOf('?') + 1, url.length)).split('&');
-		
-		for(var i=0; i < paramArr.length; i++) {
-			var temp = paramArr[i].split("=");
-			
-			if(temp[0].toUpperCase() == param.toUpperCase()) {
-				requestParam = paramArr[i].split("=")[1];
-				console.log('resId : ' + requestParam);
-				break;
-			}
-		}
-		return requestParam;
-	}
-}*/
+var listRefreshTime = 0;
 
 function first() {
 	$.ajax({
@@ -52,7 +29,7 @@ function first() {
 }
 
 //send Msg
-function reqMsg() {
+function sendMsg() {
 	let chatTest = $('textarea[name="chatMsg"]');
 	
 	var sendMsg = {
@@ -87,14 +64,13 @@ function reqMsg() {
 }
 
 //person list
-function resList(resId, newUser) {
+function resList(resId) {
 	$.ajax({
 		type : "post",
 		url : "reslist",
 //     			data : {"resId" : resId},
 		data : {
 			"resId" : resId,
-			"new" : newUser
 		},
 		dataType: "json",
 		success : function (data) {
@@ -106,7 +82,11 @@ function resList(resId, newUser) {
 // 							div.append('<img src="'+ i.chatImg +'"/>');
 // 						}
 				if(item.resId != null) {
-					div.append('<span>' + item.resId + '</span>');
+					div.append('<span class="listResId">' + item.resId + '</span>');
+					if(item.readless != null) {
+						div.append('&nbsp;<span class="readless">' + item.readless + '</span>');
+						div.addClass('readless');
+					}
 					div.appendTo('#resList');
 				} else if(item.selected != null){
 					div.append('<span class="resSelected">' + item.selected + '</span>');
@@ -272,22 +252,34 @@ function async() {
 			console.log('async fail');
 		},
 		complete: function() {
+			if(listRefreshTime != 2) {
+				listRefreshTime++;
+			} else {
+				resList(resId);
+				listRefreshTime = 0;
+			}
+				
 			asyncInterval = setTimeout(function() {
 				async();
 			}, setAsyncTime);
 		}
-	}); 
-}
-
-function clickList() {
-
+	});
+	
+	
 }
 
 //이벤트 리스너생성
 $(function() {
-	//클릭 이벤트
+	
+//	메시지 보내기 버튼 이벤트
+	$(document).on('click', '#sendMsg > input[type="button"]', function() {
+		sendMsg();
+	});
+	
+	
+	//목록 선택 이벤트
 	$(document).on('click', '#resList > div', function() {
-		var res = $(this).text();
+		var res = $(this).find('span.listResId').text();
 		resId = res;
 		selectUser();
 	});
@@ -298,7 +290,7 @@ $(function() {
 		var keyCode = event.keyCode ? event.keyCode : event.which;
 		if (keyCode == 13) {
 			event.preventDefault();
-            reqMsg();
+            sendMsg();
         }
 	});
 	
@@ -327,10 +319,6 @@ $(function() {
 				}			
 			});
 		},
-//		select: function( event, selected ) {
-//	        console.log(selected.item.value);
-//	        searchCheck(selected.item.value);
-//	    }
 	});
 })
 
@@ -352,7 +340,8 @@ function searchCheck(keyword) {
 					resId = data.userId;
 					drawResInfo(data);
 					$('#chatView').empty();
-					resList(null, data.userId);
+					resId = data.userId
+					resList(resId);
 				}
 			} else {
 				clearTimeout(asyncInterval);
@@ -362,25 +351,10 @@ function searchCheck(keyword) {
 				$('#resInfo').html('<span>Follow목록에 없는 ID입니다.</span>');
 			}
 		}
-	})
-	
+	});
 }
 
-//var selectMsg;
-//삭제버튼
-$(document)
-// 마우스 오른쪽 버튼 메뉴
-//.on("contextmenu", '.resMsg', function(event) { 
-//    event.preventDefault();
-//    selectMsg = event.target;
-//    $('.custom-menu').hide();
-//    $("<div class='custom-menu'><ul><li id='delete'>삭제</li></ul></div>")
-//        .appendTo("body")
-//        .css({top: event.pageY + "px", left: event.pageX + "px"});
-//}).on("click", function(event) {
-//    $("div.custom-menu").hide();
-//})
-.on('click', '#chatView .delete', function(event) {
+$(document).on('click', '#chatView .delete', function(event) {
 	var del = confirm("Do you want to delete message?");
 	if(del) {
 		$.ajax({

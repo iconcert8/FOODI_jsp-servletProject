@@ -7,6 +7,8 @@
 <head>
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/Foodi/js/toolbar.js"></script>
 <link rel="stylesheet" href="/Foodi/css/all.css">
 <link rel="stylesheet" href="/Foodi/css/toolbar.css">
@@ -34,7 +36,7 @@
 		<!-------------------------  로그인 했을경우 나타날 화면  ------------------------->
 		<c:if test="${loginUser != null}">
 			<ul>
-				<li><a href="feed/makeFeed.do">
+				<li><a href="/Foodi/feed/makeFeed.do">
 					<img src="/Foodi/css/icon/feed.png" width="50" height="50" />
 				</a></li>&nbsp;&nbsp;
 

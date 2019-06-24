@@ -88,6 +88,15 @@ input[value=send]:hover {
 	padding : 2px 5px
 }
 
+button.delete {
+	color : #ff0000;
+	font-size : 8px;
+	background-color: rgba(255, 255, 255, 0.1);
+	border : none;
+	cursor: pointer;
+	
+}
+
 /* reslist */
 #resList {
 	padding : 10px 15px 10px 15px;

@@ -209,7 +209,7 @@ function drawMsg(i, item, data) {
 			var divuser = $('<div class="user"></div>');
 			divuser
 				.append('<input type="hidden" class="chatNo" value="' + item.chatNo + '"></input>')
-				.append('<button value="del" class="delete">del</button>&nbsp;');
+				.append('<button value="del" class="delete">x</button>&nbsp;');
 			if(parseInt(item.chatChk)){
 				divuser.append('<span class="read">' + item.chatChk + '&nbsp;</span>');
 			}
@@ -303,33 +303,26 @@ $(function() {
 		if (keyCode == 13) {
 			event.preventDefault();
 			searchCheck($(this).val());
+        } else {
+        	 $.ajax({
+ 				type : 'post',
+ 				url : 'searchFollow',
+ 				dataType : 'json',
+ 				data : { keyword : $(this).val() },
+ 				success: function(data) {
+ 					$('#leftList').empty();
+ 					$.each(data, function(i, elt) {
+ 						$('#leftList').append('<div class="searchResult">' + elt + '</div>')
+ 					});			
+ 				},
+ 				error: function () {
+ 					console.log('search fail');
+ 				}			
+ 			});
         }
 	});
 	
-//	검색 자동완성
-	$('#search').autocomplete({
-		 source: function( request, response ) {
-			 $.ajax({
-				type : 'post',
-				url : 'searchFollow',
-				dataType : 'json',
-				data : { keyword : request.term },
-				success: function(data) {
-//					response(data);
-					$('#leftList').empty();
-					$.each(data, function(i, elt) {
-						$('#leftList').append('<div class="searchResult">' + elt + '</div>')
-					});			
-				},
-				error: function () {
-					console.log('search fail');
-				}			
-			});
-		},
-	});
-	
 	$(document).on('click', '.searchResult', function(event) {
-//		searchCheck($(this).text());
 		$('#search').val($(this).text()).focus();
 	});
 })

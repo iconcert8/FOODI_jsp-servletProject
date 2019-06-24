@@ -11,4 +11,10 @@
 		delete from qook
 		where userId = #{userId} and feedNo = #{feedNo}
 	</delete>
+	
+	<select id="qookFeedList" parameterType="QookVO" resultType="UserAndFeedVO">
+		select f.userId, f.feedNo, f.feedImg, f.feedLoc, f.feedDate, f.feedLock, u.userNick, u.userImg, u.userLock
+		from userInfo u, qook q, feed f
+		where u.userId=f.userId and f.feedNo=q.feedNo and q.userId = #{userId}
+	</select>
 </mapper>

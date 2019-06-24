@@ -7,11 +7,19 @@
 	</select>
 	
 	<select id="searchFeed" parameterType="SearchVO" resultType="SearchFeedVO">
-		SELECT f.feedno,f.userid,f.feedcontent,f.feedImg,f.feedgoodcnt,f.feeddate,f.feedlock, t.tagname
-FROM feed f, feedtag t where f.feedno=t.feedno AND (f.feedcontent LIKE #{searchKeyword} OR t.tagname LIKE #{searchKeyword})
+		SELECT f.feedno,f.userid,f.feedcontent,f.feedImg,f.feedgoodcnt,f.feedLoc, f.feeddate,f.feedlock, t.tagname, i.userImg
+FROM feed f, feedtag t, userinfo i where f.feedno=t.feedno AND f.userId=i.userId AND (f.feedcontent LIKE #{searchKeyword} OR t.tagname LIKE #{searchKeyword})
 	</select>
 	
 	<insert id="insertSearch" parameterType="SearchVO">
 		INSERT INTO search VALUES(search_seq.nextval,#{searchKeyword},sysdate,'a')
 	</insert>
+	
+	<insert id="insertSsg" parameterType="SsgVO">
+		INSERT INTO ssg VALUES(#{tagName},#{userId})
+	</insert>
+	
+	<select id="searchSsg" parameterType="String" resultType="String">
+		select tagName from ssg where userId=#{userId}
+	</select>
 </mapper>

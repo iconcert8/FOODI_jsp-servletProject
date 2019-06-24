@@ -4,6 +4,7 @@ import java.util.List;
 
 import me.foodi.DAO.TimeLineDAO;
 import me.foodi.domain.SearchFeedVO;
+import me.foodi.domain.UserInfoVO;
 
 public class TimeLineService {
 	private static TimeLineService service = new TimeLineService();
@@ -18,7 +19,6 @@ public class TimeLineService {
 	
 	public List<SearchFeedVO> searchFeedService(String userId){
 		List<SearchFeedVO> list = dao.searchFeed(userId);
-
 		return list;
 	}
 	
@@ -26,5 +26,14 @@ public class TimeLineService {
 		String[] list = dao.searchQook(userId);
 		return list;
 	}
-
+	
+	public String[] matchTagService(int feedNo){
+		String[] list=dao.matchTag(feedNo);
+		return list;
+	}
+	
+	public UserInfoVO searchUserService(String userId){
+		UserInfoVO user = dao.searchUser(userId);
+		return user;
+	}
 }

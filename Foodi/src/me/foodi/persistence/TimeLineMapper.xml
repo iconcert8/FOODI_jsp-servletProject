@@ -3,11 +3,18 @@
 <mapper namespace="me.foodi.mapper.TimeLineMapper">
 
 	<select id="searchFeed" parameterType="String" resultType="SearchFeedVO">
-		SELECT f.feedno,f.userid,f.feedcontent,f.feedImg,f.feedgoodcnt,f.feeddate,f.feedlock, t.tagname
-FROM feed f, feedtag t where f.feedno=t.feedno AND f.userid=#{userId} ORDER BY f.feeddate desc
+		SELECT f.feedno,f.userid,f.feedcontent,f.feedImg,f.feedgoodcnt,f.feedLoc, f.feeddate,f.feedlock, i.userImg, t.tagName
+FROM feed f, userinfo i, feedtag t where f.userId=i.userId AND f.feedno=t.feedno AND f.userid=#{userId} ORDER BY f.feeddate desc
+	</select>
+	<select id="matchTag" parameterType="int" resultType="String">
+		SELECT tagname from feedtag where feedno=#{feedno}
 	</select>
 	
 	<select id="searchQook" parameterType="String" resultType="String">
 		SELECT f.feedloc FROM feed f, qook k WHERE f.feedno=k.feedno AND k.userid=#{userId}
+	</select>
+	
+	<select id="searchUser" parameterType="String" resultType="UserInfoVO">
+		SELECT * FROM USERINFO WHERE userId=#{userId}
 	</select>
 </mapper>

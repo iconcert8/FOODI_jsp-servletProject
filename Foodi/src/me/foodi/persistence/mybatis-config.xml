@@ -20,6 +20,7 @@
  		<typeAlias type="me.foodi.domain.TagVO" alias="TagVO" />
  		<typeAlias type="me.foodi.domain.QookVO" alias="QookVO" />
  		<typeAlias type="me.foodi.domain.UserAndFeedVO" alias="UserAndFeedVO" />
+ 		<typeAlias type="me.foodi.domain.SsgVO" alias="SsgVO" />
  	</typeAliases> 
 	
 	<environments default="development">

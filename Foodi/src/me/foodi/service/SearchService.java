@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import me.foodi.DAO.SearchDAO;
 import me.foodi.domain.SearchFeedVO;
 import me.foodi.domain.SearchVO;
+import me.foodi.domain.SsgVO;
 import me.foodi.domain.UserInfoVO;
 
 public class SearchService {
@@ -38,5 +39,19 @@ public class SearchService {
 		SearchVO search=new SearchVO();
 		search.setSearchKeyword(request.getParameter("searchKeyword"));
 		dao.insertSearch(search);
+	}
+	
+	public void insertSsgService(HttpServletRequest request,String userId)throws Exception{
+		String tagName=request.getParameter("searchKeyword");
+		SsgVO ssg = new SsgVO();
+		ssg.setTagName(tagName);
+		ssg.setUserId(userId);
+		dao.insertSsg(ssg);
+	}
+	
+	public String[] searchSsgService(String userId){
+		String[] list = dao.searchSsg(userId);
+		
+		return list;
 	}
 }

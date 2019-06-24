@@ -35,8 +35,8 @@ public class FeedService {
 			String feedImg = (String) multi.getFilesystemName("feedImg");
 			feedVO.setFeedImg(feedImg);
 
-			String head = feedImg.substring(0, feedImg.indexOf(".")); // 파일 이름
-			String extension = feedImg.substring(feedImg.indexOf(".") + 1); // 파일확장자
+			String head = feedImg.substring(0, feedImg.indexOf(".")); // �뙆�씪 �씠由�
+			String extension = feedImg.substring(feedImg.indexOf(".") + 1); // �뙆�씪�솗�옣�옄
 			String imgPath = uploadPath + "\\" + feedImg;
 			File src = new File(imgPath);
 

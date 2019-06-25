@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
+import me.foodi.action.JoinPageAction;
 import me.foodi.action.LoginPageAction;
 import me.foodi.action.LogoutAction;
 import me.foodi.action.TestGetAction;

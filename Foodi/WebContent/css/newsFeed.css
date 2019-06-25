@@ -7,7 +7,7 @@
 /* list view */
 .feed_bottom button{
 	width: 250px; height:30px; margin-left: 25px;
-	background-color: white; border: 2px solid #ffcd47; 
+	border: 2px solid #ffcd47; 
 	transition:all .5s ease;
 }
 
@@ -16,15 +16,15 @@
 	color: white;
 	cursor: pointer;
 }
-
 .feed_middle{height: 270px;}
+.detail_btn{background-color: white;}
 
 /* detail view */
 #lightBox{width: 900px; height: 700px; }
 .reply_middle{height: 310px;}
 .reply_bottom button{
 	width: 388px; height:30px; margin-left: 25px;
-	background-color: white; border: 2px solid #ffcd47; 
+ 	border: 2px solid #ffcd47; 
 	transition:all .5s ease;
 }
 #replyBox{

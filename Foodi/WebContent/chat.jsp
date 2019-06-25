@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="/Foodi/css/chat.css">
 </head>
 <body>
-<!-- 	<nav> -->
+	<nav>
 		<jsp:include page="toolbar.jsp"></jsp:include>
-<!-- 	</nav> -->
+	</nav>
 	<section>
 		<article id="left" class="side">
 			<div class="ChatTitle">ID Search</div>
@@ -36,7 +36,7 @@
 			<div id="sendMsg">
 				<form action="view" method="post">
 					<input type="text" name="chatMsg" autofocus="autofocus"></textarea>
-					<input type="button" value="send">
+					<input type="button" value="send" name="sendBtn">
 		<!-- 			<input type="submit" value="send"> -->
 				</form>
 			</div>
@@ -44,7 +44,8 @@
 		
 		
 		
-		<article id="right" class="side">				
+		<article id="right" class="side">
+		
 			<div class="ChatTitle">List</div>
 			<hr>
 			<div id="resList"></div>

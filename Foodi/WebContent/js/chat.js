@@ -7,6 +7,7 @@ var lastNo = 0;
 var setAsyncTime = 5000;
 var asyncInterval;
 var listRefreshTime = 0;
+var date = [];
 
 function first() {
 	$.ajax({
@@ -113,6 +114,11 @@ function chatView() {
 			$.each(data, function(i, item) {				
 				drawMsg(i, item, data);
 			});
+			
+			
+			if(!asyncInterval) {
+				async();
+			}
 		},
 		error : function (data) {
 			console.log('chatView get fail');
@@ -132,11 +138,9 @@ function selectUser() {
 			console.log('selectUser success');
 			drawResInfo(data);
 			
+			date = [];
 			chatView();	
 			resList(resId);
-			if(!asyncInterval) {
-				async();
-			}
 		},
 		error : function (data) {
 			console.log('selectUser fail');
@@ -157,10 +161,11 @@ function drawResInfo(data) {
 //check read update
 function updateCheckRead(data) {
 	$.each(data, function(i, item) {
-		if($('.user > .read').last().css('display') != 'none') {
+		if($('.user > .read').css('display')) {
 //			보낸사람이 상대방이면
 //			console.log('reqId : ' + item["reqId"] + ', resId : ' + resId);
-			if(item.reqId == resId) {		
+			if(item.reqId == resId) {
+				alert('res');
 				$('.user > .read').text('0');
 				$('.user > .read').hide();
 //			자신이보낸 메세지를 상대방이 읽은것이 확인되면
@@ -181,8 +186,6 @@ function updateView(data) {
 		}
 	});
 }
-
-var date = [];
 
 // message 그리기
 function drawMsg(i, item, data) {
@@ -221,7 +224,6 @@ function drawMsg(i, item, data) {
 	if(data.length -1 == i) {
 		lastNo = item.chatNo;
 		console.log('lastNo : ' + lastNo);
-		date = [];
 	}
 	if($('.res > .read').last().css('display') != 'none') {
 		if($('.res > .read').last().text() == 0) {
@@ -275,10 +277,9 @@ function async() {
 $(function() {
 	
 //	메시지 보내기 버튼 이벤트
-	$(document).on('click', '#sendMsg > input[value="send"]', function() {
+	$('input[name="sendBtn"]').click(function(event) {
 		sendMsg();
-	});
-	
+	});	
 	
 	//목록 선택 이벤트
 	$(document).on('click', '#resList > div', function() {
@@ -324,6 +325,10 @@ $(function() {
 	
 	$(document).on('click', '.searchResult', function(event) {
 		$('#search').val($(this).text()).focus();
+	});
+	
+	$('#searchbtn').click(function(event) {
+		searchCheck($('#search').val());
 	});
 })
 

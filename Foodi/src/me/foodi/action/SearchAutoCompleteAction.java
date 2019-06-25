@@ -18,7 +18,6 @@ public class SearchAutoCompleteAction implements Action {
 		System.out.println(searchAutoList);
 		if(searchAutoList != null) {
 			String json = JSONArray.fromObject(searchAutoList).toString();
-			System.out.println(json);
 			response.getWriter().write(json);
 		}
 		return null;

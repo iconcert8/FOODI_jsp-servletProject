@@ -56,11 +56,9 @@ public class SearchController extends HttpServlet {
     		return;
     	}else if(path.equals("search/auto")) {
     		action = new SearchAutoCompleteAction();
-    		
     		try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}

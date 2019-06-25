@@ -21,7 +21,7 @@ $(function() {
 			console.log(request.term);
 			$.ajax({
 				type:'post',
-				url:'search/auto',
+				url:'/Foodi/search/auto',
 				data: {
 					"search" : request.term
 				},

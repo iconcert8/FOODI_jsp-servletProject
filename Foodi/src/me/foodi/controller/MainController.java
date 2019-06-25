@@ -30,7 +30,7 @@ public class MainController extends HttpServlet {
     	Action action = null;
     	ActionForward forward = null;
     	
-    	if(path.equals("main/index")){
+    	if(path.equals("main/index") || path.equals("main")){
     		action = new MainAction();
     		try{
     			forward = action.execute(request, response);

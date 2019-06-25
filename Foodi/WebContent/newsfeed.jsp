@@ -14,9 +14,9 @@
 <title>Insert title here</title> 
 </head>
 <body>
- 	<nav>
+	<nav>
 		<jsp:include page="toolbar.jsp"></jsp:include> 
-	</nav> 
+	</nav>
 	<div style="height: 100px;"></div>
 	
 	<section> 

@@ -7,3 +7,11 @@
 	list-style: none;
 	padding-left: 0px;
 }
+
+#ntfList li{
+	height: 50px;
+	margin-bottom: 10px;
+}
+.notCheck{
+	border: 1px solid white;
+}

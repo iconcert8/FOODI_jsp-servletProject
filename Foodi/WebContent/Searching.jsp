@@ -23,7 +23,6 @@
 			
 				<h1>
 					<h2 id="search_result">"<span id="searchKeyword">${searchKeyword }</span>"에 대한 검색 결과<input type="button" style="font-size:30px;" class="ssgbtn" value="SSG"/></h2>
-					
 				</h1>
 			
 			<br>

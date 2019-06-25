@@ -38,17 +38,13 @@
 	color: #463300;
 }
 
-ul {
+article ul {
 	list-style: none;
 	width: 820px;
 	height: 260px;
 }
 
-a {
-	text-decoration: none;
-}
-
-li {
+article li {
 	border: 1px solid #ffcd47;
 	float: left;
 	color: #463300;
@@ -82,7 +78,7 @@ li {
 	padding-left: 80px;
 }
 
-input {
+article input {
 	background: #ffcd47;
 	color: #fff;
 	border: none;

@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="ntfBox">
-		<b>알림</b> ( <label class="ntf" id="ntfChk"></label> )
+		<b>알림</b>
 		<ul id="ntfList">
 		</ul>
 	</div>

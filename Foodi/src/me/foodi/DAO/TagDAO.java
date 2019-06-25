@@ -84,4 +84,10 @@ public class TagDAO {
 		}
 		return list;
 	}
+
+	public List<String> searchAutoComplete(String keyword) {
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		List<String> autoList = sqlSession.getMapper(TagMapper.class).searchAutoComplete(keyword);
+		return autoList;
+	}
 }

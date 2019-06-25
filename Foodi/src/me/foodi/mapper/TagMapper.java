@@ -8,4 +8,5 @@ public interface TagMapper {
 	int insertTag(TagVO tagVO);
 	List<TagVO> listHTG();
 	List<TagVO> callTag(int feedNo);
+	List<String> searchAutoComplete(String keyword);
 }

@@ -38,7 +38,6 @@ public class TagController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return;
 		}
 	
 

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
+import me.foodi.action.MainAction;
 
 @WebServlet("/main/*")
 public class MainController extends HttpServlet {
@@ -29,8 +30,8 @@ public class MainController extends HttpServlet {
     	Action action = null;
     	ActionForward forward = null;
     	
-    	if(path.equals("main/~")){
-    		action = null;
+    	if(path.equals("main/index")){
+    		action = new MainAction();
     		try{
     			forward = action.execute(request, response);
     		}catch (Exception e) {

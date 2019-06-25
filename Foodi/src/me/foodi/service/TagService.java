@@ -55,4 +55,9 @@ public class TagService {
 		return dao.listHTG();
 	}
 
+	public List<String> searchAutoCompleteService(HttpServletRequest request) {
+		String keyword = "%" + request.getParameter("search") + "%";
+		System.out.println(keyword);
+		return dao.searchAutoComplete(keyword);
+	}
 }

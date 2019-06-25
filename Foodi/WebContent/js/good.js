@@ -31,7 +31,7 @@ function goodDelete(feedNo, $this, successFunction){
 
 
 //'feed' should be like this
-//var feed = '{"feedNo":feedNo, "feedContent": feedContent}';
+//var feed = '{"feedNo":"feedNo", "feedContent": "feedContent"}';
 
 //insert notification
 function notificationInsertGood(resId, feed, successFunction){

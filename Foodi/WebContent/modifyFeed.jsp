@@ -20,8 +20,9 @@
 </head>
 <body>
 	<nav>
-		<jsp:include page="toolbar.jsp"></jsp:include>
-	</nav>
+		<jsp:include page="toolbar.jsp"></jsp:include> 
+	</nav> 
+	<div style="height: 100px;"></div>
 	
 	<section>
 		<article id="left" class="side"></article>

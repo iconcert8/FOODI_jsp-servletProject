@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
 import me.foodi.action.FeedGetAction;
+import me.foodi.action.FeedNewsfeedAction;
 import me.foodi.action.FeedReplyGetAction;
 import me.foodi.action.FeedReplyInsertAction;
 import me.foodi.action.FeedTagListAction;
@@ -46,6 +47,13 @@ public class FeedController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(path.equals("feed/newsfeed")){
+			action = new FeedNewsfeedAction();
+			try{ 
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
 		}else if(path.equals("feed/newsfeedList.do")){
 			action = new NewsFeedListAction();
 			try{ 

@@ -39,7 +39,8 @@ public class NotifyService {
 			JSONObject json = (JSONObject)JSONSerializer.toJSON(feed);
 			
 			int feedNo = Integer.parseInt(json.getString("feedNo"));
-			String feedContent = json.getString("feedContent").substring(0, 6)+"..";
+			String feedContent = json.getString("feedContent");
+			if(feedContent.length() > 6){feedContent = feedContent.substring(0, 6)+"..";}
 			
 			notifyVO.setNotifyType("good");
 			notifyVO.setFeedNo(feedNo);
@@ -60,12 +61,14 @@ public class NotifyService {
 			JSONObject json = (JSONObject)JSONSerializer.toJSON(reply);
 			
 			int feedNo = Integer.parseInt(json.getString("feedNo"));
+			String feedContent = json.getString("feedContent");
+			if(feedContent.length() > 6){feedContent = feedContent.substring(0, 6)+"..";}
 			String replyContent = json.getString("replyContent");
 			if(replyContent.length() > 6){replyContent = replyContent.substring(0, 6)+"..";}
 			
 			notifyVO.setNotifyType("reply");
 			notifyVO.setFeedNo(feedNo);
-			notifyVO.setNotifyMsg(getUser(request).getUserId()+"님이 \""+replyContent+"\" 댓글을 달았습니다");
+			notifyVO.setNotifyMsg(getUser(request).getUserId()+"님이 " +feedContent+" 게시물에 \""+replyContent+"\" 댓글을 달았습니다");
 		}else{
 			notifyVO.setNotifyMsg("기타 알림");
 		}

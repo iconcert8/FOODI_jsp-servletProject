@@ -9,6 +9,12 @@ $(document).ready(function(){
 		var key = $("input[name=flwSearch]").val();
 		followList(key, listView);
 	});
+	$(document).on("keydown", "#flwSearchKey", function(key){
+		if(key.keyCode == 13){
+			var key = $("input[name=flwSearch]").val();
+			followList(key, listView);
+		}
+	});
 	
 	//followerList follow
 	$(document).on("click", "#flrList .nofln",function(){

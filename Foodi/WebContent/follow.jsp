@@ -17,7 +17,7 @@
 	</nav> 
 	<header>
 		<h2>Follow</h2>
-		<div>ㅡ</div> <div id="searchBox"><input type="text" name="flwSearch"><button id="flwSearch">검색</button></div>
+		<div>ㅡ</div> <div id="searchBox"><input type="text" id="flwSearchKey" name="flwSearch"><button id="flwSearch">검색</button></div>
 	</header>
 	<section>
 		<article>

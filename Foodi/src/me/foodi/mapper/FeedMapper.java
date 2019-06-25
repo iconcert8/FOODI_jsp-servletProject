@@ -16,4 +16,5 @@ public interface FeedMapper {
 	int feedReplyInsert(ReplyVO replyVO);
 	UserAndFeedVO newsfeedDetail(FeedVO feeVO);
 	FeedVO callFeed(int feedNo);
+	int modifyFeed(FeedVO feedVO);
 }

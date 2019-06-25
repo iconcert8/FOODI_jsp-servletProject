@@ -60,4 +60,8 @@ public class TagService {
 		System.out.println(keyword);
 		return dao.searchAutoComplete(keyword);
 	}
+
+	public void modifyTag(MultipartRequest multi, int feedNo) {
+		
+	}
 }

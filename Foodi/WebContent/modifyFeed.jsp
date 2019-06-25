@@ -28,11 +28,12 @@
 		<article id="left" class="side"></article>
 		
 		<article id="middle">
-			<form action="feed/modifyFeed.do" method="post" enctype="multipart/form-data" id="insertForm middle">
+			<form action="/Foodi/feed/modifyFeed.do" method="post" enctype="multipart/form-data" id="insertForm middle">
 				<ul>
 					<li>작성자</li>
-					<li><input type="text" name="userId" value="${loginUser.userId}" readOnly></li>
-					<li><input type="hidden" name="feedSeq" value="${feedVO.feedSeq}"></li>
+					<li>${loginUser.userId}</li>
+					<li><input type="hidden" name="userId" value="${loginUser.userId}"></li>
+					<li><input type="hidden" name="feedNo" value="${feedVO.feedNo}"></li>
 				</ul><br>
 				
 				<ul>
@@ -42,16 +43,15 @@
 				
 				<ul>
 					<li>태그</li>
-					<li><input type="text" name="tagName" value="${tagVO.tagName}"></li>
+ 					<li><input type="text" name="tagName" value="${tagName}"></li>
 				</ul><br>
 				
 				<ul>
 					<li>기본사진</li>
-					<li><input type="file" id="feedImg" name="feedImg" accept="image/*" value="${feedVO.feedImg}"></li><br><br>
 					
-					<li><img id="preview" src="#" alt="your image" /></li>
+					<li><input type="file" id="feedImg" name="feedImg" accept="image/*"></li><br><br>
 					
-					<br><br>
+ 					<li><img id="preview" src="${feedVO.feedImg}" /></li>
 				</ul><br>
 				
 				<ul>

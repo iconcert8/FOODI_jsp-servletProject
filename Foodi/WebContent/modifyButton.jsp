@@ -8,8 +8,8 @@
 </head>
 <body>
 	<form action="feed/modifyButton.do" method="post">
-		<input type="hidden" value="93" name="feedNo">
-		93
+		<input type="hidden" value="101" name="feedNo">
+		101
 		<input type="submit" value="수정">
 	</form>
 </body>

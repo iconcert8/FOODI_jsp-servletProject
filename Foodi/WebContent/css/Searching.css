@@ -18,21 +18,21 @@
 	width: 75px;
 }
 
-#user {
+.user {
 	width: 150px;
 	height: 220px;
 	margin: 20px 0px 20px 30px;
 	color: #463300;
 }
 
-#id {
+.id {
 	text-align: center;
 	font-size: 30px;
 	color: #463300;
 	font-weight: bold;
 }
 
-#nick {
+.nick {
 	text-align: center;
 	font-size: 20px;
 	color: #463300;
@@ -50,31 +50,31 @@ article li {
 	color: #463300;
 }
 
-#feed_title {
+.feed_title {
 	border: 5px solid #ffcd47;
 	padding: 5px;
 	width: 50px;
 	margin-left: 3px;
 }
 
-#feed {
+.feed {
 	width: 150px;
 	height: 150px;
 	margin: 2px;
 	padding: 5px;
 }
 
-#feed_img {
+.feed_img {
 	padding: 10px;
 	width: 130px;
 	height: 100px;
 }
 
-#feed_content {
+.feed_content {
 	padding-left: 10px;
 }
 
-#feed_tag {
+.feed_tag {
 	padding-left: 80px;
 }
 

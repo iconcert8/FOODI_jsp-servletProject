@@ -13,4 +13,5 @@ public interface SearchMapper {
 	int insertSearch(SearchVO search);
 	int insertSsg(SsgVO ssg);
 	String[] searchSsg(String userId);
+	List<String> searchTag(String keyword);
 }

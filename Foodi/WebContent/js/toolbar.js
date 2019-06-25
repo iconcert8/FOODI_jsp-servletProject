@@ -7,9 +7,13 @@ $(function() {
 	
 	$("#notify").click(function(event){
 		$("#notifyList").toggleClass("hidden");
-		
+		event.stopPropagation();
 		event.preventDefault();
 	});
+	
+	$(document).on("click", function(event) {
+		$("#notifyList").addClass("hidden");
+	})
 
 	
 	$("#logout").click(function(event){
@@ -23,7 +27,7 @@ $(function() {
 				type:'post',
 				url:'/Foodi/search/auto',
 				data: {
-					"search" : request.term
+					"searchKeyword" : request.term
 				},
 				dataType : 'json',
 				success : function(data) {

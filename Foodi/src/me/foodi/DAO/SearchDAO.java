@@ -13,6 +13,7 @@ import me.foodi.domain.SearchVO;
 import me.foodi.domain.SsgVO;
 import me.foodi.domain.UserInfoVO;
 import me.foodi.mapper.SearchMapper;
+import me.foodi.mapper.TagMapper;
 
 public class SearchDAO {
 	private static SearchDAO dao = new SearchDAO();
@@ -79,7 +80,7 @@ public class SearchDAO {
 		}
 	}
 	
-	public void insertSsg(SsgVO ssg){
+	public int insertSsg(SsgVO ssg){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re= -1;
 		try {
@@ -89,11 +90,13 @@ public class SearchDAO {
 			}else{
 				sqlSession.rollback();
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			sqlSession.close();
 		}
+		return re;
 	}
 	
 	public String[] searchSsg(String userId){
@@ -109,5 +112,12 @@ public class SearchDAO {
 			sqlSession.close();
 		}
 		return list;
+	}
+	
+	public List<String> searchTag(String keyword) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		List<String> autoList = sqlSession.getMapper(SearchMapper.class).searchTag(keyword);
+		System.out.println(autoList);
+		return autoList;
 	}
 }

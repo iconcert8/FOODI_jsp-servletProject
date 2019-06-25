@@ -38,7 +38,7 @@ public class EncFilter implements Filter {
 
 		String path = requestURI.substring(contextPath.length() + 1);
 		
-		System.out.println(path);
+//		System.out.println(path);
 		
 //		test용
 		if(path.indexOf("Test") != -1) {

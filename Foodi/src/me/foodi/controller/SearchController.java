@@ -15,6 +15,8 @@ import me.foodi.action.SearchAction;
 import me.foodi.action.SearchAutoCompleteAction;
 import me.foodi.action.SearchFormAction;
 import me.foodi.action.SsgAction;
+import me.foodi.action.SsgCheckAction;
+import me.foodi.domain.UserInfoVO;
 
 @WebServlet("/search/*")
 public class SearchController extends HttpServlet {
@@ -28,6 +30,9 @@ public class SearchController extends HttpServlet {
     	String uri = request.getRequestURI();
     	String ctxPath = request.getContextPath();
     	String path = uri.substring(ctxPath.length()+1);
+    	
+    	UserInfoVO userInfo = (UserInfoVO) request.getSession().getAttribute("loginUser");
+		request.setAttribute("userId", userInfo.getUserId());
     	
     	Action action = null;
     	ActionForward forward = null;
@@ -56,6 +61,13 @@ public class SearchController extends HttpServlet {
     		return;
     	}else if(path.equals("search/auto")) {
     		action = new SearchAutoCompleteAction();
+    		try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}else if(path.equals("search/ssgcheck")) {
+    		action = new SsgCheckAction();
     		try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

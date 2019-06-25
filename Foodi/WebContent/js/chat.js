@@ -85,6 +85,7 @@ function resList(resId) {
 						div.append('&nbsp;<span class="readless">' + item.readless + '</span>');
 						div.addClass('readless');
 					}
+					div.addClass('chatList');
 					div.appendTo('#resList');
 				} else if(item.selected != null){
 					div.append('<span>' + item.selected + '</span>');
@@ -281,7 +282,7 @@ $(function() {
 	});	
 	
 	//목록 선택 이벤트
-	$(document).on('click', '#resList > div', function() {
+	$(document).on('click', '#resList > .chatList', function() {
 		var res = $(this).find('span.listResId').text();
 		resId = res;
 		selectUser();

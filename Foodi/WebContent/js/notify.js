@@ -94,3 +94,7 @@ function notifyChat(){
 	});
 }
 
+$(document).on("click", function(event) {
+    $("#ntfBox").hide();
+})
+

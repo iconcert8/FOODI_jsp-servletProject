@@ -26,7 +26,7 @@
 	</div>
 
 	<div id="searchForm">
-		<form action="search/searchresult.do" method="post">
+		<form action="/Foodi/search/searchresult" method="post">
 			<input id="searchSpace" name="searchKeyword" />
 			<input id="searchButton" type="submit" value="검색" />
 		</form>
@@ -47,10 +47,13 @@
 				<li><a href="/Foodi/chat/view">
 					<img src="/Foodi/css/icon/chat.png" width="40"	height="40" />
 				</a></li>&nbsp;&nbsp;
+				<div id="chatNum" class="num"></div>
 
 				<li><a href="#" id="notify">
 					<img src="/Foodi/css/icon/notification.png" width="40" height="40" />
 				</a></li>&nbsp;&nbsp;
+				<div id="notifyNum" class="num"></div>
+				
 				<li><a href="/Foodi/userInfo/logout.do" method="post">
 					<img src="/Foodi/css/icon/logout.png" width="40" height="40" />
 				</a></li>&nbsp;&nbsp;
@@ -60,11 +63,11 @@
 		<!-----------------------  로그인하지 않았을 경우 나타날 화면  ----------------------->
 		<c:if test="${loginUser == null}">
 			<ul style="margin-left: 160px;">
-				<li><a href="userInfo/loginPage.do">
+				<li><a href="/Foodi/userInfo/loginPage.do">
 					<img src="/Foodi/css/icon/logout.png" width="40" height="40" />
 				</a></li>&nbsp;&nbsp;
 			
-				<li><a href="userInfo/joinPage.do">
+				<li><a href="/Foodi/userInfo/joinPage.do">
 					<img src="/Foodi/css/icon/join.png" width="40" height="40" />
 				</a></li>&nbsp;&nbsp;
 			</ul>
@@ -99,7 +102,7 @@
 		<!-----------------------  로그인하지 않았을 경우 나타날 화면  ----------------------->
 		<c:if test="${loginUser == null}">
 			<ul>
-				<li><a href="userInfo/loginPage.do">로그인 하세욧</a></li>
+				<li><a href="/Foodi/userInfo/loginPage.do">로그인 하세욧</a></li>
 			</ul>
 		</c:if>
 		<!---------------------------------------------------------------------->

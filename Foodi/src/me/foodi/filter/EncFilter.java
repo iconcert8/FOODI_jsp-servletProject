@@ -40,28 +40,33 @@ public class EncFilter implements Filter {
 		
 		System.out.println(path);
 		
-		
 //		test용
-		/*if(path.indexOf("Test") != -1) {
+		if(path.indexOf("Test") != -1) {
 			loginFlag = true;
-		} else{
-			if(path.indexOf("userInfo") != -1) {
-				loginFlag = true;
-			} else if(path.indexOf("main") != -1) {
-				loginFlag = true;
-			} else if(httpRequest.getSession().getAttribute("loginUser") != null){
-				loginFlag = true;
-			}
 		}
-		
-		
-		
+		if(path.indexOf("css") > -1) {
+			loginFlag = true;
+		} else if(path.indexOf("login") > -1) {
+			loginFlag = true;
+		} else if(path.indexOf("userInfo") > -1) {
+			loginFlag = true;
+		} else if(path.indexOf("main") > -1) {
+			loginFlag = true;
+		} else if(httpRequest.getSession().getAttribute("loginUser") != null){
+			loginFlag = true;
+		} else if(httpRequest.getHeader("referer") != null) {
+			String[] tarr = httpRequest.getHeader("referer").split("/");
+			if(tarr[4].indexOf("main") > -1 && path.indexOf("notify") == -1) {
+				loginFlag = true;
+			}	
+		} 
+	
 		if(loginFlag) {
 			chain.doFilter(request, response);
 		} else {	
-			httpResponse.sendRedirect("/Foodi/TestLogin.jsp");
-		}*/
-		chain.doFilter(request, response);
+			httpResponse.sendRedirect("/Foodi/userInfo/loginPage.do");
+		}
+
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {

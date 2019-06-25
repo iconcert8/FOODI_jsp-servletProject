@@ -53,7 +53,7 @@
 			where reqId = #{reqId} and resId = #{resId}
 	</select>
 	
-	<select id="chatNotify">
+	<select id="chatNotify" resultType="String">
 		SELECT count(*) readless FROM chat
 			where chatchk >= 1 AND resid = #{userId}
 			GROUP BY reqid

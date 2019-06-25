@@ -40,6 +40,7 @@ ul {
 	position: absolute;
 	left: 0px;
 	background-color: yellow;
+	z-index: 101;
 }
 
 #userMenu {

@@ -12,7 +12,7 @@
 			select rownum rn, notifyNo, reqId, resId, notifyMsg, notifyDate, notifyChk
 			from notification 
 			where resId = #{resId}
-			order by notifyNo desc)
+			order by notifyNo)
 		<where>
 			<!-- here notifyNo is start row -->
 			<if test="notifyNo != -1">
@@ -22,6 +22,12 @@
 			</if>
 		</where>
 	</select>
+	
+	<update id="notifyChkUpdate" parameterType="NotifyVO">
+		update notification
+		set notifyChk = 'true'
+		where notifyNo = #{notifyNo}
+	</update>
 	
 	<select id="notifyCntList" parameterType="NotifyVO" resultType="int">
 		select count(*) from notification where resId = #{resId}

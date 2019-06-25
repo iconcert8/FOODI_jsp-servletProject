@@ -91,6 +91,12 @@ public class NotifyService {
 		return dao.notifyList(notifyVO);
 	}
 	
+	public int notifyChkUpdateService(HttpServletRequest request){
+		NotifyVO notifyVO = new NotifyVO();
+		notifyVO.setNotifyNo(Integer.parseInt(request.getParameter("notifyNo")));
+		return dao.notifyChkUpdate(notifyVO);
+	}
+	
 	public int notifyCheckNewService(HttpServletRequest request){
 		NotifyVO notifyVO = new NotifyVO();
 		notifyVO.setResId(getUser(request).getUserId());

@@ -1,6 +1,6 @@
 ﻿document.write("<script type='text/javascript' src='/Foodi/js/dateFormat.js'></script>");
 var ntfSum = 0;
-
+var ntfChk = 0;
 $(document).ready(function(){
 	notifyList();
 	notifyChat();
@@ -11,7 +11,9 @@ $(document).ready(function(){
 	}, 8000);
 	
 	$(document).on('click', ".notCheck", function(){
-		notifyUpdateChk();
+		var $this = $(this);
+		var notifyNo = $this.val();
+		notifyUpdateChk(notifyNo, $this);
 	});
 });
 
@@ -41,7 +43,6 @@ function notifyList(startRow){
 		data: {"startRow": startRow},
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 		success: function successHandler(data){
-			var ntfChk = 0;
 			$.each(data, function(index, item){
 				ntfSum++;
 				if(item.notifyChk == 'false'){
@@ -50,30 +51,47 @@ function notifyList(startRow){
 				
 				var html;
 				if(item.notifyChk == 'false'){
-					html = '<li class="notCheck">';
+					html = '<li value="'+item.notifyNo+'" class="notCheck">';
 				}else{
-					html = '<li>';
+					html = '<li value="'+item.notifyNo+'">';
 				}
 					html += 	'<b>'+item.notifyMsg+'</b><br>'
 						 +		'<label>'+item.notifyDate.substr(0, 16)+'</label>'
 						 + '</li>';
 				
 				$("#ntfList").prepend(html).trigger("create");
-				console.log(item.notifyDate);
 			});
 			var text;
-			if(ntfSum > 99){
+			if(ntfChk > 99){
 				text = '99+';
 			}else{
-				text = ntfSum;
+				text = ntfChk;
 			}
 			$("#notifyNum").text(text);
 		}
 	});
 }
 
-function notifyUpdateChk(){
-	
+function notifyUpdateChk(notifyNo, $this){
+	$.ajax({
+		url: '/Foodi/notify/updateChk',
+		type: 'get',
+		data:{'notifyNo':notifyNo},
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		error: function(error){console.log(error);},
+		success: function successHandler(data){
+			$this.removeClass("notCheck");
+			
+			ntfChk -= 1;
+			var text;
+			if(ntfChk > 99){
+				text = '99+';
+			}else{
+				text = ntfChk;
+			}
+			$("#notifyNum").text(text);
+		}
+	});
 }
 
 function notifyChat(){

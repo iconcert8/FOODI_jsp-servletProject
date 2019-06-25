@@ -64,7 +64,7 @@
 		<c:if test="${loginUser == null}">
 			<ul style="margin-left: 160px;">
 				<li><a href="/Foodi/userInfo/loginPage.do">
-					<img src="/Foodi/css/icon/logout.png" width="40" height="40" />
+					<img src="/Foodi/css/icon/login.png" width="40" height="40" />
 				</a></li>&nbsp;&nbsp;
 			
 				<li><a href="/Foodi/userInfo/joinPage.do">

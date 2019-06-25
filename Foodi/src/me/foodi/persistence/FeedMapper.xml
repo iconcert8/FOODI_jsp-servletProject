@@ -60,4 +60,16 @@
         	  g.userId(+) = #{userId} and q.userId(+) = #{userId} and 
         	  fd.userId=u.userId and fd.feedNo = #{feedNo}
 	</select>
+	
+	<select id="callFeed" parameterType="int" resultType="FeedVO">
+		SELECT * FROM feed
+			WHERE feedNo = #{feedNo}
+	</select>
+	
+	
+	
+	
+	
+	
+	
 </mapper>

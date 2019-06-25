@@ -19,4 +19,10 @@
 		where rownum< 3
 		]]>
 	</select>
+	
+	<select id="callTag" parameterType="int" resultType="TagVO">
+		SELECT * FROM feedTag
+			WHERE feedNo = #{feedNo}
+	</select>
+	
 </mapper>

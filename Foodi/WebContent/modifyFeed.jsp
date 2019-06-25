@@ -27,7 +27,7 @@
 		<article id="left" class="side"></article>
 		
 		<article id="middle">
-			<form action="feed/insertFeed.do" method="post" enctype="multipart/form-data" id="insertForm middle">
+			<form action="feed/modifyFeed.do" method="post" enctype="multipart/form-data" id="insertForm middle">
 				<ul>
 					<li>작성자</li>
 					<li><input type="text" name="userId" value="${loginUser.userId}" readOnly></li>

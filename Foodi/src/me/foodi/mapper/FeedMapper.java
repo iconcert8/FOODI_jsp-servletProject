@@ -15,4 +15,5 @@ public interface FeedMapper {
 	List<ReplyVO> feedReplyGet(int feedNo);
 	int feedReplyInsert(ReplyVO replyVO);
 	UserAndFeedVO newsfeedDetail(FeedVO feeVO);
+	FeedVO callFeed(int feedNo);
 }

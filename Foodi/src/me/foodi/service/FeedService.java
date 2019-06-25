@@ -98,4 +98,8 @@ public class FeedService {
 		feedVO.setFeedNo(Integer.parseInt(request.getParameter("feedNo")));
 		return dao.detailNewsFeed(feedVO);
 	}
+
+	public FeedVO callFeed(int feedNo) {
+		return dao.callFeed(feedNo);
+	}
 }

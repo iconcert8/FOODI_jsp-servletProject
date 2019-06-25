@@ -1,10 +1,7 @@
-package me.foodi.controller;
+package me.foodi.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import me.foodi.action.Action;
-import me.foodi.action.ActionForward;
 
 public class JoinPageAction implements Action {
 

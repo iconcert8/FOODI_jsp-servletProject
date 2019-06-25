@@ -86,7 +86,11 @@ public class FeedService {
 		ReplyVO replyVO = new ReplyVO();
 		replyVO.setUserId(userInfoVO.getUserId());
 		replyVO.setFeedNo(Integer.parseInt(request.getParameter("feedNo")));
-		replyVO.setReplyContent(request.getParameter("replyContent"));
+		String replyContent = request.getParameter("replyContent");
+		if(replyContent == null || replyContent == ""){
+			return -1;
+		}
+		replyVO.setReplyContent(replyContent);
 		
 		return dao.feedReplyInsert(replyVO);
 	}

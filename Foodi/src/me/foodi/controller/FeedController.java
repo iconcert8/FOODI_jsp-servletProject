@@ -12,11 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
 import me.foodi.action.FeedGetAction;
+import me.foodi.action.FeedNewsfeedAction;
 import me.foodi.action.FeedReplyGetAction;
 import me.foodi.action.FeedReplyInsertAction;
 import me.foodi.action.FeedTagListAction;
 import me.foodi.action.InsertFeedAction;
 import me.foodi.action.MakeFeedAction;
+import me.foodi.action.ModifyFeedAction;
 import me.foodi.action.NewsFeedListAction;
 
 
@@ -44,6 +46,13 @@ public class FeedController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(path.equals("feed/newsfeed")){
+			action = new FeedNewsfeedAction();
+			try{ 
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
 		}else if(path.equals("feed/newsfeedList.do")){
 			action = new NewsFeedListAction();
 			try{ 
@@ -86,6 +95,13 @@ public class FeedController extends HttpServlet {
 			return;
 		}else if(path.equals("feed/makeFeed.do")){
 			action = new MakeFeedAction();
+			try{ 
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+		}else if(path.equals("feed/modifyFeed.do")){
+			action = new ModifyFeedAction();
 			try{ 
 				forward = action.execute(request, response);
 			}catch(Exception e){

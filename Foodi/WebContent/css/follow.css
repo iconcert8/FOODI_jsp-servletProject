@@ -3,23 +3,28 @@
 *{margin:0px; padding:0px;}
 body{ margin:0 auto; width:1400px; }
 ul{list-style: none;}
+button{transition:all .5s ease;}
 
 /* head */
 nav{height: 60px;}
 header{margin-top: 30px;}
 header div{display: inline-block;}
 #searchBox{float: right;}
+#flwSearchKey{font-size: 18px; border: 2px solid #ffcd47; margin-right: 10px;}
+#flwSearch{border: 2px solid #ffcd47; width:80px; font-size: 16px; background-color: #ffcd47; color: white;}
+#flwSearch:HOVER{background-color: white; color:#ffcd47; cursor: pointer;}
 
 /* section */
 section{margin-top:50px;}
-ul{margin-top: 20px;}
+article ul{margin-top: 20px;}
 article{float:left; width:660px;}
 section article:LAST-CHILD{margin-left: 70px;}
 #line{width:2px; height:700px; float:left; background-color: gray;}
-li{margin-bottom: 20px;}
-li label{display: inline-block; width: 200px; margin-left: 60px;}
-li button{margin-left: 150px;}
+article li{margin-bottom: 20px;}
+article label{display: inline-block; width: 200px; margin-left: 60px;}
+article button{margin-left: 150px; border: 2px solid #ffcd47;}
+article button:HOVER{background-color: #fcf8e0; cursor: pointer;}
 
 /* follow button */
-.fln {background-color: #99c2ff; font-size: 20px; padding: 1px 20px; border-radius: 20px; font-weight:bold;}
+.fln {background-color: #ffcd47; font-size: 20px; padding: 1px 20px; border-radius: 20px; font-weight:bold;}
 .nofln {background-color: #d9d9d9; font-size: 20px; padding: 1px 20px; border-radius: 20px; font-weight:bold;}

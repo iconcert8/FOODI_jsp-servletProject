@@ -11,13 +11,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%-- <jsp:include page="notify.jsp"></jsp:include> --%>
 	<nav>
-		메뉴바 
+		<jsp:include page="toolbar.jsp"></jsp:include> 
 	</nav> 
+	<div style="height: 100px;"></div>
 	<header>
 		<h2>Follow</h2>
-		<div>ㅡ</div> <div id="searchBox"><input type="text" name="flwSearch"><button id="flwSearch">검색</button></div>
+		<div>ㅡ</div> <div id="searchBox"><input type="text" id="flwSearchKey" name="flwSearch"><button id="flwSearch">검색</button></div>
 	</header>
 	<section>
 		<article>

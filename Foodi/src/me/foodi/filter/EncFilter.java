@@ -35,23 +35,23 @@ public class EncFilter implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		String requestURI = httpRequest.getRequestURI();
 		String contextPath = httpRequest.getContextPath();
-//		System.out.println(requestURI);
-//		System.out.println(contextPath);
+
 		String path = requestURI.substring(contextPath.length() + 1);
 		
 		System.out.println(path);
 		
+		
 //		test용
-		if(path.indexOf("Test") != -1) {
-			System.out.println("test");
+		/*if(path.indexOf("Test") != -1) {
 			loginFlag = true;
-		} else
-		if(path.indexOf("userInfo") != -1) {
-			loginFlag = true;
-		} else if(path.indexOf("main") != -1) {
-			loginFlag = true;
-		} else if(httpRequest.getSession().getAttribute("loginUser") != null){
-			loginFlag = true;
+		} else{
+			if(path.indexOf("userInfo") != -1) {
+				loginFlag = true;
+			} else if(path.indexOf("main") != -1) {
+				loginFlag = true;
+			} else if(httpRequest.getSession().getAttribute("loginUser") != null){
+				loginFlag = true;
+			}
 		}
 		
 		
@@ -60,7 +60,8 @@ public class EncFilter implements Filter {
 			chain.doFilter(request, response);
 		} else {	
 			httpResponse.sendRedirect("/Foodi/TestLogin.jsp");
-		}
+		}*/
+		chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {

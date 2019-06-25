@@ -2,15 +2,20 @@
 /* all */
 *{margin: 0px; padding: 0px;}
 body {width:1400px; margin: 0 auto;}
-a{text-decoration: none;}
+a{text-decoration: none; }
+a:VISITED{color: black;}
+a:LINK{color: black;}
 li{list-style: none;}
 
 /* nav */
 nav > div {float: left;}
-nav {height: 60px; position: fixed; top:0px; background-color: gray; width: 1400px;}
+nav {
+	height: 60px; position: fixed; 
+	top:0px; background-color:white; 
+	width: 1400px; z-index: 100;}
 
 /* section */
 section{margin-top: 60px;}
 article{float: left; overflow: hidden;}
 #middle{width: 855px; margin-left: 10px; margin-right: 10px;}
-.side{width:250px; height:830px; padding:5px; border: 1px solid;}
+.side{width:250px; height:830px; padding:5px; border: 1px solid #ffcd47; }

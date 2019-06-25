@@ -21,7 +21,7 @@ public class TestGetAction implements Action{
 			request.getSession().setAttribute("loginUser", loginUser);
 			
 			forward.setRedirect(false);
-			forward.setPath("/TestPageList.jsp");			
+			forward.setPath("/main/index");			
 		}
 		
 		return forward;

@@ -15,8 +15,10 @@
 </head>
 <body>
  	<nav>
-		메뉴바 들어 갈 곳 
-	</nav>
+		<jsp:include page="toolbar.jsp"></jsp:include> 
+	</nav> 
+	<div style="height: 100px;"></div>
+	
 	<section> 
 		<article id="left" class="side">
 			<h3>Recent Writer</h3>
@@ -30,7 +32,12 @@
 	 		<ul id="nfList">
 	 		
 	 		</ul>
-			<div id="lightBox" class="black"></div>
+			<div id="lightBox" class="black">
+				<b id="close">X</b>
+				<div id="feedInfoBox"></div>
+				<b>댓글</b>
+				<div id="replyBox"></div>				
+			</div>
 		</article> 
 		
 		<article id="right" class="side">

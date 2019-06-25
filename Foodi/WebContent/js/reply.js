@@ -2,7 +2,7 @@
 
 function replyGet(feedNo, successReply){
 	$.ajax({
-		url : 'feed/getReply',
+		url : '/Foodi/feed/getReply',
 		type : 'get', 
 		dataType : 'json',
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
@@ -14,7 +14,7 @@ function replyGet(feedNo, successReply){
 
 function replyInsert(feedNo, feedContent, replyContent, resId, successFunction){
 	$.ajax({
-		url : 'feed/insertReply',
+		url : '/Foodi/feed/insertReply',
 		type : 'get', 
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 		data : {"feedNo" : feedNo, "replyContent":replyContent},

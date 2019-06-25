@@ -67,7 +67,7 @@ $(document).ready(function(){
 
 function getList(){
 	$.ajax({
-		url : 'feed/newsfeedList.do',
+		url : '/Foodi/feed/newsfeedList.do',
 		type : 'get', 
 		dataType : 'json',
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
@@ -79,7 +79,7 @@ function getList(){
 
 function getFeed(feedNo){
 	$.ajax({
-		url : 'feed/get',
+		url : '/Foodi/feed/get',
 		type : 'get', 
 		dataType : 'json',
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",

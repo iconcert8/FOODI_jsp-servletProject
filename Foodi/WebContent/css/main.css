@@ -14,32 +14,9 @@ h1{
 width:450px; 
 background-image: url("/Foodi/css/icon/logo.png");
 height:200px; 
-margin-top:40px;   
+margin-top:90px;   
 display: inline-block; 
 } 
-
-
-
-.search-1{display: inline-block; 
-height:40px; margin-top: 50px;
-margin-top: 10px;
- 
- }
- 
-.search-2{display: inline-block; 
-height:40px; margin-top: 50px;
- 
- }
- 
- #search{width: 500px;
-margin-right:50px;
-background-image: url("/Foodi/css/icon/searchBar.png");
-} 	
- 
- 
-#searchIcon{width:50px; 
-margin-left:30px;
-background-image: url("/Foodi/css/icon/dot.png");}
 
 
 /* section */
@@ -50,6 +27,6 @@ h3{color: orange;}
 #line{height:3px; background-color: black;}
 .ulBox{width: 1280px; overflow: hidden; float: left; position: relative;}
 article ul{width: 1280px; position: relative; left: 0px;}
-article li{display: inline-block; background-color: orange; width: 300px; height: 200px; margin-left: 10px; margin-right: 10px;}
-.arrow{float:left; width: 60px; font-size: 40px; color:orange;  text-align: center; line-height: 190px;}
+article li{display: inline-block; background-color: #ffcd47; width: 300px; height: 200px; margin-left: 10px; margin-right: 10px;}
+.arrow{float:left; width: 60px; font-size: 40px; color:#ffcd47;  text-align: center; line-height: 190px;}
 .arrow:HOVER {cursor: pointer; color: gray;}

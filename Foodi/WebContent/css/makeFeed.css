@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-li {
+article li{
 	display: inline;
 }
 

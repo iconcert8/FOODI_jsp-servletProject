@@ -32,7 +32,6 @@ public class QookController extends HttpServlet {
     	
     	Action action = null;
     	ActionForward forward = null;
-    	
     	if(path.equals("qook/insert")){
     		action = new QookInsertAction();
     		try{

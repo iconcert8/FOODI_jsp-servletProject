@@ -18,8 +18,6 @@
 		 
 		<h1></h1>
 		<div></div>
-		<div class="search-1" id="searchIcon"></div>
-		<div class="search-2" id="search">
 		<!-- <form action="/Foodi/search/searchresult.do" method="post">
 	<input type="text" name="searchKeyword" /><input type="submit" value="검색"/>
 	</form>  -->

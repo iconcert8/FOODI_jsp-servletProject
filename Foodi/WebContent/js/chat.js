@@ -7,6 +7,7 @@ var lastNo = 0;
 var setAsyncTime = 5000;
 var asyncInterval;
 var listRefreshTime = 0;
+var date = [];
 
 function first() {
 	$.ajax({
@@ -74,7 +75,7 @@ function resList(resId) {
 			console.log('resList success');
 			$('#resList').empty();
 			$.each(data, function(i, item) {
-				var div = $('<div></div>');
+				var div = $('<div class="resList"></div>');
 // 						if(i.chatImg != null) {
 // 							div.append('<img src="'+ i.chatImg +'"/>');
 // 						}
@@ -86,7 +87,8 @@ function resList(resId) {
 					}
 					div.appendTo('#resList');
 				} else if(item.selected != null){
-					div.append('<span class="resSelected">' + item.selected + '</span>');
+					div.append('<span>' + item.selected + '</span>');
+					div.addClass('resSelected');
 					div.appendTo('#resList');
 				}
 			})
@@ -112,6 +114,11 @@ function chatView() {
 			$.each(data, function(i, item) {				
 				drawMsg(i, item, data);
 			});
+			
+			
+			if(!asyncInterval) {
+				async();
+			}
 		},
 		error : function (data) {
 			console.log('chatView get fail');
@@ -131,14 +138,12 @@ function selectUser() {
 			console.log('selectUser success');
 			drawResInfo(data);
 			
+			date = [];
 			chatView();	
 			resList(resId);
-			if(!asyncInterval) {
-				async();
-			}
 		},
 		error : function (data) {
-			console.log('cselectUser fail');
+			console.log('selectUser fail');
 		}
 	});
 }
@@ -150,16 +155,17 @@ function drawResInfo(data) {
 		$('<img alt="profile image" src="upload_thumbImg/' + data.userImg + '"></img>').appendTo('#resInfo');
 	}
 	$('<span class="resId">' + data.userId + '</span><br>').appendTo('#resInfo');
-	$('<span class="resNick">' + data.userNick + '</span><br><hr>').appendTo('#resInfo');
+	$('<span class="resNick">' + data.userNick + '</span><br>').appendTo('#resInfo');
 }
 
 //check read update
 function updateCheckRead(data) {
 	$.each(data, function(i, item) {
-		if($('.user > .read').last().css('display') != 'none') {
+		if($('.user > .read').css('display')) {
 //			보낸사람이 상대방이면
 //			console.log('reqId : ' + item["reqId"] + ', resId : ' + resId);
-			if(item.reqId == resId) {		
+			if(item.reqId == resId) {
+				alert('res');
 				$('.user > .read').text('0');
 				$('.user > .read').hide();
 //			자신이보낸 메세지를 상대방이 읽은것이 확인되면
@@ -180,8 +186,6 @@ function updateView(data) {
 		}
 	});
 }
-
-var date = [];
 
 // message 그리기
 function drawMsg(i, item, data) {
@@ -208,7 +212,7 @@ function drawMsg(i, item, data) {
 			var divuser = $('<div class="user"></div>');
 			divuser
 				.append('<input type="hidden" class="chatNo" value="' + item.chatNo + '"></input>')
-				.append('<button value="del" class="delete">del</button>&nbsp;');
+				.append('<button value="del" class="delete">x</button>&nbsp;');
 			if(parseInt(item.chatChk)){
 				divuser.append('<span class="read">' + item.chatChk + '&nbsp;</span>');
 			}
@@ -220,7 +224,6 @@ function drawMsg(i, item, data) {
 	if(data.length -1 == i) {
 		lastNo = item.chatNo;
 		console.log('lastNo : ' + lastNo);
-		date = [];
 	}
 	if($('.res > .read').last().css('display') != 'none') {
 		if($('.res > .read').last().text() == 0) {
@@ -228,6 +231,7 @@ function drawMsg(i, item, data) {
 		}
 	}
 	
+//	scroll to bottom
 	var element = document.getElementById('chatView');
 	element.scrollTop = element.scrollHeight;
 }
@@ -273,10 +277,9 @@ function async() {
 $(function() {
 	
 //	메시지 보내기 버튼 이벤트
-	$(document).on('click', '#sendMsg > input[value="send"]', function() {
+	$('input[name="sendBtn"]').click(function(event) {
 		sendMsg();
-	});
-	
+	});	
 	
 	//목록 선택 이벤트
 	$(document).on('click', '#resList > div', function() {
@@ -301,33 +304,31 @@ $(function() {
 		if (keyCode == 13) {
 			event.preventDefault();
 			searchCheck($(this).val());
+        } else {
+        	 $.ajax({
+ 				type : 'post',
+ 				url : 'searchFollow',
+ 				dataType : 'json',
+ 				data : { keyword : $(this).val() },
+ 				success: function(data) {
+ 					$('#leftList').empty();
+ 					$.each(data, function(i, elt) {
+ 						$('#leftList').append('<div class="searchResult">' + elt + '</div>')
+ 					});			
+ 				},
+ 				error: function () {
+ 					console.log('search fail');
+ 				}			
+ 			});
         }
 	});
 	
-//	검색 자동완성
-	$('#search').autocomplete({
-		 source: function( request, response ) {
-			 $.ajax({
-				type : 'post',
-				url : 'searchFollow',
-				dataType : 'json',
-				data : { keyword : request.term },
-				success: function(data) {
-//					response(data);
-					$('#leftList').empty();
-					$.each(data, function(i, elt) {
-						$('#leftList').append('<div class="searchResult">' + elt + '</div>')
-					});			
-				},
-				error: function () {
-					console.log('search fail');
-				}			
-			});
-		},
+	$(document).on('click', '.searchResult', function(event) {
+		$('#search').val($(this).text()).focus();
 	});
 	
-	$(document).on('click', '.searchResult', function(event) {
-		searchCheck($(this).text());
+	$('#searchbtn').click(function(event) {
+		searchCheck($('#search').val());
 	});
 })
 

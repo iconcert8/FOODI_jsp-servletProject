@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
 import me.foodi.action.SearchAction;
+import me.foodi.action.SearchAutoCompleteAction;
 import me.foodi.action.SearchFormAction;
 import me.foodi.action.SsgAction;
 
@@ -53,6 +54,13 @@ public class SearchController extends HttpServlet {
 				e.printStackTrace();
 			}
     		return;
+    	}else if(path.equals("search/auto")) {
+    		action = new SearchAutoCompleteAction();
+    		try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
     	}
     	
     	if(forward != null){

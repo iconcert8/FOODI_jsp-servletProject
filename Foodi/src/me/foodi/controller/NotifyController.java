@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
 import me.foodi.action.NotifyCheckNewAction;
+import me.foodi.action.NotifyChkUpdateAction;
 import me.foodi.action.NotifyInsertAction;
 import me.foodi.action.NotifyListAction;
 
@@ -41,6 +42,14 @@ public class NotifyController extends HttpServlet {
     		return;
     	}else if(path.equals("notify/list")){
     		action = new NotifyListAction();
+    		try{
+    			forward = action.execute(request, response);
+    		}catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    		return;
+    	}else if(path.equals("notify/updateChk")){
+    		action = new NotifyChkUpdateAction();
     		try{
     			forward = action.execute(request, response);
     		}catch (Exception e) {

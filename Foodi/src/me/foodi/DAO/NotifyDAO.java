@@ -65,6 +65,26 @@ public class NotifyDAO {
 		return list;
 	}
 	
+	public int notifyChkUpdate(NotifyVO notifyVO){
+		int re = -1;
+		SqlSession session = getSqlSessionFactory().openSession();
+		try{
+			re = session.getMapper(NotifyMapper.class).notifyChkUpdate(notifyVO);
+			if(re > 0) {
+				session.commit();
+			}else {
+				session.rollback();
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session != null) {
+				session.close();
+			}
+		}
+		return re;
+	}
+	
 	public int notifyCntList(NotifyVO notifyVO){
 		int re = -1;
 		SqlSession session = getSqlSessionFactory().openSession();

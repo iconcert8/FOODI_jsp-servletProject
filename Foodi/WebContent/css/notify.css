@@ -1,9 +1,12 @@
 @CHARSET "UTF-8";
-#ntfBox{
-	width: 300px;
-}
+
 
 #ntfList{
 	list-style: none;
 	padding-left: 0px;
 }
+
+#ntfList li{height: 70px;margin-bottom: 10px;}
+#ntfList li:HOVER{cursor: pointer; background-color: white;}
+
+.notCheck{border: 2px solid white;}

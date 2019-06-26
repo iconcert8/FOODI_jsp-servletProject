@@ -165,7 +165,6 @@ function updateCheckRead(data) {
 //			보낸사람이 상대방이면
 //			console.log('reqId : ' + item["reqId"] + ', resId : ' + resId);
 			if(item.reqId == resId) {
-				alert('res');
 				$('.user > .read').text('0');
 				$('.user > .read').hide();
 //			자신이보낸 메세지를 상대방이 읽은것이 확인되면

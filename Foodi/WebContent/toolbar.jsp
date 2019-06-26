@@ -26,7 +26,7 @@
 	</div>
 
 	<div id="searchForm">
-		<form action="/Foodi/search/searchresult.do" method="post">
+		<form action="/Foodi/search/searchresult" method="post">
 			<input id="searchSpace" name="searchKeyword" />
 			<input id="searchButton" type="submit" value="검색" />
 		</form>
@@ -47,10 +47,13 @@
 				<li><a href="/Foodi/chat/view">
 					<img src="/Foodi/css/icon/chat.png" width="40"	height="40" />
 				</a></li>&nbsp;&nbsp;
+				<div id="chatNum" class="num"></div>
 
 				<li><a href="#" id="notify">
 					<img src="/Foodi/css/icon/notification.png" width="40" height="40" />
 				</a></li>&nbsp;&nbsp;
+				<div id="notifyNum" class="num"></div>
+				
 				<li><a href="/Foodi/userInfo/logout.do" method="post">
 					<img src="/Foodi/css/icon/logout.png" width="40" height="40" />
 				</a></li>&nbsp;&nbsp;

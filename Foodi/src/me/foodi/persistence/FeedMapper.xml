@@ -4,60 +4,106 @@
 <mapper namespace="me.foodi.mapper.FeedMapper">
 	<insert id="insertFeed" parameterType="FeedVO">
 		INSERT INTO feed VALUES
-		(feed_seq.nextval, #{userId}, #{feedContent}, #{feedImg, jdbcType=VARCHAR}, #{feedImgs, jdbcType=VARCHAR}, 0, #{feedLoc}, sysdate, sysdate, #{feedLock})
+		(feed_seq.nextval, #{userId}, #{feedContent}, #{feedImg,
+		jdbcType=VARCHAR}, #{feedImgs, jdbcType=VARCHAR}, 0, #{feedLoc},
+		sysdate, sysdate, #{feedLock})
 	</insert>
-	
+
 	<select id="getFeedNo" parameterType="FeedVO" resultType="int">
-		SELECT feedNo FROM feed
-		WHERE userId = #{userId} AND feedContent = #{feedContent} AND feedLoc = #{feedLoc} AND feedLock = #{feedLock} 
+		SELECT
+		feedNo FROM feed
+		WHERE userId = #{userId} AND feedContent =
+		#{feedContent} AND feedLoc = #{feedLoc} AND feedLock = #{feedLock}
 	</select>
- 
- 	<!-- Hot Tag Feed list -->
- 	<select id="listTagFeed" parameterType="String" resultType="UserAndFeedVO">
- 		<if test="value != null"> 		
+
+	<!-- Hot Tag Feed list -->
+	<select id="listTagFeed" parameterType="String" resultType="UserAndFeedVO">
+		<if test="value != null"> 		
 	 		<![CDATA[
 	 		select u.userId, u.userNick, u.userEmail, u.userImg, u.userLock, f.feedNo, f.feedContent, f.feedImg, f.feedLock
 			from feed f, feedTag t, userInfo u
 			where f.feedNo = t.feedNo and f.userId = u.userId and t.tagName=#{value} and rownum <= 8
 			]]>
- 		</if>
- 		<if test="value == null">
+		</if>
+		<if test="value == null">
  			<![CDATA[
  			select u.userId, u.userNick, u.userEmail, u.userImg, u.userLock, f.feedNo, f.feedContent, f.feedImg, f.feedLock
 			from feed f, userInfo u
 			where f.userId = u.userId and rownum <= 16
 			order by feedNo desc
 			]]>
- 		</if>
- 	</select>
- 	
- 	<select id="listNewsFeed" parameterType="FeedVO" resultType="UserAndFeedVO" > 
-		select u.userNick, u.userEmail, u.userImg, u.userLock,fd.feedNo, fd.userId, fd.feedContent, fd.feedImg, fd.feedImgs, 
-				fd.feedGoodCnt, fd.feedLoc, fd.feedDate, fd.feedUpdate, fd.feedLock, g.userId as isGood, q.userId as isQook
+		</if>
+	</select>
+
+	<select id="listNewsFeed" parameterType="FeedVO" resultType="UserAndFeedVO">
+		select u.userNick, u.userEmail, u.userImg, u.userLock,fd.feedNo,
+		fd.userId, fd.feedContent, fd.feedImg, fd.feedImgs,
+		fd.feedGoodCnt, fd.feedLoc, fd.feedDate, fd.feedUpdate, fd.feedLock, g.userId as
+		isGood, q.userId as isQook
 		from feed fd, good g, qook q, userInfo u
 		where fd.feedNo = g.feedNo(+) and fd.feedNo = q.feedNo(+) and
-      		  fd.userId in(select us.userId
-                  		   from userInfo uq, userInfo us, follow f
-                  		    where uq.userId = f.reqId and f.resId = us.userId and uq.userId = #{userId}) and
-        	  g.userId(+) = #{userId} and q.userId(+) = #{userId} and fd.userId=u.userId 
-       	ORDER BY fd.feedDate DESC
+		fd.userId in(select us.userId
+		from userInfo uq, userInfo us, follow f
+		where uq.userId = f.reqId and f.resId = us.userId and uq.userId =
+		#{userId}) and
+		g.userId(+) = #{userId} and q.userId(+) = #{userId} and fd.userId=u.userId
+		ORDER BY fd.feedDate DESC
 	</select>
-	
+
 	<select id="feedReplyGet" parameterType="int" resultType="ReplyVO">
-		select * from reply where feedNo=#{feedNo} order by replyNo desc
+		select
+		* from reply where feedNo=#{feedNo} order by replyNo desc
 	</select>
-	
+
 	<insert id="feedReplyInsert" parameterType="ReplyVO">
 		insert into reply
-		values (reply_seq.nextval, #{feedNo}, #{replyContent}, sysdate, #{userId})
-	</insert>   
-	
+		values (reply_seq.nextval, #{feedNo}, #{replyContent}, sysdate,
+		#{userId})
+	</insert>
+
 	<select id="newsfeedDetail" parameterType="FeedVO" resultType="UserAndFeedVO">
-		select u.userNick, u.userEmail, u.userImg, u.userLock,fd.feedNo, fd.userId, fd.feedContent, fd.feedImg, fd.feedImgs, 
-				fd.feedGoodCnt, fd.feedLoc, fd.feedDate, fd.feedUpdate, fd.feedLock, g.userId as isGood, q.userId as isQook
+		select u.userNick, u.userEmail, u.userImg, u.userLock,fd.feedNo,
+		fd.userId, fd.feedContent, fd.feedImg, fd.feedImgs,
+		fd.feedGoodCnt, fd.feedLoc, fd.feedDate, fd.feedUpdate, fd.feedLock, g.userId as
+		isGood, q.userId as isQook
 		from feed fd, good g, qook q, userInfo u
 		where fd.feedNo = g.feedNo(+) and fd.feedNo = q.feedNo(+) and
-        	  g.userId(+) = #{userId} and q.userId(+) = #{userId} and 
-        	  fd.userId=u.userId and fd.feedNo = #{feedNo}
+		g.userId(+) = #{userId} and q.userId(+) = #{userId} and
+		fd.userId=u.userId and fd.feedNo = #{feedNo}
 	</select>
+
+	<select id="callFeed" parameterType="int" resultType="FeedVO">
+		SELECT *
+		FROM feed
+		WHERE feedNo = #{feedNo}
+	</select>
+
+	<update id="modifyFeed" parameterType="FeedVO">
+		UPDATE feed SET
+		feedContent = #{feedContent},
+		feedLoc = #{feedLoc},
+		feedUpdate = sysdate,
+		feedLock = #{feedLock},
+		feedImg = 
+<!-- 			<choose>
+				<when test="#{feedImg} != null">
+			 		#{feedImg}
+				</when>
+				<otherwise>
+					(SELECT feedImg FROM feed
+					WHERE feedNo = #{feedNo})
+				</otherwise>
+			</choose>
+ -->		
+			<if test="feedImg != null"> 	
+			 	#{feedImg}
+			</if>
+			
+			<if test="feedImg == null">
+				(SELECT feedImg FROM feed
+				WHERE feedNo = #{feedNo})
+			</if>
+		WHERE feedNo = #{feedNo}
+		AND userId = #{userId}
+	</update>
 </mapper>

@@ -19,5 +19,15 @@
 		where rownum< 3
 		]]>
 	</select>
-
+	
+	<select id="callTag" parameterType="int" resultType="TagVO">
+		SELECT * FROM feedTag
+			WHERE feedNo = #{feedNo}
+	</select>
+	
+	<select id="searchAutoComplete" resultType="String" parameterType="String">
+		select tagName
+			from feedTag
+				where tagName like #{keyword}
+	</select>
 </mapper>

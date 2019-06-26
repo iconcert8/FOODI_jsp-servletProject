@@ -1,5 +1,6 @@
 package me.foodi.service;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
@@ -42,9 +43,15 @@ public class TagService {
 			dao.insertTag(tagVO);
 		}
 	}
+
+	public List<TagVO> callTag(int feedNo) {
+		List<TagVO> list = new ArrayList<>();
+		list = dao.callTag(feedNo);
+		
+		return list;
+	}
 	
 	public List<TagVO> listHTG(HttpServletRequest request) throws Exception{
 		return dao.listHTG();
 	}
-
 }

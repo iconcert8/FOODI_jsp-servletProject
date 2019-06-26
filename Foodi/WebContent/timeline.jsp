@@ -7,43 +7,60 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/Foodi/css/all.css">
 <link rel="stylesheet" href="/Foodi/css/timeline.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="/Foodi/js/timeline.js"></script>
 <title>TimeLine</title>
 
 </head>
 <body>
 	<nav>
-		<jsp:include page="toolbar.jsp"></jsp:include> 
-	</nav> 
+		<jsp:include page="toolbar.jsp"></jsp:include>
+	</nav>
 	<div style="height: 100px;"></div>
 	<section>
 		<article id="left" class="side">
 			<h2 id="ssg_title">MY SSG</h2>
 			<div id="ssg_list">
-			<br><br>
-			<a href="/Foodi/search/searchresult?searchKeyword=${ssg0 }" id=ssg>${ssg0 }</a><br><br>
-			<a href="/Foodi/search/searchresult?searchKeyword=${ssg1 }" id=ssg>${ssg1 }</a><br><br>
-			<a href="/Foodi/search/searchresult?searchKeyword=${ssg2 }" id=ssg>${ssg2 }</a><br><br>
-			<a href="/Foodi/search/searchresult?searchKeyword=${ssg3 }" id=ssg>${ssg3 }</a><br><br>
-			<a href="/Foodi/search/searchresult?searchKeyword=${ssg4 }" id=ssg>${ssg4 }</a><br><br>
-			<a href="/Foodi/search/searchresult?searchKeyword=${ssg5 }" id=ssg>${ssg5 }</a><br><br>
-			<a href="/Foodi/search/searchresult?searchKeyword=${ssg6 }" id=ssg>${ssg6 }</a><br><br>
-			<a href="/Foodi/search/searchresult?searchKeyword=${ssg7 }" id=ssg>${ssg7 }</a><br><br>
-			<a href="/Foodi/search/searchresult?searchKeyword=${ssg8 }" id=ssg>${ssg8 }</a><br><br>
-			<a href="/Foodi/search/searchresult?searchKeyword=${ssg9 }" id=ssg>${ssg9 }</a><br><br>
-			<a href="/Foodi/search/searchresult?searchKeyword=${ssg10 }" id=ssg>${ssg10 }</a><br><br>
-			<a href="/Foodi/search/searchresult?searchKeyword=${ssg11 }" id=ssg>${ssg11 }</a><br><br>
-			<a href="/Foodi/search/searchresult?searchKeyword=${ssg12 }" id=ssg>${ssg12 }</a><br><br>
-			<a href="/Foodi/search/searchresult?searchKeyword=${ssg13 }" id=ssg>${ssg13 }</a><br><br>
-			<a href="/Foodi/search/searchresult?searchKeyword=${ssg14 }" id=ssg>${ssg14 }</a><br><br>
+				<br> <br> <a
+					href="/Foodi/search/searchresult?searchKeyword=${ssg0 }" id=ssg>${ssg0 }</a><br>
+				<br> <a
+					href="/Foodi/search/searchresult?searchKeyword=${ssg1 }" id=ssg>${ssg1 }</a><br>
+				<br> <a
+					href="/Foodi/search/searchresult?searchKeyword=${ssg2 }" id=ssg>${ssg2 }</a><br>
+				<br> <a
+					href="/Foodi/search/searchresult?searchKeyword=${ssg3 }" id=ssg>${ssg3 }</a><br>
+				<br> <a
+					href="/Foodi/search/searchresult?searchKeyword=${ssg4 }" id=ssg>${ssg4 }</a><br>
+				<br> <a
+					href="/Foodi/search/searchresult?searchKeyword=${ssg5 }" id=ssg>${ssg5 }</a><br>
+				<br> <a
+					href="/Foodi/search/searchresult?searchKeyword=${ssg6 }" id=ssg>${ssg6 }</a><br>
+				<br> <a
+					href="/Foodi/search/searchresult?searchKeyword=${ssg7 }" id=ssg>${ssg7 }</a><br>
+				<br> <a
+					href="/Foodi/search/searchresult?searchKeyword=${ssg8 }" id=ssg>${ssg8 }</a><br>
+				<br> <a
+					href="/Foodi/search/searchresult?searchKeyword=${ssg9 }" id=ssg>${ssg9 }</a><br>
+				<br> <a
+					href="/Foodi/search/searchresult?searchKeyword=${ssg10 }" id=ssg>${ssg10 }</a><br>
+				<br> <a
+					href="/Foodi/search/searchresult?searchKeyword=${ssg11 }" id=ssg>${ssg11 }</a><br>
+				<br> <a
+					href="/Foodi/search/searchresult?searchKeyword=${ssg12 }" id=ssg>${ssg12 }</a><br>
+				<br> <a
+					href="/Foodi/search/searchresult?searchKeyword=${ssg13 }" id=ssg>${ssg13 }</a><br>
+				<br> <a
+					href="/Foodi/search/searchresult?searchKeyword=${ssg14 }" id=ssg>${ssg14 }</a><br>
+				<br>
 			</div>
 		</article>
 
 		<article id="middle">
 			<div id="profile_area">
-				<img alt="ProfImg" src="${user.userImg }" id="profile_img"/>
+				<img alt="ProfImg" src="${user.userImg }" id="profile_img" />
 				<div id="profile2">
-				<div id="profile_id">@${user.userId }</div>
-				<div id="profile_nick">${user.userNick }</div>
+					<div id="profile_id">@${user.userId }</div>
+					<div id="profile_nick">${user.userNick }</div>
 				</div>
 			</div>
 			<div id="map_area">
@@ -158,18 +175,45 @@
 				<c:forEach var="f" items="${feeds }">
 					<div id="feed">
 						<div id="feed_top">
-						<a href="/Foodi/timeline/timeline?userId=${f.userId }"><img alt="ProfImg" src="${f.userImg }" id="feed_userimg"/></a>
-						<a href="/Foodi/timeline/timeline?userId=${f.userId }"><div id="feed_userid">${f.userId }</div></a>
-						<div id="feed_date">${f.feedDate }</div>
-						<div id="feed_content">${f.feedContent }</div>
+							<div id="feedBarButton" class="menuClick">
+								<a class="menuOnOff" href="#">
+									<img src="/Foodi/css/icon/menuOn.png" width="40px" height="40px" />
+								</a>
+							</div>
+							<div id="feedBar" class="hidden">
+								<form action="/Foodi/feed/modifyButton.do" method="post">
+									<input type="hidden" value="${f.feedNo}" name="feedNo">
+									<input type="submit" value="수정">
+								</form>
+							</div>
+							<a href="/Foodi/timeline/timeline?userId=${f.userId }">
+								<img alt="ProfImg" src="${f.userImg }" id="feed_userimg" /></a>
+								
+							<a href="/Foodi/timeline/timeline?userId=${f.userId }">
+								<div id="feed_userid">${f.userId }</div>
+							</a>
+
+							<div id="feed_date">${f.feedDate }</div>
+
+							<div id="feed_content">${f.feedContent }</div>
+
+							<div></div>
 						</div>
+
 						<div id="feed_middle">
-						<img alt="no images" src="${f.feedImg }" id="feed_img"/>
+							<img alt="no images" src="${f.feedImg }" id="feed_img" />
 						</div>
+
 						<div id="feed_bottom">
-						<button id="good_btn"><a href="#">좋아요 : ${f.feedGoodCnt}</a></button>
-						<button id="detail_btn"><a href="#">상세페이지</a></button>
-						<button id="report_btn"><a href="#">신고하기</a></button>
+							<button id="good_btn">
+								<a href="#">좋아요 : ${f.feedGoodCnt}</a>
+							</button>
+							<button id="detail_btn">
+								<a href="#">상세페이지</a>
+							</button>
+							<button id="report_btn">
+								<a href="#">신고하기</a>
+							</button>
 						</div>
 					</div>
 					<br>

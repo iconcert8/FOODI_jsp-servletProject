@@ -37,8 +37,8 @@ public class FeedService {
 			String feedImg = (String) multi.getFilesystemName("feedImg");
 			feedVO.setFeedImg(feedImg);
 
-			String head = feedImg.substring(0, feedImg.indexOf(".")); // �뙆�씪 �씠由�
-			String extension = feedImg.substring(feedImg.indexOf(".") + 1); // �뙆�씪�솗�옣�옄
+			String head = feedImg.substring(0, feedImg.indexOf("."));
+			String extension = feedImg.substring(feedImg.indexOf(".") + 1);
 			String imgPath = uploadPath + "\\" + feedImg;
 			File src = new File(imgPath);
 
@@ -55,51 +55,94 @@ public class FeedService {
 			String feedImgs = (String) multi.getFilesystemName("feedImgs");
 			feedVO.setFeedImgs(feedImgs);
 		}
-		
+
 		return dao.insertFeed(feedVO);
 	}
-	
-	
+
 	public List<UserAndFeedVO> listTagFeedService(HttpServletRequest request) throws Exception {
-		String tagName = request.getParameter("tagName");	
-		if(tagName.equals("")){
+		String tagName = request.getParameter("tagName");
+		if (tagName.equals("")) {
 			tagName = null;
 		}
 		return dao.listTagFeed(tagName);
 	}
-	
+
 	public List<UserAndFeedVO> newsFeedListService(HttpServletRequest request) throws Exception {
-		UserInfoVO userInfoVO = (UserInfoVO)request.getSession().getAttribute("loginUser");
-		
+		UserInfoVO userInfoVO = (UserInfoVO) request.getSession().getAttribute("loginUser");
+
 		FeedVO feedVO = new FeedVO();
 		feedVO.setUserId(userInfoVO.getUserId());
-		
+
 		return dao.newsFeedList(feedVO);
 	}
-	
-	public List<ReplyVO> feedReplyGetService(HttpServletRequest request){
+
+	public List<ReplyVO> feedReplyGetService(HttpServletRequest request) {
 		return dao.feedReplyGet(Integer.parseInt(request.getParameter("feedNo")));
 	}
-	public int feedReplyInsertService(HttpServletRequest request){ 
-		UserInfoVO userInfoVO = (UserInfoVO)request.getSession().getAttribute("loginUser");
-		
+
+	public int feedReplyInsertService(HttpServletRequest request) {
+		UserInfoVO userInfoVO = (UserInfoVO) request.getSession().getAttribute("loginUser");
+
 		ReplyVO replyVO = new ReplyVO();
 		replyVO.setUserId(userInfoVO.getUserId());
 		replyVO.setFeedNo(Integer.parseInt(request.getParameter("feedNo")));
 		String replyContent = request.getParameter("replyContent");
-		if(replyContent == null || replyContent == ""){
+		if (replyContent == null || replyContent == "") {
 			return -1;
 		}
 		replyVO.setReplyContent(replyContent);
-		
+
 		return dao.feedReplyInsert(replyVO);
 	}
-	
-	public UserAndFeedVO detailNewsFeedService(HttpServletRequest request){
-		UserInfoVO userInfoVO = (UserInfoVO)request.getSession().getAttribute("loginUser");
+
+	public UserAndFeedVO detailNewsFeedService(HttpServletRequest request) {
+		UserInfoVO userInfoVO = (UserInfoVO) request.getSession().getAttribute("loginUser");
 		FeedVO feedVO = new FeedVO();
 		feedVO.setUserId(userInfoVO.getUserId());
 		feedVO.setFeedNo(Integer.parseInt(request.getParameter("feedNo")));
 		return dao.detailNewsFeed(feedVO);
+	}
+
+	public FeedVO callFeed(int feedNo) {
+		return dao.callFeed(feedNo);
+	}
+
+	public int modifyFeed(MultipartRequest multi) throws Exception {
+		String uploadPath = "C:\\Users\\kosta\\git\\foodi\\Foodi\\WebContent\\upload";
+		
+		FeedVO feedVO = new FeedVO();
+		feedVO.setFeedNo(Integer.parseInt(multi.getParameter("feedNo")));
+		feedVO.setUserId(multi.getParameter("userId"));
+		feedVO.setFeedContent(multi.getParameter("feedContent"));
+		feedVO.setFeedLoc(multi.getParameter("feedLoc"));
+		feedVO.setFeedLock(multi.getParameter("feedLock"));
+
+		if (multi.getFilesystemName("feedImg") != null) {
+			String feedImg = (String) multi.getFilesystemName("feedImg");
+			feedVO.setFeedImg(feedImg);
+
+			String head = feedImg.substring(0, feedImg.indexOf("."));
+			String extension = feedImg.substring(feedImg.indexOf(".") + 1);
+			String imgPath = uploadPath + "\\" + feedImg;
+			File src = new File(imgPath);
+
+			String thumbImgPath = uploadPath + "_thumbImg." + "\\" + head + "_thumbImg." + extension;
+			File dest = new File(thumbImgPath);
+
+			if (extension.equals("gif") || extension.equals("jpg") || extension.equals("bmp")
+					|| extension.equals("jpeg")) {
+				ImageUtil.resize(src, dest, 100, ImageUtil.RATIO);
+			}
+		}else{
+			// feedVO.setFeedImg("0");
+		}
+
+		if (multi.getFilesystemName("feedImgs") != null) {
+			String feedImgs = (String) multi.getFilesystemName("feedImgs");
+			feedVO.setFeedImgs(feedImgs);
+		}
+		
+		System.out.println(feedVO.toString());
+		return dao.modifyFeed(feedVO);
 	}
 }

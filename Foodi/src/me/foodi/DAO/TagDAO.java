@@ -1,6 +1,7 @@
 package me.foodi.DAO;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -51,21 +52,36 @@ public class TagDAO {
 			}
 		}
 	}
-	
-	public List<TagVO> listHTG(){
+
+	public List<TagVO> listHTG() {
 		List<TagVO> list = null;
 		SqlSession sqlSession = getSqlsessionFactory().openSession();
-		
-		try{
+
+		try {
 			list = sqlSession.getMapper(TagMapper.class).listHTG();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			if (sqlSession != null) {
 				sqlSession.close();
 			}
 		}
-		
+		return list;
+	}
+
+	public List<TagVO> callTag(int feedNo) {
+		List<TagVO> list = new ArrayList<>();
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+
+		try {
+			list = sqlSession.getMapper(TagMapper.class).callTag(feedNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (sqlSession != null) {
+				sqlSession.close();
+			}
+		}
 		return list;
 	}
 

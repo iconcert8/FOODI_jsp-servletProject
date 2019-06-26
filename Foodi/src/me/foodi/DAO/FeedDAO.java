@@ -53,91 +53,128 @@ public class FeedDAO {
 		}
 		return feedNo;
 	}
-	
-	public List<UserAndFeedVO> listTagFeed(String tagName){
+
+	public List<UserAndFeedVO> listTagFeed(String tagName) {
 		List<UserAndFeedVO> list = null;
 		SqlSession sqlSession = getSqlsessionFactory().openSession();
-		
-		try{
+
+		try {
 			list = sqlSession.getMapper(FeedMapper.class).listTagFeed(tagName);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			if (sqlSession != null) {
 				sqlSession.close();
 			}
 		}
 		return list;
 	}
-	
-	public List<UserAndFeedVO> newsFeedList(FeedVO feedVO){
+
+	public List<UserAndFeedVO> newsFeedList(FeedVO feedVO) {
 		List<UserAndFeedVO> list = null;
 		SqlSession session = getSqlsessionFactory().openSession();
-	
-		try{
+
+		try {
 			list = session.getMapper(FeedMapper.class).listNewsFeed(feedVO);
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			session.close();
-		} 
-		
+		}
+
 		return list;
-	
+
 	}
-	
-	public List<ReplyVO> feedReplyGet(int feedNo){
+
+	public List<ReplyVO> feedReplyGet(int feedNo) {
 		List<ReplyVO> list = null;
 		SqlSession session = getSqlsessionFactory().openSession();
-		
-		try{
-			list = session.getMapper(FeedMapper.class).feedReplyGet(feedNo);	
-		}catch(Exception e){
+
+		try {
+			list = session.getMapper(FeedMapper.class).feedReplyGet(feedNo);
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
-			if(session != null){
+		} finally {
+			if (session != null) {
 				session.close();
 			}
 		}
-		
-		return list;	
+
+		return list;
 	}
-	
-	public int feedReplyInsert(ReplyVO replyVO){
+
+	public int feedReplyInsert(ReplyVO replyVO) {
 		int re = -1;
 		SqlSession session = getSqlsessionFactory().openSession();
-		
-		try{
+
+		try {
 			re = session.getMapper(FeedMapper.class).feedReplyInsert(replyVO);
-			if(re > 0){
+			if (re > 0) {
 				session.commit();
-			}else{
+			} else {
 				session.rollback();
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			if(session != null){
+		} finally {
+			if (session != null) {
 				session.close();
 			}
 		}
 		return re;
 	}
-	 
-	public UserAndFeedVO detailNewsFeed(FeedVO feedVO){
+
+	public UserAndFeedVO detailNewsFeed(FeedVO feedVO) {
 		UserAndFeedVO userAndFeedVO = null;
 		SqlSession session = getSqlsessionFactory().openSession();
-		
-		try{
+
+		try {
 			userAndFeedVO = session.getMapper(FeedMapper.class).newsfeedDetail(feedVO);
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
-			if(session != null){
+		} finally {
+			if (session != null) {
 				session.close();
 			}
 		}
-		
+
 		return userAndFeedVO;
+	}
+
+	public FeedVO callFeed(int feedNo) {
+		FeedVO feedVO = new FeedVO();
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+
+		try {
+			feedVO = sqlSession.getMapper(FeedMapper.class).callFeed(feedNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (sqlSession != null) {
+				sqlSession.close();
+			}
+		}
+		return feedVO;
+	}
+
+	public int modifyFeed(FeedVO feedVO) {
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		int re = -1;
+		
+		try {
+			re = sqlSession.getMapper(FeedMapper.class).modifyFeed(feedVO);
+			if (re > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (sqlSession != null) {
+				sqlSession.close();
+			}
+		}
+		return 0;
 	}
 }

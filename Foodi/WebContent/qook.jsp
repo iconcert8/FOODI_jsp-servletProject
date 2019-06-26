@@ -30,7 +30,7 @@
 					mapOption = {
 						center : new daum.maps.LatLng(37.478964178779556,
 								126.8816736103818), // 지도의 중심좌표
-						level : 11
+						level : 9
 					// 지도의 확대 레벨
 					};
 
@@ -85,11 +85,15 @@
 			<ul id="list">
 				<c:forEach var="feed" items="${list}">
 					<li>
+						
 						<div id="feed_content">
+							<a href="#">
 							<img alt="no imgs" src="${feed.feedImg}" style="width: 200px; height: 170px;"/>
 							<img alt="no img" src="${feed.userImg}" id="user_img" style="width: 40px; height: 40px; font-size: 50px;">${feed.userId}
-							<p class="loc">${feed.feedLoc}</p>
+							<p class="loc" style="padding-left:3px; font-size: 18px;">${feed.feedLoc}</p>
+							</a>
 						</div>
+						
 					</li>				
 				</c:forEach>
 			</ul>

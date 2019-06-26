@@ -14,7 +14,10 @@ import me.foodi.action.ActionForward;
 import me.foodi.action.SearchAction;
 import me.foodi.action.SearchAutoCompleteAction;
 import me.foodi.action.SearchFormAction;
-import me.foodi.action.SsgAction;
+import me.foodi.action.SsgInsertAction;
+import me.foodi.action.SsgCancelAction;
+import me.foodi.action.SsgCheckAction;
+import me.foodi.domain.UserInfoVO;
 
 @WebServlet("/search/*")
 public class SearchController extends HttpServlet {
@@ -28,6 +31,12 @@ public class SearchController extends HttpServlet {
     	String uri = request.getRequestURI();
     	String ctxPath = request.getContextPath();
     	String path = uri.substring(ctxPath.length()+1);
+    	
+    	if(request.getSession().getAttribute("loginUser") != null) {
+    		UserInfoVO userInfo = (UserInfoVO) request.getSession().getAttribute("loginUser");
+    		request.setAttribute("userId", userInfo.getUserId());
+    	}
+    	System.out.println(path);
     	
     	Action action = null;
     	ActionForward forward = null;
@@ -47,7 +56,7 @@ public class SearchController extends HttpServlet {
 				e.printStackTrace();
 			}
     	}else if(path.equals("search/ssg")){
-    		action = new SsgAction();
+    		action = new SsgInsertAction();
     		try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -56,6 +65,20 @@ public class SearchController extends HttpServlet {
     		return;
     	}else if(path.equals("search/auto")) {
     		action = new SearchAutoCompleteAction();
+    		try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}else if(path.equals("search/ssgcheck")) {
+    		action = new SsgCheckAction();
+    		try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	} else if(path.equals("search/ssgCancel")) {
+    		action = new SsgCancelAction();
     		try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -70,9 +93,7 @@ public class SearchController extends HttpServlet {
     			RequestDispatcher rd = request.getRequestDispatcher(forward.getPath());
     			rd.forward(request, response);
     		}
-    	}
-    	
-    	
+    	}	
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

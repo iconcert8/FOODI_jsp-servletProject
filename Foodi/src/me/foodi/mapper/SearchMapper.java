@@ -1,6 +1,7 @@
 package me.foodi.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import me.foodi.domain.SearchFeedVO;
 import me.foodi.domain.SearchVO;
@@ -13,4 +14,7 @@ public interface SearchMapper {
 	int insertSearch(SearchVO search);
 	int insertSsg(SsgVO ssg);
 	String[] searchSsg(String userId);
+	List<String> searchTag(String keyword);
+	List<String> ssgCheck(Map ssgMap);
+	int ssgCancel(SsgVO ssg);
 }

@@ -7,16 +7,18 @@ import javax.servlet.http.HttpSession;
 import me.foodi.domain.UserInfoVO;
 import me.foodi.service.SearchService;
 
-public class SsgAction implements Action {
+public class SsgInsertAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		
 		SearchService service = SearchService.getInstance();
-		HttpSession session = request.getSession(true);
-		UserInfoVO user = (UserInfoVO) session.getAttribute("loginUser");
-		String userId=user.getUserId();
-		service.insertSsgService(request,userId);
-
+		int re = service.insertSsgService(request);
+		if(re != -1) {
+			response.getWriter().write("success");
+		}
+		
 
 		return null;
 	}

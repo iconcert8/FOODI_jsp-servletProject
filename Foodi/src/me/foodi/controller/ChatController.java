@@ -46,7 +46,7 @@ public class ChatController extends HttpServlet {
 			UserInfoVO userInfo = (UserInfoVO) request.getSession().getAttribute("loginUser");
 			request.setAttribute("userId", userInfo.getUserId());
 
-			System.out.println("[!] chat servlet method : get | " + path);
+//			System.out.println("[!] chat servlet method : get | " + path);
 			if (path.equals("chat/view")) {
 				forward = new ActionForward();
 				forward.setRedirect(false);
@@ -81,7 +81,7 @@ public class ChatController extends HttpServlet {
 			throws ServletException, IOException {
 
 		String path = getPath(request);
-		System.out.println("[!] chat servlet method : post | " + path);
+//		System.out.println("[!] chat servlet method : post | " + path);
 		ActionJson action = null;
 		ActionForward forward = null;
 

@@ -21,10 +21,21 @@
 
 		<article id="middle">
 			
-				<h1>
-					<h2 id="search_result">"<span id="searchKeyword">${searchKeyword }</span>"에 대한 검색 결과<input type="button" style="font-size:30px;" class="ssgbtn" value="SSG"/></h2>
-				</h1>
+			<div>
+				<h2 id="search_result">
+				<span id="searchKeyword">${searchKeyword }</span>"에 대한 검색 결과
+				</h2>
+			</div>
 			
+			<h2 id="user_title">Tag</h2>
+				<c:forEach var="t" items="${taglist }">
+					<div class="tagSSG">
+						<span class="ssgName">${t }</span>
+						<c:if test="${loginUser != null}">
+							<input type="button" style="font-size:30px;" class="ssgbtn" name=${t } value="SSG하기"></input>
+						</c:if>
+					</div>
+				</c:forEach>
 			<br>
 			<br>
 			
@@ -32,18 +43,17 @@
 			<br>
 			<br>
 			
-			<ul id="user_list">
+			<div class="user_list">
 			<c:forEach var="u" items="${userlist }">
-				<li id="user">
-				<a href="/Foodi/timeline/timeline?userId=${u.userId }">
-				<img alt="no images" src="${u.userImg }" style="width:140px;height:140px;padding: 5px;"/>
-				<div id="id">${u.userId }</div>
-				<div id="nick">${u.userNick }</div>
-				<br>
-				</a>
-				</li>
+				<div class="user">
+					<a href="/Foodi/timeline/timeline?userId=${u.userId }">
+						<img alt="no images" src="${u.userImg }" style="width:140px;height:140px;padding: 5px;"/>
+					</a>
+					<div class="id">${u.userId }</div>
+					<div class="nick">${u.userNick }</div>
+				</div>
 			</c:forEach>
-			</ul>
+			</div>
 			
 			<br>
 			<br>
@@ -52,10 +62,17 @@
 			<br>
 			<ul>
 			<c:forEach var="f" items="${feedlist }">
-				<li id="feed">
-				<img alt="no img" src="${f.feedImg }" id="feed_img"/>
-				<div id="feed_content">
-				<div><span id="feed_id">${f.userId }</span><span id="feed_tag">#${f.tagName }</span></div>
+				<li class="feed">
+				<div class="feed_content">
+					<img alt="no img" src="${f.feedImg }" class="feed_img"/>
+				
+					<div>
+						<span class="feed_tag">${f.tagName }</span>
+					</div>
+				</div>
+				<div class="feedUserInfo">
+					<img src="${f.userImg }" class="feed_userImg"/>
+					<span class="feed_userId">${f.userId }</span>		
 				</div>
 				<br>
 				</li>

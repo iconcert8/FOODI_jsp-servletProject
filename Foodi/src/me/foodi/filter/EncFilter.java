@@ -38,7 +38,7 @@ public class EncFilter implements Filter {
 
 		String path = requestURI.substring(contextPath.length() + 1);
 		
-		System.out.println(path);
+//		System.out.println(path);
 		
 //		test용
 		if(path.indexOf("Test") != -1) {
@@ -51,6 +51,8 @@ public class EncFilter implements Filter {
 		} else if(path.indexOf("userInfo") > -1) {
 			loginFlag = true;
 		} else if(path.indexOf("main") > -1) {
+			loginFlag = true;
+		} else if(path.indexOf("search") > -1) {
 			loginFlag = true;
 		} else if(httpRequest.getSession().getAttribute("loginUser") != null){
 			loginFlag = true;

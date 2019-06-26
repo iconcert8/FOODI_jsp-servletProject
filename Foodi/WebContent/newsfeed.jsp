@@ -11,6 +11,7 @@
 <script type="text/javascript" src="/Foodi/js/newsFeed.js"></script>
 <link rel="stylesheet" href="/Foodi/css/all.css">
 <link rel="stylesheet" href="/Foodi/css/newsFeed.css">
+<link rel="stylesheet" href="/Foodi/css/lightBoxFeed.css">
 <title>Insert title here</title> 
 </head>
 <body>
@@ -32,12 +33,6 @@
 	 		<ul id="nfList">
 	 		
 	 		</ul>
-			<div id="lightBox" class="black">
-				<b id="close">X</b>
-				<div id="feedInfoBox"></div>
-				<b>댓글</b>
-				<div id="replyBox"></div>				
-			</div>
 		</article> 
 		
 		<article id="right" class="side">

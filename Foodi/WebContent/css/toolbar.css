@@ -81,6 +81,11 @@ ul {
 	margin-bottom: 20px;
 }
 
+.notLoginMenuLink{
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
 .num{
 	position: absolute; top: 22px; width: 30px; 
 	height: 30px; background-color:red; border:1px solid red; border-radius:30px;
@@ -90,5 +95,6 @@ ul {
 #notifyNum{left: 1210px;}
 
 .menuLink a:HOVER {color: white;}
+.notLoginMenuLink a:HOVER{color: white;}
 .currentPage{text-align: center;}
 .currentPage a{color: white;}

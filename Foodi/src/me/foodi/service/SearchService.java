@@ -1,6 +1,10 @@
 package me.foodi.service;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -48,7 +52,10 @@ public class SearchService {
 		SearchVO search=new SearchVO();
 		search.setUserId((String) request.getAttribute("userId"));
 		search.setSearchKeyword(request.getParameter("searchKeyword"));
-		dao.insertSearch(search);
+		if(!search.getSearchKeyword().equals("")) {
+			dao.insertSearch(search);
+		}
+		
 	}
 	
 	public int insertSsgService(HttpServletRequest request)throws Exception{
@@ -68,13 +75,23 @@ public class SearchService {
 
 	public List<String> searchTagService(HttpServletRequest request) {
 		String keyword = "%" + request.getParameter("searchKeyword") + "%";
-//		System.out.println(keyword);
 		return dao.searchTag(keyword);
 	}
 
 	public List<String> ssgCheckService(HttpServletRequest request) {
 		String ssgString = request.getParameter("ssglist");
 		String[] ssgArr = ssgString.split(",");
-		return null;
+		Map ssgMap = new HashMap();
+		ssgMap.put("ssgArr", ssgArr);
+		return dao.ssgCheck(ssgMap);
+	}
+
+	public int ssgCancelService(HttpServletRequest request) {
+		String userId=(String) request.getAttribute("userId");
+		String tagName=request.getParameter("tagName");
+		SsgVO ssg = new SsgVO();
+		ssg.setTagName(tagName);
+		ssg.setUserId(userId);
+		return dao.ssgCancel(ssg);
 	}
 }

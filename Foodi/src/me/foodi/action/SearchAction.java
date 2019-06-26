@@ -21,7 +21,6 @@ public class SearchAction implements Action {
 		List<SearchFeedVO> feedlist = service.searchFeedService(request);
 		List<String> taglist = service.searchTagService(request);
 		
-		System.out.println(taglist);
 		String searchKeyword = request.getParameter("searchKeyword");
 		request.setAttribute("userlist", userlist);
 		request.setAttribute("feedlist", feedlist);

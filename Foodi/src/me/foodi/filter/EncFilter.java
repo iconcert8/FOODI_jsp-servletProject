@@ -52,6 +52,8 @@ public class EncFilter implements Filter {
 			loginFlag = true;
 		} else if(path.indexOf("main") > -1) {
 			loginFlag = true;
+		} else if(path.indexOf("search") > -1) {
+			loginFlag = true;
 		} else if(httpRequest.getSession().getAttribute("loginUser") != null){
 			loginFlag = true;
 		} else if(httpRequest.getHeader("referer") != null) {

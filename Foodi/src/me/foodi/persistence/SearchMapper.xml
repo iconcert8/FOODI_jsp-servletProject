@@ -16,7 +16,7 @@
 	</select>
 	
 	<insert id="insertSearch" parameterType="SearchVO">
-		INSERT INTO search VALUES(search_seq.nextval,#{searchKeyword},sysdate,#{userId})
+		INSERT INTO search VALUES(search_seq.nextval,#{searchKeyword},sysdate, #{userId, jdbcType=VARCHAR})
 	</insert>
 	
 	<insert id="insertSsg" parameterType="SsgVO">
@@ -32,4 +32,18 @@
 			from feedTag
 				where tagName like #{keyword}
 	</select>
+	
+	<select id="ssgCheck" parameterType="hashmap" resultType="String">
+			select tagname
+				from ssg
+					where tagname in
+						<foreach collection="ssgArr" item="ssg" open="(" separator="," close=")">
+							#{ssg}
+						</foreach>
+	</select>
+	
+	<delete id="ssgCancel">
+		delete from ssg
+			where userId=#{userId} and tagname=#{tagName}
+	</delete>
 </mapper>

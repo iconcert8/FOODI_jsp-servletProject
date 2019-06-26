@@ -2,6 +2,7 @@ package me.foodi.DAO;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -117,7 +118,25 @@ public class SearchDAO {
 	public List<String> searchTag(String keyword) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		List<String> autoList = sqlSession.getMapper(SearchMapper.class).searchTag(keyword);
-		System.out.println(autoList);
+		sqlSession.close();
 		return autoList;
+	}
+
+	public List<String> ssgCheck(Map ssgMap) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		List<String> ssgCheck = sqlSession.getMapper(SearchMapper.class).ssgCheck(ssgMap);
+		sqlSession.close();
+		return ssgCheck;
+	}
+
+	public int ssgCancel(SsgVO ssg) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re = sqlSession.getMapper(SearchMapper.class).ssgCancel(ssg);
+		if(re>0){
+			sqlSession.commit();
+		}else{
+			sqlSession.rollback();
+		}
+		return re;
 	}
 }

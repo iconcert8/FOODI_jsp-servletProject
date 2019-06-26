@@ -30,8 +30,10 @@
 			<h2 id="user_title">Tag</h2>
 				<c:forEach var="t" items="${taglist }">
 					<div class="tagSSG">
-						<span>${t }</span>
-						<input type="button" style="font-size:30px;" class="ssgbtn" name=${t } value="SSG"></input>
+						<span class="ssgName">${t }</span>
+						<c:if test="${loginUser != null}">
+							<input type="button" style="font-size:30px;" class="ssgbtn" name=${t } value="SSG하기"></input>
+						</c:if>
 					</div>
 				</c:forEach>
 			<br>

@@ -1,12 +1,11 @@
 package me.foodi.service;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.DAO.UserInfoDao;
+import me.foodi.domain.FollowInfoVO;
+import me.foodi.domain.FollowVO;
 import me.foodi.domain.UserInfoVO;
 
 public class UserInfoService {
@@ -31,5 +30,14 @@ public class UserInfoService {
 		return dao.userInfoInsert(userInfoVO);
 		
 		
+	}
+	
+	public FollowInfoVO userGet(HttpServletRequest request) throws Exception{
+		UserInfoVO loginUser = (UserInfoVO)request.getSession().getAttribute("loginUser");
+		FollowVO followVO = new FollowVO();
+		followVO.setReqId(loginUser.getUserId());
+		followVO.setResId(request.getParameter("resId"));
+		
+		return dao.userGet(followVO);
 	}
 }

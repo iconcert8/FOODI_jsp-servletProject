@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import me.foodi.domain.FollowInfoVO;
+import me.foodi.domain.FollowVO;
 import me.foodi.domain.UserInfoVO;
 import me.foodi.mapper.UserInfoMapper;
 
@@ -67,5 +69,21 @@ public class UserInfoDao {
 		return userInfoVO;
 	}
 	
+	public FollowInfoVO userGet(FollowVO followVO){
+		FollowInfoVO followInfoVO = null;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			followInfoVO = sqlSession.getMapper(UserInfoMapper.class).userGet(followVO);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(sqlSession != null) {
+				sqlSession.close();
+			}
+		}
+		
+		return followInfoVO;
+	}
 
 }

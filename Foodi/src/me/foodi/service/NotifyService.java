@@ -33,7 +33,8 @@ public class NotifyService {
 		String type = request.getParameter("type");
 		if(type.equals("follow")){
 			notifyVO.setNotifyType("follow");
-			notifyVO.setNotifyMsg(getUser(request).getUserId()+"님이 팔로우 하였습니다");			
+			notifyVO.setNotifyMsg(getUser(request).getUserId()+"님이 팔로우 하였습니다");
+			System.out.println(notifyVO);
 		}else if(type.equals("good")){
 			String feed = request.getParameter("feed");
 			JSONObject json = (JSONObject)JSONSerializer.toJSON(feed);

@@ -10,4 +10,12 @@
 	<select id="testGet" parameterType="String" resultType="UserInfoVO">
 		select * from userInfo where userId = #{value}
 	</select>
+	
+	
+	<!-- 팔로우 여부 포함 -->
+	<select id="userGet" parameterType="FollowVO" resultType="FollowInfoVO">
+		select u.userId, u.userNick, u.userEmail, u.userImg, u.userLock, f.resId as isFollow 
+		from follow f, userInfo u
+		where f.resId(+) = u.userId and u.userId=#{resId} and f.reqId(+) = #{reqId} 
+	</select>
 </mapper>

@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/Foodi/css/all.css">
 <link rel="stylesheet" href="/Foodi/css/timeline.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="/Foodi/js/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="/Foodi/js/timeline.js"></script>
 <title>TimeLine</title>
 
@@ -61,6 +61,12 @@
 				<div id="profile2">
 					<div id="profile_id">@${user.userId }</div>
 					<div id="profile_nick">${user.userNick }</div>
+					
+					
+					<div id="flwBtn" userId="${user.userId}"></div>
+					
+					
+					
 				</div>
 			</div>
 			<div id="map_area">

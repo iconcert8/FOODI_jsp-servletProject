@@ -15,6 +15,20 @@ function followList(key, successFunction){
 	});
 }
 
+function isFollow(resId, successFunction){
+	$.ajax({
+		url: '/Foodi/userInfo/get',
+		type: 'get',
+		dataType: 'json',
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		data: {"resId" : resId},
+		error: function(error){console.log(error);},
+		success: function(data){
+			successFunction(data);
+		}
+	});
+}
+
 
 //insert follow
 function followInsert(resId, $this, successFunction){

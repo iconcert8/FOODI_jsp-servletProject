@@ -15,6 +15,7 @@ import me.foodi.action.JoinPageAction;
 import me.foodi.action.LoginPageAction;
 import me.foodi.action.LogoutAction;
 import me.foodi.action.TestGetAction;
+import me.foodi.action.UserGetAction;
 
 
 @WebServlet("/userInfo/*")
@@ -69,7 +70,15 @@ public class UserInfoController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-    	}
+    	}else if(path.equals("userInfo/get")){
+	    	action = new UserGetAction();
+	    	try {
+	    		forward = action.execute(request, response);
+	    	} catch (Exception e) {
+	    		e.printStackTrace();
+	    	}
+	    	return;
+	    }
     	
     	if(forward != null){
     		if(forward.isRedirect()){

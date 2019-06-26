@@ -3,7 +3,7 @@
 <mapper namespace="me.foodi.mapper.NotifyMapper">
 	<insert id="notifyInsert" parameterType="NotifyVO">
 		insert into notification
-		values (notify_seq.nextval, #{reqId}, #{resId},#{notifyMsg}, sysdate, 'false')
+		values (notify_seq.nextval, #{reqId}, #{resId},#{notifyMsg}, sysdate, 'false', null)
 	</insert>
 	
 	<select id="notifyList" parameterType="NotifyVO" resultType="NotifyVO">

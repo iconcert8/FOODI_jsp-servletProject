@@ -181,4 +181,7 @@ ul {
 	z-index: 101;
 }
 
+.fln {background-color: #ffcd47; font-size: 20px; padding: 1px 20px; border-radius: 20px; font-weight:bold;}
+.nofln {background-color: #d9d9d9; font-size: 20px; padding: 1px 20px; border-radius: 20px; font-weight:bold;}
+
 /* -------------------------- */

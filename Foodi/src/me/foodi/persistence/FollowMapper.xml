@@ -36,6 +36,4 @@
 		delete from follow
 		where reqId= #{reqId} and resId= #{resId}
 	</delete>
-
-	
 </mapper>

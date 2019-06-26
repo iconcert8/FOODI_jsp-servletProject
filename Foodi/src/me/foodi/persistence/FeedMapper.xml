@@ -80,21 +80,30 @@
 
 	<update id="modifyFeed" parameterType="FeedVO">
 		UPDATE feed SET
-		feedContent = #{feedContent}, feedLoc = #{feedLoc}, feedUpdate = sysdate, feedLock = #{feedLock}, feedImg = 
-			<if test="#{feedImg} != null"> 		
-		 		#{feedImg}
+		feedContent = #{feedContent},
+		feedLoc = #{feedLoc},
+		feedUpdate = sysdate,
+		feedLock = #{feedLock},
+		feedImg = 
+<!-- 			<choose>
+				<when test="#{feedImg} != null">
+			 		#{feedImg}
+				</when>
+				<otherwise>
+					(SELECT feedImg FROM feed
+					WHERE feedNo = #{feedNo})
+				</otherwise>
+			</choose>
+ -->		
+			<if test="feedImg != null"> 	
+			 	#{feedImg}
 			</if>
-			<if test="#{feedImg} == null">
-	 			<![CDATA[
-	 			SELECT feedImg FROM feed
-					WHERE feedNo = #{feedNo}
-				]]>
+			
+			<if test="feedImg == null">
+				(SELECT feedImg FROM feed
+				WHERE feedNo = #{feedNo})
 			</if>
-			WHERE feedNo = #{feedNo}
+		WHERE feedNo = #{feedNo}
+		AND userId = #{userId}
 	</update>
-
-
-
-
-
 </mapper>

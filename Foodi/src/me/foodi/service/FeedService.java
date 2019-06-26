@@ -108,13 +108,10 @@ public class FeedService {
 	}
 
 	public int modifyFeed(MultipartRequest multi) throws Exception {
-		String uploadPath = "\\foodi\\Foodi\\WebContent\\upload";
-		int size = 100 * 1024 * 1024; // 100mb 설정
-		
-		
-		System.out.println("feedservice");
+		String uploadPath = "C:\\Users\\kosta\\git\\foodi\\Foodi\\WebContent\\upload";
 		
 		FeedVO feedVO = new FeedVO();
+		feedVO.setFeedNo(Integer.parseInt(multi.getParameter("feedNo")));
 		feedVO.setUserId(multi.getParameter("userId"));
 		feedVO.setFeedContent(multi.getParameter("feedContent"));
 		feedVO.setFeedLoc(multi.getParameter("feedLoc"));
@@ -136,6 +133,8 @@ public class FeedService {
 					|| extension.equals("jpeg")) {
 				ImageUtil.resize(src, dest, 100, ImageUtil.RATIO);
 			}
+		}else{
+			// feedVO.setFeedImg("0");
 		}
 
 		if (multi.getFilesystemName("feedImgs") != null) {
@@ -143,6 +142,7 @@ public class FeedService {
 			feedVO.setFeedImgs(feedImgs);
 		}
 		
+		System.out.println(feedVO.toString());
 		return dao.modifyFeed(feedVO);
 	}
 }

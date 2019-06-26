@@ -160,14 +160,12 @@ public class FeedDAO {
 	public int modifyFeed(FeedVO feedVO) {
 		SqlSession sqlSession = getSqlsessionFactory().openSession();
 		int re = -1;
-		System.out.println(123);
+		
 		try {
 			re = sqlSession.getMapper(FeedMapper.class).modifyFeed(feedVO);
 			if (re > 0) {
-				System.out.println(00);
 				sqlSession.commit();
 			} else {
-				System.out.println(99);
 				sqlSession.rollback();
 			}
 		} catch (Exception e) {

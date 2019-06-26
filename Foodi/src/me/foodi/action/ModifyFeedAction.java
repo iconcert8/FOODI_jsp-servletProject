@@ -15,20 +15,20 @@ public class ModifyFeedAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		FeedService feedService = FeedService.getInstance();
 		ActionForward forward = new ActionForward();
-		
-		String uploadPath = "\\WebContent\\upload";
-		
+
+		String uploadPath = "C:\\Users\\kosta\\git\\foodi\\Foodi\\WebContent\\upload";
 		int size = 100 * 1024 * 1024; // 100mb 설정
-		
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8", new DefaultFileRenamePolicy());
-		System.out.println(123321321);
-		int feedNo = Integer.parseInt(request.getParameter("feedNo"));
+
+		feedService.modifyFeed(multi);
 		
+		int feedNo = Integer.parseInt(multi.getParameter("feedNo"));
+
 		TagService tagService = TagService.getInstance();
 		tagService.modifyTag(multi, feedNo);
 
 		forward.setRedirect(true);
-		forward.setPath("/Foodi/makeFeed.jsp");
+		forward.setPath("/Foodi/main/index");
 		
 		return forward;
 	}

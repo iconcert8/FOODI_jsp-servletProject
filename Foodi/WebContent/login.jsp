@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="TestLogin.jsp">임시 로그인</a>f
+	<a href="TestLogin.jsp">임시 로그인</a>
 </body>
 </html>

@@ -33,7 +33,7 @@
 					<li>작성자</li>
 					<li>${loginUser.userId}</li>
 					<li><input type="hidden" name="userId" value="${loginUser.userId}"></li>
-					<li><input type="hidden" name="feedNo" value="${feedVO.feedNo}"></li>
+					<li><input type="hidden" name="feedNo" value="${feedVO.feedNo}">${feedVO.feedNo}</li>
 				</ul><br>
 				
 				<ul>
@@ -50,7 +50,6 @@
 					<li>기본사진</li>
 					
 					<li><input type="file" id="feedImg" name="feedImg" accept="image/*"></li><br><br>
-					
  					<li><img id="preview" src="${feedVO.feedImg}" /></li>
 				</ul><br>
 				

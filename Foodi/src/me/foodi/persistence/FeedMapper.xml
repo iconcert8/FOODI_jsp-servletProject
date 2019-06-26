@@ -106,4 +106,10 @@
 		WHERE feedNo = #{feedNo}
 		AND userId = #{userId}
 	</update>
+	
+	<delete id="deleteFeed" parameterType="int">
+		DELETE FROM feedTag
+			where feedNo = #{feedTag}
+	</delete>
+	
 </mapper>

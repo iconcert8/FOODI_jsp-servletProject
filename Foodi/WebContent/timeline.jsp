@@ -185,6 +185,10 @@
 									<input type="hidden" value="${f.feedNo}" name="feedNo">
 									<input type="submit" value="수정">
 								</form>
+								<form action="/Foodi/feed/deleteFeed.do" method="post">
+									<input type="hidden" value="${f.feedNo}" name="feedNo">
+									<input type="submit" value="삭제">
+								</form>
 							</div>
 							<a href="/Foodi/timeline/timeline?userId=${f.userId }">
 								<img alt="ProfImg" src="${f.userImg }" id="feed_userimg" /></a>

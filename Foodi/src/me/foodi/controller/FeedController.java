@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.foodi.action.Action;
 import me.foodi.action.ActionForward;
+import me.foodi.action.DeleteFeedAction;
 import me.foodi.action.FeedGetAction;
 import me.foodi.action.FeedNewsfeedAction;
 import me.foodi.action.FeedReplyGetAction;
@@ -110,6 +111,13 @@ public class FeedController extends HttpServlet {
 			} 
 		}else if(path.equals("feed/modifyFeed.do")){
 			action = new ModifyFeedAction();
+			try{ 
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+		}else if(path.equals("feed/deleteFeed.do")){
+			action = new DeleteFeedAction();
 			try{ 
 				forward = action.execute(request, response);
 			}catch(Exception e){

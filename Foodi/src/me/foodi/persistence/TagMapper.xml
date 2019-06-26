@@ -4,9 +4,12 @@
 	<insert id="insertTag" parameterType="TagVO">
 		INSERT INTO feedTag VALUES
 		(#{feedNo}, #{tagName})
-		
-	
 	</insert>
+	
+	<delete id="deleteTag" parameterType="int">
+		DELETE FROM feedTag
+			WHERE feedNo = #{feedNo}
+	</delete>
 	
 	<select id="listHTG" resultType="TagVO">
 		<![CDATA[
@@ -30,4 +33,10 @@
 			from feedTag
 				where tagName like #{keyword}
 	</select>
+	
+	
+	
+	
+	
+	
 </mapper>

@@ -145,4 +145,10 @@ public class FeedService {
 		System.out.println(feedVO.toString());
 		return dao.modifyFeed(feedVO);
 	}
+
+	public void deleteFeed(HttpServletRequest request) {
+		int feedNo = Integer.parseInt(request.getParameter("feedNo"));
+		
+		dao.deleteFeed(feedNo);
+	}
 }

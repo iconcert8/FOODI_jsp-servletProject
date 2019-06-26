@@ -9,4 +9,5 @@ public interface TagMapper {
 	List<TagVO> listHTG();
 	List<TagVO> callTag(int feedNo);
 	List<String> searchAutoComplete(String keyword);
+	int deleteTag(int feedNo);
 }

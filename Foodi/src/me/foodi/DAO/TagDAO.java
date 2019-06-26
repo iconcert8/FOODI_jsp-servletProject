@@ -90,4 +90,25 @@ public class TagDAO {
 		List<String> autoList = sqlSession.getMapper(TagMapper.class).searchAutoComplete(keyword);
 		return autoList;
 	}
+
+	public void deleteTag(int feedNo) {
+		SqlSession sqlSession = getSqlsessionFactory().openSession();
+		int re = -1;
+
+		try {
+			re = sqlSession.getMapper(TagMapper.class).deleteTag(feedNo);
+
+			if (re > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (sqlSession != null) {
+				sqlSession.close();
+			}
+		}
+	}
 }

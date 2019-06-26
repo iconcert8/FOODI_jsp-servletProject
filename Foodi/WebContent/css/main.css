@@ -28,5 +28,6 @@ h3{color: orange;}
 .ulBox{width: 1280px; overflow: hidden; float: left; position: relative;}
 article ul{width: 1280px; position: relative; left: 0px;}
 article li{display: inline-block; background-color: #ffcd47; width: 300px; height: 200px; margin-left: 10px; margin-right: 10px;}
+article li:HOVER{background-color: #fcf8e0; cursor: pointer;}
 .arrow{float:left; width: 60px; font-size: 40px; color:#ffcd47;  text-align: center; line-height: 190px;}
 .arrow:HOVER {cursor: pointer; color: gray;}

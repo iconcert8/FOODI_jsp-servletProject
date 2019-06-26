@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/Foodi/css/main.css">
+<link rel="stylesheet" href="/Foodi/css/lightBoxFeed.css">
 <script type="text/javascript" src="/Foodi/js/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="/Foodi/js/mainView.js"></script>
 <title>Insert title here</title>
@@ -45,5 +46,7 @@
 			<div class="arrow arrowRight"><b>></b></div>
 		</article>
 	</section>
+	<!-- 라이트박스 피드 -->
+	<!-- /라이트박스 피드 -->
 </body>
 </html>

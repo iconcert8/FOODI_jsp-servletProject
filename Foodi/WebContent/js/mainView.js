@@ -1,4 +1,8 @@
-﻿var firstCnt = 0;
+﻿document.write("<script type='text/javascript' src='/Foodi/js/dateFormat.js'></script>");
+document.write("<script type='text/javascript' src='/Foodi/js/lightBoxFeed.js'></script>");
+
+
+var firstCnt = 0;
 var secondCnt = 0;
 
 $(document).ready(function(){
@@ -26,9 +30,9 @@ $(document).ready(function(){
 				}, 1000)
 			}		
 		}
-		
-		
 	});
+	
+	lightBoxClickEvent("article li");
 
 });
 function htgList(){
@@ -65,7 +69,7 @@ function htgFeedList(tagName){
 				if(firstCnt < 8){
 					firstCnt++;
 					var html = 
-						'<li>' +
+						'<li value="'+item.feedNo+'">' +
 						'<div>'+
 						item.feedImg+'<br>'+
 						item.feedContent+
@@ -78,7 +82,7 @@ function htgFeedList(tagName){
 				}else{
 					secondCnt++;
 					var html = 
-						'<li>' +
+						'<li value="'+item.feedNo+'">' +
 						'<div>'+
 						item.feedImg+'<br>'+
 						item.feedContent+
@@ -111,7 +115,7 @@ function htgFeedList1(tagName, $ul){
 			$.each(data, function(index, item){
 				firstCnt++;
 				var html = 
-					'<li>' +
+					'<li value="'+item.feedNo+'">' +
 						'<div>'+
 							item.feedImg+'<br>'+
 							item.feedContent+
@@ -140,7 +144,7 @@ function htgFeedList2(tagName, $ul){
 			$.each(data, function(index, item){
 				secondCnt++;
 				var html = 
-					'<li>' +
+					'<li value="'+item.feedNo+'">' +
 					'<div>'+
 					item.feedImg+'<br>'+
 					item.feedContent+

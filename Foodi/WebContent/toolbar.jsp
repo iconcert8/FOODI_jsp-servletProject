@@ -102,7 +102,8 @@
 		<!-----------------------  로그인하지 않았을 경우 나타날 화면  ----------------------->
 		<c:if test="${loginUser == null}">
 			<ul>
-				<li><a href="/Foodi/userInfo/loginPage.do">로그인 하세욧</a></li>
+				<li class="notLoginMenuLink"><a href="/Foodi/main/index">Main</a></li>
+				<li class="notLoginMenuLink"><a href="/Foodi/userInfo/loginPage.do">Login</a></li>
 			</ul>
 		</c:if>
 		<!---------------------------------------------------------------------->

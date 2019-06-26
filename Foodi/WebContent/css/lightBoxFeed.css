@@ -1,0 +1,53 @@
+@CHARSET "UTF-8";
+
+/* detail view */
+#lightBox{width: 900px; height: 700px; }
+#lightBox button:HOVER{
+	background-color: #ffcd47;
+	color: white;
+	cursor: pointer;
+	transition:all .5s ease;
+}
+.reply_middle{height: 310px;}
+.reply_bottom button{
+	width: 388px; height:30px; margin-left: 25px;
+ 	border: 2px solid #ffcd47;
+}
+#replyBox{
+	width:890px; height:180px; overflow: auto;
+	margin-top: 20px; border: 1px solid #ffcd47;}
+#replyText{
+	font-size: 17px; width: 710px; height:58px; 
+	margin-left:25px; margin-top: 10px; float: left;}
+#replySend{
+	border: 2px solid #ffcd47; background-color: white;
+	width:80px; height:60px; display:inline-block;
+	margin-left: 10px; margin-top: 10px; clear:both;
+	transition:all .5s ease;	
+}
+
+.black{
+	visibility: hidden;
+}
+.light{
+	position: fixed;
+	top:100px;
+	left: 500px;
+	box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px, rgba(255,205,71,0.5) 2px 2px 3px 5px;
+	visibility: visible;
+	background-color: white;
+	border: 2px solid #ffcd47;
+}
+#close{	
+	width: 10px; height: 10px; 
+	float: right; margin-right: 20px;
+	color: #ffcd47; font-size: 30px;
+	transition:all .5s ease;
+}
+#close:HOVER {cursor:pointer; color: gray;}
+
+/* button */
+.isGood{background-color: #ffcd47; color: white;}
+.isQook{background-color: #ffcd47; color: white;}
+.isNotGood{background-color: white; color: black;}
+.isNotQook{background-color: white; color: black;}
